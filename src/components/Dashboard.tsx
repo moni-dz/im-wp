@@ -1,4 +1,3 @@
-// Dashboard.tsx
 'use client';
 import { useState } from 'react';
 import { Project, Employee } from './types';

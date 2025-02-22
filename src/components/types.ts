@@ -1,4 +1,3 @@
-// Types that can be used across components
 export interface User {
   username: string;
   isLoggedIn: boolean;
