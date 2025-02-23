@@ -21,9 +21,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
                 if (parsed.success) {
                     const { username, password } = parsed.data;
+                    const hash = await Bun.password.hash(password);
 
                     const user = await db.query.engineer.findFirst({
-                        with: { username, password: Bun.password.hash(password) },
+                        with: { username, password: hash },
                     });
 
                     if (!user) return null;
