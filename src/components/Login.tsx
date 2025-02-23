@@ -1,64 +1,67 @@
 'use client';
-import { useState, FormEvent } from 'react';
+
+import { useState, useEffect } from 'react';
 
 interface LoginProps {
   onLogin: () => void;
 }
 
-interface FormData {
-  username: string;
-  password: string;
-}
-
 const Login = ({ onLogin }: LoginProps) => {
-  const [formData, setFormData] = useState<FormData>({
-    username: '',
-    password: ''
-  });
+  // null initial state
+  const [email, setEmail] = useState<string | null>(null);
+  const [password, setPassword] = useState<string | null>(null);
+  
+  // default values after mount
+  useEffect(() => {
+    setEmail('example@example.com');
+    setPassword('example');
+  }, []);
 
-  const [error, setError] = useState<string | null>(null);
-
-  const handleLogin = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (formData.username === 'example' && formData.password === 'example') {
-      onLogin();
-    } else {
-      setError('Invalid username or password');
-    }
+    onLogin();
   };
 
+  // does nawt render d form until initial values are set
+  if (email === null || password === null) {
+    return null;
+  }
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-md w-96">
-        <h1 className="text-2xl font-bold mb-6 text-center">Login</h1>
-        <form onSubmit={handleLogin}>
-          <div className="mb-4">
-            <label className="block text-gray-700 mb-2">Username</label>
+    <div className="min-h-screen bg-blue-900 flex items-center justify-center p-4">
+      <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-8 space-y-8">
+        <div className="text-center mb-8">
+          <h1 className="text-3xl font-bold text-blue-900">LOGO</h1>
+        </div>
+        
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="space-y-2">
+            <label className="text-sm text-gray-600">email</label>
             <input
-              type="text"
-              value={formData.username}
-              onChange={(e) => setFormData({ ...formData, username: e.target.value })}
-              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Enter username"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              required
             />
           </div>
-          <div className="mb-4">
-            <label className="block text-gray-700 mb-2">Password</label>
+          
+          <div className="space-y-2">
+            <label className="text-sm text-gray-600">password</label>
             <input
               type="password"
-              value={formData.password}
-              onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Enter password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              required
             />
           </div>
-          {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
+          
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition-colors"
+            className="w-full bg-blue-900 text-white py-2 rounded-lg hover:bg-blue-800 transition-colors"
           >
-            Login
+            sign in
           </button>
         </form>
       </div>
