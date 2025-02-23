@@ -1,25 +1,24 @@
 'use client';
+
 import { useState } from 'react';
-import { Project, Employee } from './types';
+import ProjectsPage from './ProjectsPage';
 
 interface DashboardProps {
   onLogout: () => void;
 }
 
-type ActiveTab = 'dashboard' | 'projects' | 'employees';
+type ActiveTab = 'dashboard' | 'projects' | 'employees' | 'clients' | 'calendar';
 
 const Dashboard = ({ onLogout }: DashboardProps) => {
   const [activeTab, setActiveTab] = useState<ActiveTab>('dashboard');
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [employees, setEmployees] = useState<Employee[]>([]);
 
-  const renderTabButton = (tab: ActiveTab, label: string) => (
+  const renderSidebarButton = (tab: ActiveTab, label: string) => (
     <button
       onClick={() => setActiveTab(tab)}
-      className={`px-6 py-3 rounded-lg ${
+      className={`w-full px-6 py-3 text-left rounded-lg transition-colors ${
         activeTab === tab
-          ? 'bg-blue-500 text-white'
-          : 'bg-white text-gray-700 hover:bg-gray-50'
+          ? 'bg-white text-blue-900 shadow-md'
+          : 'text-white hover:bg-blue-800'
       }`}
     >
       {label}
@@ -27,69 +26,37 @@ const Dashboard = ({ onLogout }: DashboardProps) => {
   );
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <nav className="bg-white shadow-md">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex justify-between h-16">
-            <div className="flex items-center">
-              <h1 className="text-xl font-bold">Dashboard</h1>
-            </div>
-            <div className="flex items-center">
-              <button
-                onClick={onLogout}
-                className="text-gray-600 hover:text-gray-800"
-              >
-                Logout
-              </button>
-            </div>
-          </div>
+    <div className="flex min-h-screen bg-gray-100">
+      {/* Sidebar */}
+      <div className="w-64 bg-blue-900 p-6 flex flex-col">
+        <div className="mb-12">
+          <h1 className="text-3xl font-bold text-white">LOGO</h1>
         </div>
-      </nav>
-
-      <div className="max-w-7xl mx-auto px-4 py-6">
-        <div className="flex gap-4 mb-6">
-          {renderTabButton('dashboard', 'Dashboard')}
-          {renderTabButton('projects', 'Projects')}
-          {renderTabButton('employees', 'Employees')}
+        
+        <div className="flex flex-col space-y-2 flex-grow">
+          {renderSidebarButton('dashboard', 'Dashboard')}
+          {renderSidebarButton('projects', 'Projects')}
+          {renderSidebarButton('employees', 'Employees')}
+          {renderSidebarButton('clients', 'Clients')}
+          {renderSidebarButton('calendar', 'Calendar')}
         </div>
+        
+        <button
+          onClick={onLogout}
+          className="w-full px-6 py-3 text-left text-white hover:bg-blue-800 rounded-lg mt-auto"
+        >
+          Log out
+        </button>
+      </div>
 
-        <div className="bg-white rounded-lg shadow-md p-6">
-          {activeTab === 'dashboard' && (
-            <div>
-              <h2 className="text-xl font-semibold mb-4">Welcome to Dashboard</h2>
-              <p className="text-gray-600">Select a section to get started.</p>
-            </div>
-          )}
-
-          {activeTab === 'projects' && (
-            <div>
-              <div className="flex justify-between mb-6">
-                <h2 className="text-xl font-semibold">Projects</h2>
-                <button className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">
-                  Add New Project
-                </button>
-              </div>
-              {projects.length === 0 ? (
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <p className="text-gray-600">No projects found.</p>
-                </div>
-              ) : null}
-            </div>
-          )}
-
-          {activeTab === 'employees' && (
-            <div>
-              <div className="flex justify-between mb-6">
-                <h2 className="text-xl font-semibold">Employees</h2>
-                <button className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">
-                  Add New Employee
-                </button>
-              </div>
-              {employees.length === 0 ? (
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <p className="text-gray-600">No employees found.</p>
-                </div>
-              ) : null}
+      {/* Main Content */}
+      <div className="flex-grow p-8" style={{ overscrollBehaviorX: 'auto' }}>
+        <div className="h-full w-full bg-white rounded-lg shadow-lg p-6">
+          {activeTab === 'projects' ? (
+            <ProjectsPage />
+          ) : (
+            <div className="h-full flex items-center justify-center text-gray-500">
+              Select an option from the sidebar to view content
             </div>
           )}
         </div>
