@@ -7,10 +7,10 @@ interface DashboardProps {
   onLogout: () => void;
 }
 
-type ActiveTab = 'dashboard' | 'projects' | 'employees' | 'clients' | 'calendar';
+type ActiveTab = 'projects' | 'employees' | 'clients' | 'calendar';
 
 const Dashboard = ({ onLogout }: DashboardProps) => {
-  const [activeTab, setActiveTab] = useState<ActiveTab>('dashboard');
+  const [activeTab, setActiveTab] = useState<ActiveTab>('projects');
 
   const renderSidebarButton = (tab: ActiveTab, label: string) => (
     <button
@@ -26,40 +26,37 @@ const Dashboard = ({ onLogout }: DashboardProps) => {
   );
 
   return (
-    <div className="flex min-h-screen bg-gray-100">
+    <div className="flex h-screen bg-blue-900">
       {/* Sidebar */}
-      <div className="w-64 bg-blue-900 p-6 flex flex-col">
-        <div className="mb-12">
-          <h1 className="text-3xl font-bold text-white">LOGO</h1>
+      <div className="w-64 p-4 flex flex-col">
+        <div className="mb-8 px-6 py-4">
+          <h1 className="text-white text-xl font-bold">LOGO</h1>
         </div>
-        
-        <div className="flex flex-col space-y-2 flex-grow">
-          {renderSidebarButton('dashboard', 'Dashboard')}
+        <div className="space-y-2 flex-grow">
           {renderSidebarButton('projects', 'Projects')}
           {renderSidebarButton('employees', 'Employees')}
           {renderSidebarButton('clients', 'Clients')}
           {renderSidebarButton('calendar', 'Calendar')}
         </div>
-        
         <button
           onClick={onLogout}
-          className="w-full px-6 py-3 text-left text-white hover:bg-blue-800 rounded-lg mt-auto"
+          className="w-full px-6 py-3 mt-auto text-left text-white hover:bg-blue-800 rounded-lg transition-colors"
         >
           Log out
         </button>
       </div>
 
       {/* Main Content */}
-      <div className="flex-grow p-8" style={{ overscrollBehaviorX: 'auto' }}>
-        <div className="h-full w-full bg-white rounded-lg shadow-lg p-6">
-          {activeTab === 'projects' ? (
-            <ProjectsPage />
-          ) : (
-            <div className="h-full flex items-center justify-center text-gray-500">
+      <div className="flex-grow p-8 bg-gray-100 overflow-auto">
+        {activeTab === 'projects' ? (
+          <ProjectsPage />
+        ) : (
+          <div className="flex items-center justify-center h-full">
+            <p className="text-gray-500 text-lg">
               Select an option from the sidebar to view content
-            </div>
-          )}
-        </div>
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
