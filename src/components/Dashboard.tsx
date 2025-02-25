@@ -17,8 +17,8 @@ const Dashboard = ({ onLogout }: DashboardProps) => {
       onClick={() => setActiveTab(tab)}
       className={`w-full px-6 py-3 text-left rounded-lg transition-colors ${
         activeTab === tab
-          ? 'bg-white text-blue-900 shadow-md'
-          : 'text-white hover:bg-blue-800'
+          ? 'bg-white text-blue-950 shadow-md'
+          : 'text-white hover:bg-blue-950'
       }`}
     >
       {label}
@@ -26,7 +26,7 @@ const Dashboard = ({ onLogout }: DashboardProps) => {
   );
 
   return (
-    <div className="flex h-screen bg-blue-900">
+    <div className="flex h-screen bg-blue-950">
       {/* Sidebar */}
       <div className="w-64 p-4 flex flex-col">
         <div className="mb-8 px-6 py-4">
@@ -40,7 +40,7 @@ const Dashboard = ({ onLogout }: DashboardProps) => {
         </div>
         <button
           onClick={onLogout}
-          className="w-full px-6 py-3 mt-auto text-left text-white hover:bg-blue-800 rounded-lg transition-colors"
+          className="w-full px-6 py-3 mt-auto text-left text-white hover:bg-blue-950 rounded-lg transition-colors"
         >
           Log out
         </button>
