@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@heroicons/react": "^2.2.0",
+    "@heroicons/react": "1",
     "dotenv": "^16.4.7",
     "drizzle-orm": "^0.39.3",
     "mysql2": "^3.12.0",
