@@ -75,7 +75,7 @@ const ProjectsPage = () => {
         <h2 className="text-xl">Projects</h2>
         <button 
           onClick={() => setIsAddingProject(true)}
-          className="bg-blue-900 text-white px-4 py-2 rounded"
+          className="bg-blue-950 text-white px-4 py-2 rounded"
         >
           ADD PROJECT
         </button>

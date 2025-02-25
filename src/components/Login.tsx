@@ -28,10 +28,10 @@ const Login = ({ onLogin }: LoginProps) => {
   }
 
   return (
-    <div className="min-h-screen bg-blue-900 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-blue-950 flex items-center justify-center p-4">
       <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-8 space-y-8">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-blue-900">LOGO</h1>
+          <h1 className="text-3xl font-bold text-blue-950">LOGO</h1>
         </div>
         
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -41,7 +41,7 @@ const Login = ({ onLogin }: LoginProps) => {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-950 focus:border-blue-950"
               required
             />
           </div>
@@ -52,14 +52,14 @@ const Login = ({ onLogin }: LoginProps) => {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-950 focus:border-blue-950"
               required
             />
           </div>
           
           <button
             type="submit"
-            className="w-full bg-blue-900 text-white py-2 rounded-lg hover:bg-blue-800 transition-colors"
+            className="w-full bg-blue-950 text-white py-2 rounded-lg hover:bg-blue-950 transition-colors"
           >
             sign in
           </button>
