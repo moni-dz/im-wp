@@ -27,4 +27,12 @@ export interface Project {
   progress: number;
   client_id?: number;
   client?: Client;
+  teamMembers?: TeamMember[];
+
+}
+
+export interface TeamMember { // project-specific, info can be taken from employee / reference to employee entity
+  name: string;
+  role: string;
+  id: number;
 }
