@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Project } from './types';
+import { Project, TeamMember } from './types';
 import Documents from './Documents';
+import EmployeeListEditor from './EmployeeListEditor';
 import { PencilIcon, TrashIcon, ArrowLeftIcon } from '@heroicons/react/solid';
 
 interface ProjectDetailProps {
@@ -10,6 +11,7 @@ interface ProjectDetailProps {
 
 const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
   const [showDocuments, setShowDocuments] = useState(false);
+  const [showEmployeeEditor, setShowEmployeeEditor] = useState(false);
   
   // mock data for display purposes
   const clientInfo = {
@@ -20,10 +22,11 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
     estimatedCompletion: "2024-05-30"
   };
   
-  const teamMembers = [
-    { name: "neuvilette", role: "project manager" },
-    { name: "wriothesley", role: "arki" }
-  ];
+  const [teamMembers, setTeamMembers] = useState<TeamMember[]>([
+    { id: 1, name: "neuvilette", role: "project manager" },
+    { id: 2, name: "wriothesley", role: "arki" }
+  ]);
+  
 
   const handleDocumentsClick = () => {
     setShowDocuments(true);
@@ -33,8 +36,31 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
     setShowDocuments(false);
   };
 
+  const handleEmployeeEditorClick = () => {
+    setShowEmployeeEditor(true);
+  };
+
+  const handleBackFromEmployeeEditor = () => {
+    setShowEmployeeEditor(false);
+  };
+
+  const handleDeleteMember = (memberToDelete: TeamMember) => {
+    setTeamMembers(teamMembers.filter(member => member.id !== memberToDelete.id));
+  };
+
   if (showDocuments) {
     return <Documents project={project} onBack={handleBackFromDocuments} />;
+  }
+
+  if (showEmployeeEditor) {
+    return (
+      <EmployeeListEditor 
+        project={project}
+        teamMembers={teamMembers}
+        onBack={handleBackFromEmployeeEditor}
+        onDeleteMember={handleDeleteMember}
+      />
+    );
   }
 
   return (
@@ -79,7 +105,10 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
             <div className="bg-white rounded-lg p-4 shadow">
               <div className="flex justify-between items-center mb-2">
                 <h3 className="font-medium">employee list</h3>
-                <button className="p-1 text-gray-500 hover:text-gray-700">
+                <button 
+                  onClick={handleEmployeeEditorClick}
+                  className="p-1 text-gray-500 hover:text-gray-700"
+                >
                   <PencilIcon className="h-5 w-5" />
                 </button>
               </div>
@@ -94,7 +123,7 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
               </div>
             </div>
 
-            {/* Documents - Now a clickable button */}
+            {/* Documents*/}
             <button 
               onClick={handleDocumentsClick}
               className="bg-white rounded-lg p-4 shadow w-full text-left hover:bg-gray-50"
