@@ -34,12 +34,12 @@ const AddProjectForm = ({ onSubmit, onCancel }: AddProjectFormProps) => {
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
-      <h2 className="text-xl font-semibold mb-4">Add New Project</h2>
+      <h2 className="text-xl text-blue-950 font-semibold mb-4">Add New Project</h2>
       
       <form onSubmit={handleSubmit}>
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium mb-1">Project Name</label>
+            <label className="block text-sm text-blue-950 font-medium mb-1">Project Name</label>
             <input
               type="text"
               name="name"
@@ -51,7 +51,7 @@ const AddProjectForm = ({ onSubmit, onCancel }: AddProjectFormProps) => {
           </div>
           
           <div>
-            <label className="block text-sm font-medium mb-1">Description</label>
+            <label className="block text-sm  text-blue-950 font-medium mb-1">Description</label>
             <textarea
               name="description"
               value={formData.description}
@@ -63,7 +63,7 @@ const AddProjectForm = ({ onSubmit, onCancel }: AddProjectFormProps) => {
           </div>
           
           <div>
-            <label className="block text-sm font-medium mb-1">Client Name</label>
+            <label className="block text-sm  text-blue-950 font-medium mb-1">Client Name</label>
             <input
               type="text"
               name="client_name"
@@ -74,7 +74,7 @@ const AddProjectForm = ({ onSubmit, onCancel }: AddProjectFormProps) => {
           </div>
           
           <div>
-            <label className="block text-sm font-medium mb-1">Location</label>
+            <label className="block text-sm  text-blue-950 font-medium mb-1">Location</label>
             <input
               type="text"
               name="location"
@@ -85,7 +85,7 @@ const AddProjectForm = ({ onSubmit, onCancel }: AddProjectFormProps) => {
           </div>
           
           <div>
-            <label className="block text-sm font-medium mb-1">Start Date</label>
+            <label className="block text-sm  text-blue-950 font-medium mb-1">Start Date</label>
             <input
               type="date"
               name="startDate"
@@ -97,7 +97,7 @@ const AddProjectForm = ({ onSubmit, onCancel }: AddProjectFormProps) => {
           </div>
           
           <div>
-            <label className="block text-sm font-medium mb-1">Status</label>
+            <label className="block text-sm  text-blue-950 font-medium mb-1">Status</label>
             <select
               name="status"
               value={formData.status}
@@ -115,13 +115,13 @@ const AddProjectForm = ({ onSubmit, onCancel }: AddProjectFormProps) => {
           <button
             type="button"
             onClick={onCancel}
-            className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
+            className="px-4 py-2 bg-gray-200 text-blue-950 rounded hover:bg-blue-950 hover:text-white"
           >
             Cancel
           </button>
           <button
             type="submit"
-            className="px-4 py-2 bg-blue-950 text-white rounded hover:bg-blue-950"
+            className="px-4 py-2 bg-blue-950 text-white rounded hover:bg-gray-300 hover:text-blue-950"
           >
             Add Project
           </button>
