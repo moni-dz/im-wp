@@ -120,7 +120,7 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
 
           {/* Description */}
           <div className="bg-white rounded-lg p-4 shadow">
-            <h3 className="font-medium mb-2 text-blue-950">description</h3>
+            <h3 className="font-medium mb-2 text-blue-950">Description</h3>
             <p className="text-sm text-blue-950">{currentProject.description}</p>
           </div>
 
@@ -129,7 +129,7 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
             {/* Employee List */}
             <div className="bg-white rounded-lg p-4 shadow">
               <div className="flex justify-between items-center mb-2">
-                <h3 className="font-medium text-blue-950">employee list</h3>
+                <h3 className="font-bold text-blue-950">Employee list</h3>
                 <button 
                   onClick={handleEmployeeEditorClick}
                   className="p-1 text-blue-950 hover:text-blue-950"
@@ -141,7 +141,7 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
               <div className="space-y-2">
                 {teamMembers.map((member, index) => (
                   <div key={index} className="bg-gray-100 p-2 rounded">
-                    <p className="font-medium">{member.name}</p>
+                    <p className="font-medium text-blue-950">{member.name}</p>
                     <p className="text-xs text-blue-950">role: {member.role}</p>
                   </div>
                 ))}
@@ -153,12 +153,12 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
               onClick={handleDocumentsClick}
               className="bg-white rounded-lg p-4 shadow w-full text-left hover:bg-gray-50"
             >
-              <h3 className="font-medium text-blue-950">documents</h3>
+              <h3 className="font-medium text-blue-950">Documents</h3>
             </button>
 
             {/* Notes */}
             <div className="bg-white rounded-lg p-4 shadow">
-              <h3 className="font-medium text-blue-950">notes</h3>
+              <h3 className="font-medium text-blue-950">Notes</h3>
             </div>
           </div>
         </div>
