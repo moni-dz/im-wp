@@ -75,7 +75,7 @@ const EmployeeListEditor: React.FC<EmployeeListEditorProps> = ({
   return (
     <div className="bg-gray-100 text-blue-950 min-h-screen">
       <div className="container mx-auto px-4 py-6">
-        <h1 className="text-2xl text-blue-950 font-bold mb-6">employee list: {project.name}</h1>
+        <h1 className="text-3xl text-blue-950 font-bold mb-6">Employee List: {project.name}</h1>
 
         <div className="bg-white rounded-lg p-6 mb-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -96,7 +96,7 @@ const EmployeeListEditor: React.FC<EmployeeListEditorProps> = ({
         </div>
 
         <div className="flex justify-center mb-6">
-          <button onClick={() => setShowAddEmployeePage(true)} className="bg-blue-950 text-white rounded-md px-8 py-3 font-medium">
+          <button onClick={() => setShowAddEmployeePage(true)} className="bg-blue-950 font-bold text-white rounded-md px-8 py-3 font-medium">
             ADD EMPLOYEE
           </button>
         </div>
