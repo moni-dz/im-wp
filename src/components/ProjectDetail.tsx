@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Project, TeamMember } from './types';
 import Documents from './Documents';
 import EmployeeListEditor from './EmployeeListEditor';
-import { PencilIcon, TrashIcon, ArrowLeftIcon } from '@heroicons/react/solid';
+import EditProject from './EditProject'; 
+import { PencilIcon, ArrowLeftIcon } from '@heroicons/react/solid';
 
 interface ProjectDetailProps {
   project: Project;
@@ -12,12 +13,14 @@ interface ProjectDetailProps {
 const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
   const [showDocuments, setShowDocuments] = useState(false);
   const [showEmployeeEditor, setShowEmployeeEditor] = useState(false);
+  const [showEditProject, setShowEditProject] = useState(false); // New state for edit mode
+  const [currentProject, setCurrentProject] = useState<Project>(project);
   
   // mock data for display purposes
   const clientInfo = {
     name: "Client Name",
     location: "Location",
-    startDate: project.startDate,
+    startDate: currentProject.startDate,
     amount: "50,000",
     estimatedCompletion: "2024-05-30"
   };
@@ -27,7 +30,6 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
     { id: 2, name: "wriothesley", role: "arki" }
   ]);
   
-
   const handleDocumentsClick = () => {
     setShowDocuments(true);
   };
@@ -44,18 +46,32 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
     setShowEmployeeEditor(false);
   };
 
+  // New handlers for edit project
+  const handleEditProjectClick = () => {
+    setShowEditProject(true);
+  };
+
+  const handleBackFromEditProject = () => {
+    setShowEditProject(false);
+  };
+
+  const handleSaveProject = (updatedProject: Project) => {
+    setCurrentProject(updatedProject);
+    setShowEditProject(false);
+  };
+
   const handleDeleteMember = (memberToDelete: TeamMember) => {
     setTeamMembers(teamMembers.filter(member => member.id !== memberToDelete.id));
   };
 
   if (showDocuments) {
-    return <Documents project={project} onBack={handleBackFromDocuments} />;
+    return <Documents project={currentProject} onBack={handleBackFromDocuments} />;
   }
 
   if (showEmployeeEditor) {
     return (
       <EmployeeListEditor 
-        project={project}
+        project={currentProject}
         teamMembers={teamMembers}
         onBack={handleBackFromEmployeeEditor}
         onDeleteMember={handleDeleteMember}
@@ -63,19 +79,28 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
     );
   }
 
+  // SHOW edit project component when in edit mode
+  if (showEditProject) {
+    return (
+      <EditProject 
+        project={currentProject}
+        onBack={handleBackFromEditProject}
+        onSave={handleSaveProject}
+      />
+    );
+  }
+
   return (
     <div>
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold">{project.name}</h2>
+        <h2 className="text-2xl font-bold">{currentProject.name}</h2>
         <div className="flex space-x-2">
-          {/* Edit Icon */}
-          <button className="p-1 text-blue-950 hover:text-blue-950">
+          {/* Edit Icon - Now with click handler */}
+          <button 
+            className="p-1 text-blue-950 hover:text-blue-950"
+            onClick={handleEditProjectClick}
+          >
             <PencilIcon className="h-5 w-5" />
-          </button>
-          
-          {/* Delete Icon */}
-          <button className="p-1 text-blue-950 hover:text-blue-950">
-            <TrashIcon className="h-5 w-5" />
           </button>
         </div>
       </div>
@@ -96,7 +121,7 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
           {/* Description */}
           <div className="bg-white rounded-lg p-4 shadow">
             <h3 className="font-medium mb-2 text-blue-950">description</h3>
-            <p className="text-sm text-blue-950">{project.description}</p>
+            <p className="text-sm text-blue-950">{currentProject.description}</p>
           </div>
 
           {/* Team and Documents */}
