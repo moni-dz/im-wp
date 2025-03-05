@@ -93,7 +93,7 @@ const ProjectsPage = () => {
 
       <div className="space-y-8">
         <div>
-          <h3 className="text-xl text-blue-950 font-bold mb-4">active</h3>
+          <h3 className="text-2xl text-blue-950 font-bold mb-4">Active</h3>
           <ProjectList 
             projects={projects.filter(p => p.status === 'active')}
             onSelectProject={handleSelectProject}
@@ -101,7 +101,7 @@ const ProjectsPage = () => {
         </div>
 
         <div>
-          <h3 className="text-xl text-blue-950 font-bold mb-4">completed</h3>
+          <h3 className="text-2xl text-blue-950 font-bold mb-4">Completed</h3>
           <ProjectList 
             projects={projects.filter(p => p.status === 'completed')}
             onSelectProject={handleSelectProject}

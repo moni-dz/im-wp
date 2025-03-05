@@ -151,15 +151,11 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
             {/* Documents*/}
             <button 
               onClick={handleDocumentsClick}
-              className="bg-white rounded-lg p-4 shadow w-full text-left hover:bg-gray-50"
+              className="bg-blue-950 text-white rounded-lg p-4 shadow w-full text-left hover:bg-gray-100 hover:text-blue-950"
             >
-              <h3 className="font-medium text-blue-950">Documents</h3>
+              <h3 className="font-medium text-white hover:text-blue-950">Documents</h3>
             </button>
 
-            {/* Notes */}
-            <div className="bg-white rounded-lg p-4 shadow">
-              <h3 className="font-medium text-blue-950">Notes</h3>
-            </div>
           </div>
         </div>
       </div>

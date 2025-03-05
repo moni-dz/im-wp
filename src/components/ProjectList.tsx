@@ -49,7 +49,7 @@ const ProjectList = ({ projects, onSelectProject, onDeleteProject }: ProjectList
             className="bg-white rounded-lg p-4 shadow cursor-pointer"
           >
             <div className="flex justify-between items-start">
-              <h3 className="font-medium">{project.name}</h3>
+              <h3 className="text-blue-950 font-bold ">{project.name}</h3>
               <div className="flex space-x-2">
                 {/* Trash Icon */}
                 <button
