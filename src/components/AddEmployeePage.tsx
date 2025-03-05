@@ -1,3 +1,5 @@
+// this is for PROJECT DETAILS - PROJECT/EMPLOYEE LIST - ADD EMPLOYEE
+
 import React from 'react';
 
 interface AddEmployeeProps {
@@ -13,7 +15,7 @@ const AddEmployeePage: React.FC<AddEmployeeProps> = ({ onBack, onAddEmployee }) 
         {/* Main content */}
         <div className="flex flex-col">
           {/* Page title */}
-          <h1 className="text-3xl text-blue-950 font-bold mb-8">add employee</h1>
+          <h1 className="text-3xl text-blue-950 font-bold mb-8">Add Employee</h1>
 
           {/* Form container */}
           <div className="bg-blue-950 rounded-lg p-8 mb-8">
