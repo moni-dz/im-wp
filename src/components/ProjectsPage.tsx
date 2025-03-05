@@ -72,10 +72,10 @@ const ProjectsPage = () => {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center mb-8">
-        <h2 className="text-xl font-bold text-blue-950">Projects</h2>
+        <h2 className="text-3xl font-bold text-blue-950">Projects</h2>
         <button 
           onClick={() => setIsAddingProject(true)}
-          className="bg-blue-950 text-white px-4 py-2 rounded"
+          className="bg-blue-950 font-bold rounded-lg text-white px-4 py-2 rounded"
         >
           ADD PROJECT
         </button>
