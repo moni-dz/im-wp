@@ -59,7 +59,7 @@ export const engineer = mysqlTable("Engineer", {
 	id: int().autoincrement().notNull(),
 	personId: int("person_id").notNull().references(() => person.id, { onDelete: "restrict", onUpdate: "restrict" } ),
 	username: varchar({ length: 500 }).notNull(),
-	password: varbinary({ length: 500 }).notNull(),
+	password: varchar({ length: 500 }).notNull(),
 },
 (table) => [
 	index("index_1").on(table.id),

@@ -11,7 +11,11 @@ interface Employee {
   role: string;
 }
 
-const EmployeeListPage: React.FC = () => {
+interface EmployeeListPageProps {
+  projectName: string;
+}
+
+const EmployeeListPage = (props: EmployeeListPageProps) => {
   const [employees, setEmployees] = useState<Employee[]>([
     { id: '1', name: 'first name, last name', status: 'ha', skills: 'a', dateContracted: 'x', role: 's' },
     { id: '2', name: 'first name, last name', status: 'td', skills: 'a', dateContracted: 'x', role: 's' },

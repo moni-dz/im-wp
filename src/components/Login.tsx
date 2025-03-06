@@ -1,30 +1,20 @@
-'use client';
+import Bun from 'bun';
+import { redirect } from 'next/navigation';
 
-import { useState, useEffect } from 'react';
+const Login = () => {
+  async function login(formData: FormData) {
+    "use server";
 
-interface LoginProps {
-  onLogin: () => void;
-}
-
-const Login = ({ onLogin }: LoginProps) => {
-  // null initial state
-  const [email, setEmail] = useState<string | null>(null);
-  const [password, setPassword] = useState<string | null>(null);
-  
-  // default values after mount
-  useEffect(() => {
-    setEmail('example@example.com');
-    setPassword('example');
-  }, []);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    onLogin();
-  };
-
-  // does nawt render d form until initial values are set
-  if (email === null || password === null) {
-    return null;
+    const response = await fetch('http://localhost:3000/api/v1/login', {
+      method: 'POST',
+      body: JSON.stringify({ username: formData.get('username'), password: formData.get('password') }),
+      headers: { 'Content-Type': 'application/json' }
+    });
+    
+    if (response.ok) {
+      console.log('logged in');
+      redirect('/dashboard');
+    }
   }
 
   return (
@@ -34,24 +24,22 @@ const Login = ({ onLogin }: LoginProps) => {
           <h1 className="text-3xl font-bold text-blue-950">LOGO</h1>
         </div>
         
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form action={login} className="space-y-6">
           <div className="space-y-2">
-            <label className="text-sm text-gray-600">email</label>
+            <label htmlFor="username" className="text-sm text-gray-600">username</label>
             <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              type="text"
+              name="username"
               className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-950 focus:border-blue-950"
               required
             />
           </div>
           
           <div className="space-y-2">
-            <label className="text-sm text-gray-600">password</label>
+            <label htmlFor="password" className="text-sm text-gray-600">password</label>
             <input
               type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              name="password"
               className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-950 focus:border-blue-950"
               required
             />

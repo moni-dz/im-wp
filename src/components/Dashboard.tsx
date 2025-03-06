@@ -13,7 +13,7 @@ interface DashboardProps {
 
 type ActiveTab = 'projects' | 'employees' | 'clients' | 'calendar' | 'add-client';
 
-const Dashboard = ({ onLogout }: DashboardProps) => {
+const Dashboard = () => {
   const [activeTab, setActiveTab] = useState<ActiveTab>('projects');
 
   const renderSidebarButton = (tab: ActiveTab, label: string) => (
@@ -82,12 +82,13 @@ const Dashboard = ({ onLogout }: DashboardProps) => {
           {renderSidebarButton('clients', 'Clients')}
           {renderSidebarButton('calendar', 'Calendar')}
         </div>
+        <form>
         <button
-          onClick={onLogout}
           className="w-full px-6 py-3 mt-auto text-left text-white hover:bg-blue-950 rounded-lg transition-colors"
         >
           Log out
         </button>
+        </form>
       </div>
 
       {/* Main Content */}
