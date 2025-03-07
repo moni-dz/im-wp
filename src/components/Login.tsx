@@ -1,5 +1,7 @@
 import Bun from 'bun';
 import { redirect } from 'next/navigation';
+import Image from 'next/image';
+import logo from '../logo2.png'; 
 
 const Login = () => {
   async function login(formData: FormData) {
@@ -21,8 +23,14 @@ const Login = () => {
     <div className="min-h-screen bg-blue-950 flex items-center justify-center p-4">
       <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-8 space-y-8">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-blue-950">LOGO</h1>
-        </div>
+        <Image
+              src={logo}
+              alt="LML Engineering Solutions"
+              className="w-32 mx-auto"
+              width={128}
+              height={40}
+              priority
+            />        </div>
         
         <form action={login} className="space-y-6">
           <div className="space-y-2">
