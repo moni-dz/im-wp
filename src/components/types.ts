@@ -36,3 +36,8 @@ export interface TeamMember { // project-specific, info can be taken from employ
   role: string;
   id: number;
 }
+
+import { InferSelectViewModel } from 'drizzle-orm'
+import { contractfullview } from '@/db/schema';
+
+export type ContractDetails = InferSelectViewModel<typeof contractfullview>;

@@ -1,53 +1,31 @@
 'use client';
 
-import React, { useState } from 'react';
-import { Project } from './types';
+import React, { useState, useEffect } from 'react';
+import { Project, ContractDetails } from './types';
 import ProjectList from './ProjectList';
 import ProjectDetail from './ProjectDetail';
 import AddProjectForm from './AddProjectForm';
 
 const ProjectsPage = () => {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [selectedProject, setSelectedProject] = useState<ContractDetails | null>(null);
   const [isAddingProject, setIsAddingProject] = useState(false);
-  const [projects, setProjects] = useState<Project[]>([
-    {
-      id: 1,
-      name: "project 1 name",
-      description: "renovation of office building",
-      status: "active",
-      startDate: "2024-02-15",
-      progress: 45
-    },
-    {
-      id: 2,
-      name: "project 2 name",
-      description: "construction project",
-      status: "active",
-      startDate: "2024-01-10",
-      progress: 30
-    },
-    {
-      id: 3,
-      name: "project 3 name",
-      description: "design project",
-      status: "completed",
-      startDate: "2023-11-05",
-      endDate: "2024-01-20",
-      progress: 100
-    },
-    {
-      id: 4,
-      name: "project 4 name",
-      description: "landscape design",
-      status: "completed",
-      startDate: "2023-10-15",
-      endDate: "2023-12-30",
-      progress: 100
-    }
-  ]);
+  const [projects, setProjects] = useState<ContractDetails[]>([]);
 
-  const handleSelectProject = (project: Project) => {
+  useEffect(() => {
+    fetch('/api/v1/contracts')
+      .then(res => res.json())
+      .then((data: ContractDetails[]) => {
+        setProjects(data);
+      });
+  }, []);
+
+  const handleSelectProject = (project: ContractDetails) => {
     setSelectedProject(project);
+  };
+
+  const onDeleteProject = (project: ContractDetails) => {
+    setProjects(projects.filter(p => p.contractId !== project.contractId));
+
   };
 
   const handleBackToProjects = () => {
@@ -95,7 +73,7 @@ const ProjectsPage = () => {
         <div>
           <h3 className="text-2xl text-blue-950 font-bold mb-4">Active</h3>
           <ProjectList 
-            projects={projects.filter(p => p.status === 'active')}
+            projects={projects.filter(p => p.status.toLowerCase() === 'active')}
             onSelectProject={handleSelectProject}
           />
         </div>

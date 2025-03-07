@@ -1,26 +1,26 @@
 import React, { useState } from 'react';
-import { Project } from './types';
+import { ContractDetails, Project } from './types';
 import { TrashIcon } from '@heroicons/react/solid';
 
 interface ProjectListProps {
-  projects: Project[];
-  onSelectProject: (project: Project) => void;
-  onDeleteProject: (projectId: number) => void;
+  projects: ContractDetails[];
+  onSelectProject: (project: ContractDetails) => void;
+  onDeleteProject: (project: ContractDetails) => void;
 }
 
 const ProjectList = ({ projects, onSelectProject, onDeleteProject }: ProjectListProps) => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [projectToDelete, setProjectToDelete] = useState<Project | null>(null);
+  const [projectToDelete, setProjectToDelete] = useState<ContractDetails | null>(null);
 
-  const handleDeleteClick = (e: React.MouseEvent, project: Project) => {
+  const handleDeleteClick = (e: React.MouseEvent, project: ContractDetails) => {
     e.stopPropagation();
     setProjectToDelete(project);
     setShowDeleteModal(true);
   };
 
   const confirmDelete = () => {
-    if (projectToDelete) {
-      onDeleteProject(projectToDelete.id);
+    if (projectToDelete !== null) {
+      onDeleteProject(projectToDelete);
       setShowDeleteModal(false);
       setProjectToDelete(null);
     }
@@ -44,12 +44,12 @@ const ProjectList = ({ projects, onSelectProject, onDeleteProject }: ProjectList
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {projects.map(project => (
           <div
-            key={project.id}
+            key={project.contractId}
             onClick={() => onSelectProject(project)}
             className="bg-white rounded-lg p-4 shadow cursor-pointer"
           >
             <div className="flex justify-between items-start">
-              <h3 className="text-blue-950 font-bold ">{project.name}</h3>
+              <h3 className="text-blue-950 font-bold ">{project.projectName}</h3>
               <div className="flex space-x-2">
                 {/* Trash Icon */}
                 <button
@@ -87,7 +87,7 @@ const ProjectList = ({ projects, onSelectProject, onDeleteProject }: ProjectList
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
             <h2 className="text-2xl font-bold text-blue-950 mb-4">
-              Delete {projectToDelete.name}'s information?
+              Delete {projectToDelete.projectName}'s information?
             </h2>
             <p className="text-lg text-blue-950 mb-8">
               This action cannot be undone.
