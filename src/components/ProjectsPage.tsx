@@ -5,6 +5,7 @@ import { Project, ContractDetails } from './types';
 import ProjectList from './ProjectList';
 import ProjectDetail from './ProjectDetail';
 import AddProjectForm from './AddProjectForm';
+import { deleteContract } from '@/app/lib/actions';
 
 const ProjectsPage = () => {
   const [selectedProject, setSelectedProject] = useState<ContractDetails | null>(null);
@@ -23,9 +24,9 @@ const ProjectsPage = () => {
     setSelectedProject(project);
   };
 
-  const onDeleteProject = (project: ContractDetails) => {
+  const onDeleteProject = async (project: ContractDetails) => {
     setProjects(projects.filter(p => p.contractId !== project.contractId));
-
+    await deleteContract(project.contractId);
   };
 
   const handleBackToProjects = () => {
