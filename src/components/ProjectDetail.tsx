@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { Project, TeamMember } from './types';
+import React, { useEffect, useState } from 'react';
+import { ContractDetails, EmployeeData, Project, TeamMember } from './types';
 import Documents from './Documents';
 import EmployeeListEditor from './EmployeeListEditor';
 import EditProject from './EditProject'; 
 import { PencilIcon, ArrowLeftIcon } from '@heroicons/react/solid';
 
 interface ProjectDetailProps {
-  project: Project;
+  project: ContractDetails;
   onBack: () => void;
 }
 
@@ -14,21 +14,17 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
   const [showDocuments, setShowDocuments] = useState(false);
   const [showEmployeeEditor, setShowEmployeeEditor] = useState(false);
   const [showEditProject, setShowEditProject] = useState(false); // New state for edit mode
-  const [currentProject, setCurrentProject] = useState<Project>(project);
-  
-  // mock data for display purposes
-  const clientInfo = {
-    name: "Client Name",
-    location: "Location",
-    startDate: currentProject.startDate,
-    amount: "50,000",
-    estimatedCompletion: "2024-05-30"
-  };
-  
-  const [teamMembers, setTeamMembers] = useState<TeamMember[]>([
-    { id: 1, name: "neuvilette", role: "project manager" },
-    { id: 2, name: "wriothesley", role: "arki" }
-  ]);
+  const [currentProject, setCurrentProject] = useState<ContractDetails>(project);
+  const [teamMembers, setTeamMembers] = useState<EmployeeData[]>([]);
+
+  useEffect(() => {
+    // Fetch team members
+    fetch(`/api/v1/employees`)
+      .then(response => response.json())
+      .then((data: EmployeeData[]) => {
+        setTeamMembers(data);
+      });
+  }, []);
   
   const handleDocumentsClick = () => {
     setShowDocuments(true);
@@ -55,13 +51,13 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
     setShowEditProject(false);
   };
 
-  const handleSaveProject = (updatedProject: Project) => {
+  const handleSaveProject = (updatedProject: ContractDetails) => {
     setCurrentProject(updatedProject);
     setShowEditProject(false);
   };
 
-  const handleDeleteMember = (memberToDelete: TeamMember) => {
-    setTeamMembers(teamMembers.filter(member => member.id !== memberToDelete.id));
+  const handleDeleteMember = (memberToDelete: EmployeeData) => {
+    setTeamMembers(teamMembers.filter(member => member.employeeId !== memberToDelete.employeeId));
   };
 
   if (showDocuments) {
@@ -93,7 +89,7 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
   return (
     <div>
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold">{currentProject.name}</h2>
+        <h2 className="text-2xl font-bold">{currentProject.projectName}</h2>
         <div className="flex space-x-2">
           {/* Edit Icon - Now with click handler */}
           <button 
@@ -109,19 +105,19 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Client Information */}
           <div className="bg-white rounded-lg p-4 shadow">
-            <h3 className="font-medium mb-2 text-blue-950">{clientInfo.name}</h3>
+            <h3 className="font-medium mb-2 text-blue-950">{currentProject.clientName}</h3>
             <div className="text-sm space-y-1 text-blue-950">
-              <p>start date: {clientInfo.startDate}</p>
-              <p>location: {clientInfo.location}</p>
-              <p>amount: {clientInfo.amount}</p>
-              <p>estimated completion date: {clientInfo.estimatedCompletion}</p>
+              <p>start date: {currentProject.dateStart}</p>
+              <p>location: {`${currentProject.locationStreet} ${currentProject.locationBarangay} ${currentProject.locationCity} ${currentProject.locationProvince}`}</p>
+              <p>amount: {currentProject.contractAmount}</p>
+              <p>estimated completion date: {currentProject.dateEnd}</p>
             </div>
           </div>
 
           {/* Description */}
           <div className="bg-white rounded-lg p-4 shadow">
             <h3 className="font-medium mb-2 text-blue-950">Description</h3>
-            <p className="text-sm text-blue-950">{currentProject.description}</p>
+            <p className="text-sm text-blue-950">{currentProject.projectDescription}</p>
           </div>
 
           {/* Team and Documents */}
@@ -139,10 +135,10 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
               </div>
 
               <div className="space-y-2">
-                {teamMembers.map((member, index) => (
+                {teamMembers.filter(m => m.contractId === currentProject.contractId).map((member, index) => (
                   <div key={index} className="bg-gray-100 p-2 rounded">
-                    <p className="font-medium text-blue-950">{member.name}</p>
-                    <p className="text-xs text-blue-950">role: {member.role}</p>
+                    <p className="font-medium text-blue-950">{member.personName}</p>
+                    <p className="text-xs text-blue-950">role: {member.roleName}</p>
                   </div>
                 ))}
               </div>

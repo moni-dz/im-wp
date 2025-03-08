@@ -1,4 +1,3 @@
-import Bun from 'bun';
 import { redirect } from 'next/navigation';
 import Image from 'next/image';
 import logo from '../logo2.png'; 

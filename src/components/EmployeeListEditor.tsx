@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Project, TeamMember } from './types';
+import { ContractDetails, EmployeeData, Project, TeamMember } from './types';
 import { ArrowLeftIcon, TrashIcon } from '@heroicons/react/solid';
 import AddEmployeePage from './AddEmployeePage'; 
 
@@ -29,11 +29,11 @@ const DeleteConfirmation: React.FC<DeleteConfirmationProps> = ({ member, onConfi
 };
 
 interface EmployeeListEditorProps {
-  project: Project;
-  teamMembers: TeamMember[];
+  project: ContractDetails;
+  teamMembers: EmployeeData[];
   onBack: () => void;
-  onDeleteMember?: (member: TeamMember) => void;
-  onAddMember?: (member: TeamMember) => void;
+  onDeleteMember?: (member: EmployeeData) => void;
+  onAddMember?: (member: EmployeeData) => void;
 }
 
 const EmployeeListEditor: React.FC<EmployeeListEditorProps> = ({
@@ -75,7 +75,7 @@ const EmployeeListEditor: React.FC<EmployeeListEditorProps> = ({
   return (
     <div className="bg-gray-100 text-blue-950 min-h-screen">
       <div className="container mx-auto px-4 py-6">
-        <h1 className="text-3xl text-blue-950 font-bold mb-6">Employee List: {project.name}</h1>
+        <h1 className="text-3xl text-blue-950 font-bold mb-6">Employee List: {project.projectName}</h1>
 
         <div className="bg-white rounded-lg p-6 mb-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -83,7 +83,7 @@ const EmployeeListEditor: React.FC<EmployeeListEditorProps> = ({
               <div key={index} className="bg-gray-100 rounded-lg p-4">
                 <div className="flex justify-between items-start">
                   <div>
-                    <h3 className="font-medium">employee - {member.name}</h3>
+                    <h3 className="font-medium">employee - {member.personName}</h3>
                     <p className="text-blue-950 text-sm mt-2">remarks</p>
                   </div>
                   <button onClick={() => handleDeleteClick(member)} className="p-1 text-blue-950 hover:text-gray-700">

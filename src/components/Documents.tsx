@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Project } from './types';
+import { ContractDetails, Project } from './types';
 import { 
   PencilIcon, 
   TrashIcon, 
@@ -8,7 +8,7 @@ import {
 } from '@heroicons/react/solid';
 
 interface DocumentsProps {
-  project: Project;
+  project: ContractDetails;
   onBack: () => void;
 }
 

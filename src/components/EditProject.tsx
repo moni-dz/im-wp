@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
-import { Project } from './types';
+import { ContractDetails, Project } from './types';
 import { ArrowLeftIcon } from '@heroicons/react/solid';
 
 interface EditProjectProps {
-  project: Project;
+  project: ContractDetails;
   onBack: () => void;
-  onSave: (updatedProject: Project) => void;
+  onSave: (updatedProject: ContractDetails) => void;
 }
 
 const EditProject = ({ project, onBack, onSave }: EditProjectProps) => {
   const [formData, setFormData] = useState({
-    name: project.name || '',
-    description: project.description || '',
+    name: project.projectName || '',
+    description: project.projectDescription || '',
     location: "Location", // mock data
     amount: "50,000",
     clientName: "Client Name",
-    startDate: project.startDate || '',
+    startDate: project.dateStart || '',
     estimatedCompletion: "2024-05-30"
   });
 

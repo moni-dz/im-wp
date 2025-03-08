@@ -11,7 +11,7 @@ export const client = mysqlTable("Client", {
 
 export const contract = mysqlTable("Contract", {
 	id: int().autoincrement().notNull(),
-	projectId: int("project_id").notNull().references(() => project.id, { onDelete: "restrict", onUpdate: "restrict" } ),
+	projectId: int("project_id").notNull().references(() => project.id, { onDelete: "cascade", onUpdate: "restrict" } ),
 	clientId: int("client_id").notNull().references(() => client.id, { onDelete: "restrict", onUpdate: "restrict" } ),
 	locationId: int("location_id").notNull().references(() => location.id, { onDelete: "restrict", onUpdate: "restrict" } ),
 	engineerId: int("engineer_id").notNull().references(() => engineer.id, { onDelete: "restrict", onUpdate: "restrict" } ),
@@ -151,3 +151,20 @@ export const contractfullview = mysqlView("contractfullview", {
 	engineerEmail: varchar("engineer_email", { length: 500 }).notNull(),
 	engineerContactNumber: varchar("engineer_contact_number", { length: 500 }).notNull(),
 }).algorithm("undefined").sqlSecurity("definer").as(sql`select \`c\`.\`id\` AS \`contract_id\`,\`c\`.\`project_id\` AS \`contract_project_id\`,\`c\`.\`client_id\` AS \`contract_client_id\`,\`c\`.\`location_id\` AS \`contract_location_id\`,\`c\`.\`engineer_id\` AS \`contract_engineer_id\`,\`c\`.\`contract_amount\` AS \`contract_amount\`,\`c\`.\`date\` AS \`date\`,\`c\`.\`date_start\` AS \`date_start\`,\`c\`.\`date_end\` AS \`date_end\`,\`c\`.\`remarks\` AS \`remarks\`,\`c\`.\`status\` AS \`status\`,\`p\`.\`id\` AS \`project_id\`,\`p\`.\`name\` AS \`project_name\`,\`p\`.\`description\` AS \`project_description\`,\`p\`.\`date_added\` AS \`project_date_added\`,\`loc\`.\`id\` AS \`location_id\`,\`loc\`.\`street\` AS \`location_street\`,\`loc\`.\`barangay\` AS \`location_barangay\`,\`loc\`.\`city\` AS \`location_city\`,\`loc\`.\`province\` AS \`location_province\`,\`cl\`.\`id\` AS \`client_table_id\`,\`cl\`.\`person_id\` AS \`client_person_id\`,\`cp\`.\`id\` AS \`client_person_db_id\`,\`cp\`.\`location_id\` AS \`client_person_location_id\`,\`cp\`.\`name\` AS \`client_name\`,\`cp\`.\`gender\` AS \`client_gender\`,\`cp\`.\`email\` AS \`client_email\`,\`cp\`.\`contact_number\` AS \`client_contact_number\`,\`e\`.\`id\` AS \`engineer_table_id\`,\`e\`.\`person_id\` AS \`engineer_person_id\`,\`ep\`.\`id\` AS \`engineer_person_db_id\`,\`ep\`.\`location_id\` AS \`engineer_person_location_id\`,\`ep\`.\`name\` AS \`engineer_name\`,\`ep\`.\`gender\` AS \`engineer_gender\`,\`ep\`.\`email\` AS \`engineer_email\`,\`ep\`.\`contact_number\` AS \`engineer_contact_number\` from ((((((\`db_imwp\`.\`contract\` \`c\` join \`db_imwp\`.\`project\` \`p\` on(\`c\`.\`project_id\` = \`p\`.\`id\`)) join \`db_imwp\`.\`location\` \`loc\` on(\`c\`.\`location_id\` = \`loc\`.\`id\`)) join \`db_imwp\`.\`client\` \`cl\` on(\`c\`.\`client_id\` = \`cl\`.\`id\`)) join \`db_imwp\`.\`person\` \`cp\` on(\`cl\`.\`person_id\` = \`cp\`.\`id\`)) join \`db_imwp\`.\`engineer\` \`e\` on(\`c\`.\`engineer_id\` = \`e\`.\`id\`)) join \`db_imwp\`.\`person\` \`ep\` on(\`e\`.\`person_id\` = \`ep\`.\`id\`))`);
+
+export const contractemployeedata = mysqlView("contractemployeedata", {
+	contractId: int("contract_id").notNull(),
+	employeeId: int("employee_id").default(0).notNull(),
+	employeePersonId: int("employee_person_id").notNull(),
+	employeeStatus: text("employee_status").default('NULL'),
+	employeeSkills: text("employee_skills").default('NULL'),
+	// you can use { mode: 'date' }, if you want to have Date as type for this column
+	employeeDateContracted: date("employee_date_contracted", { mode: 'string' }).notNull(),
+	personName: varchar("person_name", { length: 500 }),
+	personEmail: varchar("person_email", { length: 500 }),
+	personContactNumber: varchar("person_contact_number", { length: 500 }),
+	roleId: int("role_id").default(0).notNull(),
+	roleName: varchar("role_name", { length: 500 }).notNull(),
+	employeeDesignationId: int("employee_designation_id").default(0).notNull(),
+	designationRemarks: text("designation_remarks").default('NULL'),
+}).algorithm("undefined").sqlSecurity("definer").as(sql`select \`ed\`.\`contract_id\` AS \`contract_id\`,\`e\`.\`id\` AS \`employee_id\`,\`e\`.\`person_id\` AS \`employee_person_id\`,\`e\`.\`status\` AS \`employee_status\`,\`e\`.\`skills\` AS \`employee_skills\`,\`e\`.\`date_contracted\` AS \`employee_date_contracted\`,\`p\`.\`name\` AS \`person_name\`,\`p\`.\`email\` AS \`person_email\`,\`p\`.\`contact_number\` AS \`person_contact_number\`,\`r\`.\`id\` AS \`role_id\`,\`r\`.\`name\` AS \`role_name\`,\`ed\`.\`id\` AS \`employee_designation_id\`,\`ed\`.\`remarks\` AS \`designation_remarks\` from (((\`db_imwp\`.\`employeedesignation\` \`ed\` join \`db_imwp\`.\`employee\` \`e\` on(\`ed\`.\`employee_id\` = \`e\`.\`id\`)) join \`db_imwp\`.\`role\` \`r\` on(\`ed\`.\`role_id\` = \`r\`.\`id\`)) left join \`db_imwp\`.\`person\` \`p\` on(\`e\`.\`person_id\` = \`p\`.\`id\`))`);
