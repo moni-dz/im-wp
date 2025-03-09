@@ -135,7 +135,7 @@ const Calendar: React.FC = () => {
         {/* Notes Section */}
         {selectedDay && (
           <div className="p-4 bg-gray-50">
-            <h3 className="text-lg font-geoformHeavy font-semibold mb-2">
+            <h3 className="text-blue-950 text-lg font-geoformHeavy font-semibold mb-2">
               Notes for {formatDate(selectedDay)}
             </h3>
             <textarea
