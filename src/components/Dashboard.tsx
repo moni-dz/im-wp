@@ -21,10 +21,10 @@ const Dashboard = () => {
   const renderSidebarButton = (tab: ActiveTab, label: string) => (
     <button
       onClick={() => setActiveTab(tab)}
-      className={`w-full px-6 py-3 text-left rounded-lg transition-colors ${
+      className={`w-full px-6 py-3 text-left rounded-lg transition-colors hover:bg-white hover:text-blue-950 ${
         activeTab === tab || (activeTab === 'add-client' && tab === 'clients')
-          ? 'bg-white text-blue-950 shadow-md'
-          : 'text-white hover:bg-blue-950'
+          ? 'bg-white text-blue-950 shadow-md font-geoformHeavy'
+          : 'text-white font-geoformHeavy hover:bg-blue-950'
       }`}
     >
       {label}
@@ -50,7 +50,7 @@ const Dashboard = () => {
       default:
         return (
           <div className="flex items-center justify-center h-full">
-            <p className="text-gray-500 text-lg">
+            <p className="font-geoformHeavy text-blue-50 text-lg">
               Select an option from the sidebar to view content
             </p>
           </div>
@@ -82,7 +82,7 @@ const Dashboard = () => {
         </div>
         <form>
         <button
-          className="w-full px-6 py-3 mt-auto text-left text-white hover:bg-blue-950 rounded-lg transition-colors"
+          className="w-full px-6 py-3 mt-auto text-center text-white border border-white hover:bg-white hover:text-blue-950 rounded-lg transition-colors font-geoformHeavy"
         >
           Log out
         </button>

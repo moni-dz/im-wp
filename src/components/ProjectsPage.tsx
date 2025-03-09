@@ -51,10 +51,10 @@ const ProjectsPage = () => {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center mb-8">
-        <h2 className="text-3xl font-bold text-blue-950">Projects</h2>
+        <h2 className="font-geoformHeavy text-3xl font-bold text-blue-950">Projects</h2>
         <button 
           onClick={() => setIsAddingProject(true)}
-          className="bg-blue-950 font-bold rounded-lg text-white px-4 py-2 rounded"
+          className="bg-blue-950 font-geoformHeavy font-bold rounded-lg text-white px-4 py-2 border rounded hover:border-blue-950 hover:bg-white hover:text-blue-950 "
         >
           ADD PROJECT
         </button>
@@ -72,7 +72,7 @@ const ProjectsPage = () => {
 
       <div className="space-y-8">
         <div>
-          <h3 className="text-2xl text-blue-950 font-bold mb-4">Active</h3>
+          <h3 className="text-2xl font-geoformHeavy text-blue-950 font-bold mb-4">Active</h3>
           <ProjectList 
             projects={projects.filter(p => p.status.toLowerCase() === 'active')}
             onSelectProject={handleSelectProject}
@@ -80,7 +80,7 @@ const ProjectsPage = () => {
         </div>
 
         <div>
-          <h3 className="text-2xl text-blue-950 font-bold mb-4">Completed</h3>
+          <h3 className="text-2xl font-geoformHeavy text-blue-950 font-bold mb-4">Completed</h3>
           <ProjectList 
             projects={projects.filter(p => p.status === 'completed')}
             onSelectProject={handleSelectProject}

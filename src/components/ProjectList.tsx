@@ -33,7 +33,7 @@ const ProjectList = ({ projects, onSelectProject, onDeleteProject }: ProjectList
 
   if (projects.length === 0) {
     return (
-      <div className="bg-gray-100 p-4 rounded text-center text-blue-950">
+      <div className="font-geoformHeavy bg-gray-100 p-4 rounded text-center text-blue-950">
         No projects found
       </div>
     );
@@ -49,11 +49,11 @@ const ProjectList = ({ projects, onSelectProject, onDeleteProject }: ProjectList
             className="bg-white rounded-lg p-4 shadow cursor-pointer"
           >
             <div className="flex justify-between items-start">
-              <h3 className="text-blue-950 font-bold ">{project.projectName}</h3>
+              <h3 className="font-geoformHeavytext-blue-950 font-bold ">{project.projectName}</h3>
               <div className="flex space-x-2">
                 {/* Trash Icon */}
                 <button
-                  className="text-blue-950 hover:text-gray-500"
+                  className="font-geoformHeavy text-blue-950 hover:text-gray-100"
                   onClick={(e) => handleDeleteClick(e, project)}
                 >
                   <TrashIcon className="h-5 w-5" />
@@ -62,19 +62,19 @@ const ProjectList = ({ projects, onSelectProject, onDeleteProject }: ProjectList
             </div>
             
             <div className="my-2">
-              <div className="bg-gray-200 rounded px-3 py-1 text-xs inline-block mb-1">
+              <div className="font-geoformItalic bg-white border border-blue-950 rounded px-3 py-1 text-xs inline-block mb-1">
                 client name
               </div>
-              <div className="bg-gray-200 rounded px-3 py-1 text-xs inline-block ml-2 mb-1">
+              <div className="font-geoformItalic bg-white border border-blue-950 rounded px-3 py-1 text-xs inline-block ml-2 mb-1">
                 start date
               </div>
             </div>
             
             <div className="my-2">
-              <div className="bg-gray-200 rounded px-3 py-1 text-xs inline-block mb-1">
+              <div className="font-geoformItalic bg-white border border-blue-950 rounded px-3 py-1 text-xs inline-block mb-1">
                 short description
               </div>
-              <div className="bg-gray-200 rounded px-3 py-1 text-xs inline-block ml-2 mb-1">
+              <div className="font-geoformItalic bg-white border border-blue-950 rounded px-3 py-1 text-xs inline-block ml-2 mb-1">
                 location
               </div>
             </div>
@@ -86,22 +86,22 @@ const ProjectList = ({ projects, onSelectProject, onDeleteProject }: ProjectList
       {showDeleteModal && projectToDelete && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
-            <h2 className="text-2xl font-bold text-blue-950 mb-4">
+            <h2 className="font-geoformHeavy text-2xl font-bold text-blue-950 mb-4">
               Delete {projectToDelete.projectName}'s information?
             </h2>
-            <p className="text-lg text-blue-950 mb-8">
+            <p className="font-geoformItalic text-lg text-blue-950 mb-8">
               This action cannot be undone.
             </p>
             <div className="flex justify-end space-x-4">
               <button
                 onClick={cancelDelete}
-                className="px-6 py-2 border border-gray-300 rounded-md text-lg"
+                className="font-geoformHeavy px-6 py-2 border border-gray-300 rounded-md text-lg"
               >
                 Back
               </button>
               <button
                 onClick={confirmDelete}
-                className="px-6 py-2 bg-blue-950 text-white rounded-md text-lg"
+                className="font-geoformHeavy px-6 py-2 bg-blue-950 text-white rounded-md text-lg"
               >
                 Delete
               </button>

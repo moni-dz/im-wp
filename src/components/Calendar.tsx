@@ -94,7 +94,7 @@ const Calendar: React.FC = () => {
           >
             <ChevronLeftIcon className="h-6 w-6  text-blue-950" />
           </button>
-          <h2 className="text-xl text-blue-950 font-bold">
+          <h2 className="text-xl font-geoformHeavy text-blue-950 font-bold">
             {monthNames[currentDate.getMonth()]} {currentDate.getFullYear()}
           </h2>
           <button 
@@ -135,7 +135,7 @@ const Calendar: React.FC = () => {
         {/* Notes Section */}
         {selectedDay && (
           <div className="p-4 bg-gray-50">
-            <h3 className="text-lg font-semibold mb-2">
+            <h3 className="text-lg font-geoformHeavy font-semibold mb-2">
               Notes for {formatDate(selectedDay)}
             </h3>
             <textarea
@@ -147,7 +147,7 @@ const Calendar: React.FC = () => {
             />
             <button 
               onClick={handleSaveNote}
-              className="mt-2 px-4 py-2 bg-blue-950 text-white rounded hover:bg-blue-950"
+              className="mt-2 px-4 font-geoformHeavy py-2 bg-blue-950 text-white rounded hover:bg-blue-950"
             >
               Save Note
             </button>
@@ -157,7 +157,7 @@ const Calendar: React.FC = () => {
 
       {/* Saved Notes Section */}
       <div className="w-1/3 p-4 bg-gray-100 border-l">
-        <h3 className="text-xl font-semibold mb-4 text-blue-950">Saved Notes</h3>
+        <h3 className="text-xl font-semibold font-geoformHeavy mb-4 text-blue-950">Saved Notes</h3>
         <div className="space-y-3 max-h-[600px] overflow-y-auto">
           {Object.entries(notes).length > 0 ? (
             Object.entries(notes).map(([dateKey, noteContent]) => (
@@ -167,7 +167,7 @@ const Calendar: React.FC = () => {
               </div>
             ))
           ) : (
-            <p className="text-gray-500 text-center">No saved notes</p>
+            <p className="text-blue-950 font-geoformHeavy text-center">No saved notes</p>
           )}
         </div>
       </div>

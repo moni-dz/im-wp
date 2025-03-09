@@ -36,7 +36,7 @@ const AddClientPage = ({ onBackClick }: AddClientPageProps) => {
           <div className="bg-blue-950 p-6 rounded-lg">
             <div className="grid grid-cols-2 gap-6">
               <div>
-                <label htmlFor="firstName" className="block text-sm text-white mb-1">first name</label>
+                <label htmlFor="firstName" className="block font-geoformHeavy text-sm text-white mb-1">first name</label>
                 <input
                   type="text"
                   id="firstName"
@@ -46,7 +46,7 @@ const AddClientPage = ({ onBackClick }: AddClientPageProps) => {
                   className="w-full px-3 py-2 rounded border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                 />
                 
-                <label htmlFor="lastName" className="block text-sm text-white mt-4 mb-1">last name</label>
+                <label htmlFor="lastName" className="block  font-geoformHeavy text-sm text-white mt-4 mb-1">last name</label>
                 <input
                   type="text"
                   id="lastName"
@@ -58,7 +58,7 @@ const AddClientPage = ({ onBackClick }: AddClientPageProps) => {
               </div>
               
               <div>
-                <label htmlFor="remarks" className="block text-sm text-white mb-1">remarks</label>
+                <label htmlFor="remarks" className="block font-geoformHeavy text-sm text-white mb-1">remarks</label>
                 <textarea
                   id="remarks"
                   name="remarks"
@@ -75,14 +75,14 @@ const AddClientPage = ({ onBackClick }: AddClientPageProps) => {
             <button
               type="button"
               onClick={onBackClick}
-              className="px-6 py-2 font-bold bg-gray-200 rounded-md shadow-sm text-md font-medium text-gray-700 hover:bg-gray-300"
+              className="px-6 py-2 font-bold bg-gray-200 font-geoformHeavy rounded-md shadow-sm text-md font-medium text-gray-700 hover:bg-gray-300"
             >
               BACK
             </button>
             
             <button
               type="submit"
-              className="px-6 py-2 font-bold bg-blue-950 text-white rounded-md text-md font-medium hover:text-blue-950 hover:border hover:border-blue-950 hover:bg-white"
+              className="px-6 py-2 font-bold bg-blue-950 font-geoformHeavy text-white rounded-md text-md font-medium hover:text-blue-950 hover:border hover:border-blue-950 hover:bg-white"
             >
               ADD CLIENT
             </button>

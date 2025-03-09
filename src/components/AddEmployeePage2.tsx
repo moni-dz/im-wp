@@ -38,12 +38,12 @@ const AddEmployeePage2: React.FC<AddEmployeePage2Props> = ({ onBack, onAddEmploy
 
   return (
     <div className="flex-grow p-8 bg-gray-100 rounded-sm">
-      <h1 className="text-3xl font-bold mb-8 text-blue-950">Add Employee</h1>
+      <h1 className="text-3xl font-bold mb-8 font-geoformHeavy text-blue-950">Add Employee</h1>
 
       <div className="bg-white rounded-lg p-8">
         <div className="grid grid-cols-2 gap-6">
           <div>
-            <label className="block text-blue-950 mb-2">first name</label>
+            <label className="block text-blue-950 font-geoformHeavy mb-2">first name</label>
             <input 
               type="text" 
               name="firstName"
@@ -53,7 +53,7 @@ const AddEmployeePage2: React.FC<AddEmployeePage2Props> = ({ onBack, onAddEmploy
             />
           </div>
           <div>
-            <label className="block text-blue-950 mb-2">skills</label>
+            <label className="block text-blue-950 font-geoformHeavy mb-2">skills</label>
             <input 
               type="text" 
               name="skills"
@@ -63,7 +63,7 @@ const AddEmployeePage2: React.FC<AddEmployeePage2Props> = ({ onBack, onAddEmploy
             />
           </div>
           <div>
-            <label className="block text-blue-950 mb-2">last name</label>
+            <label className="block text-blue-950 mb-2 font-geoformHeavy">last name</label>
             <input 
               type="text" 
               name="lastName"
@@ -73,7 +73,7 @@ const AddEmployeePage2: React.FC<AddEmployeePage2Props> = ({ onBack, onAddEmploy
             />
           </div>
           <div>
-            <label className="block text-blue-950 mb-2">role</label>
+            <label className="block font-geoformHeavy text-blue-950 mb-2">role</label>
             <input 
               type="text" 
               name="role"
@@ -83,7 +83,7 @@ const AddEmployeePage2: React.FC<AddEmployeePage2Props> = ({ onBack, onAddEmploy
             />
           </div>
           <div>
-            <label className="block text-blue-950 mb-2">status</label>
+            <label className="block font-geoformHeavy text-blue-950 mb-2">status</label>
             <input 
               type="text" 
               name="status"
@@ -93,7 +93,7 @@ const AddEmployeePage2: React.FC<AddEmployeePage2Props> = ({ onBack, onAddEmploy
             />
           </div>
           <div>
-            <label className="block text-blue-950 mb-2">date contracted</label>
+            <label className="block font-geoformHeavy text-blue-950 mb-2">date contracted</label>
             <input 
               type="text" 
               name="dateContracted"
@@ -107,13 +107,13 @@ const AddEmployeePage2: React.FC<AddEmployeePage2Props> = ({ onBack, onAddEmploy
         <div className="flex justify-end space-x-4 mt-8">
           <button 
             onClick={onBack}
-            className="bg-white text-blue-950 border border-blue-950 px-6 py-2 rounded hover:bg-blue-950 hover:text-white"
+            className="bg-white text-blue-950 font-geoformHeavy border border-blue-950 px-6 py-2 rounded hover:bg-blue-950 hover:text-white"
           >
             BACK
           </button>
           <button 
             onClick={handleSubmit}
-            className="bg-blue-950 text-white px-6 py-2 rounded hover:bg-white hover:text-blue-950 hover:border hover:border-blue-950"
+            className="bg-blue-950 text-white font-geoformHeavy px-6 py-2 rounded hover:bg-white hover:text-blue-950 hover:border hover:border-blue-950"
           >
             ADD EMPLOYEE
           </button>

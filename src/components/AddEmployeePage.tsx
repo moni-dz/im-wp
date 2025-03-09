@@ -15,7 +15,7 @@ const AddEmployeePage: React.FC<AddEmployeeProps> = ({ onBack, onAddEmployee }) 
         {/* Main content */}
         <div className="flex flex-col">
           {/* Page title */}
-          <h1 className="text-3xl text-blue-950 font-bold mb-8">Add Employee</h1>
+          <h1 className="text-3xl font-geoformHeavy text-blue-950 font-bold mb-8">Add Employee</h1>
 
           {/* Form container */}
           <div className="bg-blue-950 rounded-lg p-8 mb-8">
@@ -24,7 +24,7 @@ const AddEmployeePage: React.FC<AddEmployeeProps> = ({ onBack, onAddEmployee }) 
                 {/* Left column */}
                 <div className="space-y-6">
                   <div>
-                  <label className="block text-blue-950 text-sm mb-2">name</label>
+                  <label className="block font-geoformHeavy text-blue-950 text-sm mb-2">name</label>
                     <select className="w-full px-3 py-2 bg-white text-gray-500 rounded-md">
                       <option>Select employee</option>
                       {/* options from the database later */}
@@ -32,19 +32,19 @@ const AddEmployeePage: React.FC<AddEmployeeProps> = ({ onBack, onAddEmployee }) 
                   </div>
                   
                   <div>
-                  <label className="block text-blue-950 text-sm mb-2">skills</label>
+                  <label className="block font-geoformHeavy text-blue-950 text-sm mb-2">skills</label>
                   <input type="text" className="w-full px-3 py-2 bg-white text-blue-950 rounded-md" placeholder="Auto-filled" readOnly />
                   </div>
                   
                   <div>
-                  <label className="block text-blue-950 text-sm mb-2">status</label>
+                  <label className="block font-geoformHeavy text-blue-950 text-sm mb-2">status</label>
                   <input type="text" className="w-full px-3 py-2 bg-white text-blue-950 rounded-md" placeholder="Auto-filled" readOnly />
                   </div>
                   
 
                   
                   <div>
-                    <label className="block text-blue-950 text-sm mb-2">date contracted</label>
+                    <label className="block text-blue-950 font-geoformHeavy text-sm mb-2">date contracted</label>
                     <input type="text" className="w-full px-3 py-2 bg-white text-blue-950 rounded-md" />
                   </div>
                 </div>
@@ -52,12 +52,12 @@ const AddEmployeePage: React.FC<AddEmployeeProps> = ({ onBack, onAddEmployee }) 
                 {/* Right column */}
                 <div className="space-y-6">
                   <div>
-                    <label className="block text-blue-950 text-sm mb-2">remarks</label>
+                    <label className="block text-blue-950 font-geoformHeavy text-sm mb-2">remarks</label>
                     <textarea className="w-full px-3 py-2 bg-white text-blue-950 rounded-md h-32" />
                   </div>
                   
                   <div>
-                    <label className="block text-blue-950 text-sm mb-2">role</label>
+                    <label className="block text-blue-950 font-geoformHeavy text-sm mb-2">role</label>
                     <textarea className="w-full px-3 py-2 bg-white text-blue-950 rounded-md h-32" />
                   </div>
                 </div>
@@ -67,11 +67,11 @@ const AddEmployeePage: React.FC<AddEmployeeProps> = ({ onBack, onAddEmployee }) 
 
           {/* Action buttons */}
           <div className="flex justify-center space-x-8">
-            <button onClick={onBack} className="px-12 py-3 bg-blue-950 text-white rounded-md font-medium">
+            <button onClick={onBack} className="px-12 py-3 font-geoformHeavy bg-blue-950 text-white rounded-md font-medium">
               BACK
             </button>
             
-            <button onClick={() => onAddEmployee({})} className="px-12 py-3 bg-blue-950 text-white rounded-md font-medium">
+            <button onClick={() => onAddEmployee({})} className="px-12 py-3 font-geoformHeavy bg-blue-950 text-white rounded-md font-medium">
               ADD EMPLOYEE
             </button>
           </div>

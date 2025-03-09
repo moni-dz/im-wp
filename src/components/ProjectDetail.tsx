@@ -89,11 +89,11 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
   return (
     <div>
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold">{currentProject.projectName}</h2>
+        <h2 className="font-geoformHeavy text-blue-950 text-2xl font-bold">{currentProject.projectName}</h2>
         <div className="flex space-x-2">
-          {/* Edit Icon - Now with click handler */}
+          {/* Edit Icon */}
           <button 
-            className="p-1 text-blue-950 hover:text-blue-950"
+            className="p-1 font-geoformHeavy text-blue-950 hover:text-blue-950"
             onClick={handleEditProjectClick}
           >
             <PencilIcon className="h-5 w-5" />
@@ -105,8 +105,8 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Client Information */}
           <div className="bg-white rounded-lg p-4 shadow">
-            <h3 className="font-medium mb-2 text-blue-950">{currentProject.clientName}</h3>
-            <div className="text-sm space-y-1 text-blue-950">
+            <h3 className="font-geoformHeavy font-medium mb-2 text-blue-950">{currentProject.clientName}</h3>
+            <div className="font-geoformItalic text-sm space-y-1 text-blue-950">
               <p>start date: {currentProject.dateStart}</p>
               <p>location: {`${currentProject.locationStreet} ${currentProject.locationBarangay} ${currentProject.locationCity} ${currentProject.locationProvince}`}</p>
               <p>amount: {currentProject.contractAmount}</p>
@@ -116,8 +116,8 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
 
           {/* Description */}
           <div className="bg-white rounded-lg p-4 shadow">
-            <h3 className="font-medium mb-2 text-blue-950">Description</h3>
-            <p className="text-sm text-blue-950">{currentProject.projectDescription}</p>
+            <h3 className="font-geoformHeavy font-medium mb-2 text-blue-950">Description</h3>
+            <p className="font-geoformItalic text-sm text-blue-950">{currentProject.projectDescription}</p>
           </div>
 
           {/* Team and Documents */}
@@ -125,7 +125,7 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
             {/* Employee List */}
             <div className="bg-white rounded-lg p-4 shadow">
               <div className="flex justify-between items-center mb-2">
-                <h3 className="font-bold text-blue-950">Employee list</h3>
+                <h3 className="font-geoformHeavy font-bold text-blue-950">Employee list</h3>
                 <button 
                   onClick={handleEmployeeEditorClick}
                   className="p-1 text-blue-950 hover:text-blue-950"
@@ -137,8 +137,8 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
               <div className="space-y-2">
                 {teamMembers.filter(m => m.contractId === currentProject.contractId).map((member, index) => (
                   <div key={index} className="bg-gray-100 p-2 rounded">
-                    <p className="font-medium text-blue-950">{member.personName}</p>
-                    <p className="text-xs text-blue-950">role: {member.roleName}</p>
+                    <p className="font-geoformItalic font-medium text-blue-950">{member.personName}</p>
+                    <p className="font-geoformItalic text-xs text-blue-950">role: {member.roleName}</p>
                   </div>
                 ))}
               </div>
@@ -149,7 +149,7 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
               onClick={handleDocumentsClick}
               className="bg-blue-950 text-white rounded-lg p-4 shadow w-full text-left hover:bg-gray-100 hover:text-blue-950"
             >
-              <h3 className="font-medium text-white hover:text-blue-950">Documents</h3>
+              <h3 className="font-geoformItalic font-medium text-white hover:text-blue-950">Documents</h3>
             </button>
 
           </div>
@@ -158,7 +158,7 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
 
       <button 
         onClick={onBack}
-        className="mt-4 px-4 py-2 bg-gray-200 rounded flex items-center space-x-1"
+        className="font-geoformItalic text-blue-950 mt-4 px-4 py-2 bg-white border border-blue-950 hover:text-white hover:blie-950 rounded flex items-center space-x-1"
       >
         <ArrowLeftIcon className="h-5 w-5" />
         <span>Back to Projects</span>

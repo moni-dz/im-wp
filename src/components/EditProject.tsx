@@ -53,7 +53,7 @@ const EditProject = ({ project, onBack, onSave }: EditProjectProps) => {
                   {/* Left column */}
                   <div className="space-y-4">
                     <div>
-                      <label className="block text-white mb-1 font-medium">project name</label>
+                      <label className="block font-geoformHeavy text-white mb-1 font-medium">project name</label>
                       <input
                         type="text"
                         name="name"
@@ -64,7 +64,7 @@ const EditProject = ({ project, onBack, onSave }: EditProjectProps) => {
                     </div>
                     
                     <div>
-                      <label className="block text-white mb-1 font-medium">location</label>
+                      <label className="block font-geoformHeavy text-white mb-1 font-medium">location</label>
                       <input
                         type="text"
                         name="location"
@@ -75,7 +75,7 @@ const EditProject = ({ project, onBack, onSave }: EditProjectProps) => {
                     </div>
                     
                     <div>
-                      <label className="block text-white mb-1 font-medium">amount</label>
+                      <label className="block font-geoformHeavy text-white mb-1 font-medium">amount</label>
                       <input
                         type="text"
                         name="amount"
@@ -86,7 +86,7 @@ const EditProject = ({ project, onBack, onSave }: EditProjectProps) => {
                     </div>
                     
                     <div>
-                      <label className="block text-white mb-1 font-medium">start date</label>
+                      <label className="block font-geoformHeavy text-white mb-1 font-medium">start date</label>
                       <input
                         type="text"
                         name="startDate"
@@ -97,7 +97,7 @@ const EditProject = ({ project, onBack, onSave }: EditProjectProps) => {
                     </div>
                     
                     <div>
-                      <label className="block text-white mb-1 font-medium">estimated completion date</label>
+                      <label className="block font-geoformHeavy text-white mb-1 font-medium">estimated completion date</label>
                       <input
                         type="text"
                         name="estimatedCompletion"
@@ -111,7 +111,7 @@ const EditProject = ({ project, onBack, onSave }: EditProjectProps) => {
                   {/* Right column */}
                   <div className="space-y-4">
                     <div>
-                      <label className="block text-white mb-1 font-medium">description</label>
+                      <label className="block font-geoformHeavy text-white mb-1 font-medium">description</label>
                       <textarea
                         name="description"
                         value={formData.description}
@@ -121,7 +121,7 @@ const EditProject = ({ project, onBack, onSave }: EditProjectProps) => {
                     </div>
                     
                     <div>
-                      <label className="block text-white mb-1 font-medium">client name</label>
+                      <label className="block font-geoformHeavy text-white mb-1 font-medium">client name</label>
                       <input
                         type="text"
                         name="clientName"
@@ -138,14 +138,14 @@ const EditProject = ({ project, onBack, onSave }: EditProjectProps) => {
                 <button 
                   type="button"
                   onClick={onBack}
-                  className="px-8 py-2 text-white bg-blue-950 font-medium rounded hover:bg-gray-100 hover:text-blue-950"
+                  className="px-8 py-2 font-geoformHeavy text-white bg-blue-950 font-medium rounded hover:bg-gray-100 hover:text-blue-950"
                 >
                   BACK
                 </button>
                 
                 <button 
                   type="submit"
-                  className="px-8 py-2 text-white bg-blue-950 font-medium rounded hover:bg-gray-100 hover:text-blue-950"
+                  className="px-8 py-2 font-geoformHeavy text-white bg-blue-950 font-medium rounded hover:bg-gray-100 hover:text-blue-950"
                 >
                   EDIT PROJECT
                 </button>
