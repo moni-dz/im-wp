@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { PencilIcon, TrashIcon } from '@heroicons/react/solid';
 import AddEmployeePage2 from './AddEmployeePage2';
+import { EmployeeData } from './types';
 
 interface Employee {
   id: string;
@@ -16,26 +17,27 @@ interface EmployeeListPageProps {
 }
 
 const EmployeeListPage = (props: EmployeeListPageProps) => {
-  const [employees, setEmployees] = useState<Employee[]>([
-    { id: '1', name: 'first name, last name', status: 'ha', skills: 'a', dateContracted: 'x', role: 's' },
-    { id: '2', name: 'first name, last name', status: 'td', skills: 'a', dateContracted: 'x', role: 's' },
-    { id: '3', name: 'first name, last name', status: 'og', skills: 'a', dateContracted: 'x', role: 's' },
-    { id: '4', name: 'first name, last name', status: 'am', skills: 'a', dateContracted: 'x', role: 's' },
-    { id: '5', name: 'first name, last name', status: 'en', skills: 'a', dateContracted: 'x', role: 's' },
-    { id: '6', name: 'first name, last name', status: 'z', skills: 'af', dateContracted: 'x', role: 's' },
-  ]);
+  const [employees, setEmployees] = useState<EmployeeData[]>([]);
 
-  const [selectedEmployee, setSelectedEmployee] = useState<Employee | null>(null);
+  useEffect(() => {
+    fetch(`/api/v1/employees`)
+      .then(response => response.json())
+      .then((data: EmployeeData[]) => {
+        setEmployees(data);
+      });
+  }, []);
+
+  const [selectedEmployee, setSelectedEmployee] = useState<EmployeeData | null>(null);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isAddEmployeePage2Open, setIsAddEmployeePage2Open] = useState(false);
 
-  const handleEditClick = (employee: Employee) => {
+  const handleEditClick = (employee: EmployeeData) => {
     setSelectedEmployee(employee);
     setIsEditModalOpen(true);
   };
 
-  const handleDeleteClick = (employee: Employee) => {
+  const handleDeleteClick = (employee: EmployeeData) => {
     setSelectedEmployee(employee);
     setIsDeleteModalOpen(true);
   };
@@ -47,8 +49,8 @@ const EmployeeListPage = (props: EmployeeListPageProps) => {
     }
   };
 
-  const handleUpdateEmployee = (updatedEmployee: Employee) => {
-    setEmployees(employees.map(emp => 
+  const handleUpdateEmployee = (updatedEmployee: EmployeeData) => {
+    setEmployees(employees.map(emp =>
       emp.id === updatedEmployee.id ? updatedEmployee : emp
     ));
     setIsEditModalOpen(false);
@@ -58,17 +60,17 @@ const EmployeeListPage = (props: EmployeeListPageProps) => {
     setIsAddEmployeePage2Open(true);
   };
 
-  const EmployeeCard = ({ employee }: { employee: Employee }) => {
+  const EmployeeCard = ({ employee }: { employee: EmployeeData }) => {
     return (
       <div className="bg-white shadow-md rounded-lg p-4 relative">
         <div className="absolute top-0 right-0 p-2 flex space-x-2">
-          <button 
+          <button
             onClick={() => handleEditClick(employee)}
             className="text-blue-950 hover:text-gray-500"
           >
             <PencilIcon className="h-5 w-5" />
           </button>
-          <button 
+          <button
             onClick={() => handleDeleteClick(employee)}
             className="text-blue-950 hover:text-gray-500"
           >
@@ -76,18 +78,18 @@ const EmployeeListPage = (props: EmployeeListPageProps) => {
           </button>
         </div>
         <div className="pt-6">
-          <h3 className="font-geoformHeavy text-blue-950 text-lg font-bold mb-3">{employee.name}</h3>
+          <h3 className="font-geoformHeavy text-blue-950 text-lg font-bold mb-3">{employee.personName}</h3>
           <p className="font-geoformItalic text-sm font-bold text-blue-950">
-            Status: <span className="font-geoformItalic text-sm font-normal text-blue-950">{employee.status}</span>
+            Status: <span className="font-geoformItalic text-sm font-normal text-blue-950">{employee.designationRemarks}</span>
           </p>
           <p className="font-geoformItalic text-sm font-bold text-blue-950">
-            Skills: <span className="font-geoformItalic text-sm font-normal text-blue-950">{employee.skills}</span>
+            Skills: <span className="font-geoformItalic text-sm font-normal text-blue-950">{employee.employeeSkills}</span>
           </p>
           <p className="font-geoformItalic text-sm font-bold text-blue-950">
-            Date Contracted: <span className="font-geoformItalic text-sm font-normal text-blue-950">{employee.dateContracted}</span>
+            Date Contracted: <span className="font-geoformItalic text-sm font-normal text-blue-950">{employee.employeeDateContracted}</span>
           </p>
           <p className="font-geoformItalic text-sm font-bold text-blue-950">
-            Role: <span className="font-geoformItalic text-sm font-normal text-blue-950">{employee.role}</span>
+            Role: <span className="font-geoformItalic text-sm font-normal text-blue-950">{employee.roleName}</span>
           </p>
         </div>
       </div>
@@ -95,7 +97,7 @@ const EmployeeListPage = (props: EmployeeListPageProps) => {
   };
 
   const EditEmployeeModal = () => {
-    const [formData, setFormData] = useState<Employee>(selectedEmployee || {
+    const [formData, setFormData] = useState<EmployeeData>(selectedEmployee || {
       id: '',
       name: '',
       status: '',
@@ -122,73 +124,73 @@ const EmployeeListPage = (props: EmployeeListPageProps) => {
           }}>
             <div className="mb-4">
               <label className="font-geoformHeavy text-blue-950 font-md block mb-2">First Name</label>
-              <input 
-                type="text" 
-                name="firstName" 
-                value={formData.name.split(' ')[0]} 
+              <input
+                type="text"
+                name="firstName"
+                value={formData.name.split(' ')[0]}
                 onChange={handleInputChange}
-                className="w-full border rounded p-2" 
+                className="w-full border rounded p-2"
               />
             </div>
             <div className="mb-4">
               <label className="font-geoformHeavy text-blue-950 block mb-2">Last Name</label>
-              <input 
-                type="text" 
-                name="lastName" 
-                value={formData.name.split(' ')[1]} 
+              <input
+                type="text"
+                name="lastName"
+                value={formData.name.split(' ')[1]}
                 onChange={handleInputChange}
-                className="w-full border rounded p-2" 
+                className="w-full border rounded p-2"
               />
             </div>
             <div className="mb-4">
               <label className="font-geoformHeavy text-blue-950 block font-md  mb-2">Status</label>
-              <input 
-                type="text" 
-                name="status" 
-                value={formData.status} 
+              <input
+                type="text"
+                name="status"
+                value={formData.status}
                 onChange={handleInputChange}
-                className="w-full border rounded p-2" 
+                className="w-full border rounded p-2"
               />
             </div>
             <div className="mb-4">
               <label className="font-geoformHeavy block text-blue-950 font-md mb-2">Skills</label>
-              <input 
-                type="text" 
-                name="skills" 
-                value={formData.skills} 
+              <input
+                type="text"
+                name="skills"
+                value={formData.skills}
                 onChange={handleInputChange}
-                className="w-full border rounded p-2" 
+                className="w-full border rounded p-2"
               />
             </div>
             <div className="mb-4">
               <label className="font-geoformHeavy block text-blue-950 font-md mb-2">Date Contracted</label>
-              <input 
-                type="text" 
-                name="dateContracted" 
-                value={formData.dateContracted} 
+              <input
+                type="text"
+                name="dateContracted"
+                value={formData.dateContracted}
                 onChange={handleInputChange}
-                className="w-full border rounded p-2" 
+                className="w-full border rounded p-2"
               />
             </div>
             <div className="mb-4">
               <label className="font-geoformHeavy text-blue-950 block font-md text-blue-950 mb-2">Role</label>
-              <input 
-                type="text" 
-                name="role" 
-                value={formData.role} 
+              <input
+                type="text"
+                name="role"
+                value={formData.role}
                 onChange={handleInputChange}
-                className="w-full border rounded p-2" 
+                className="w-full border rounded p-2"
               />
             </div>
             <div className="flex justify-end space-x-2">
-              <button 
+              <button
                 type="button"
                 onClick={() => setIsEditModalOpen(false)}
                 className="font-geoformHeavy bg-white border border-blue-950 font-bold text-blue-950 hover:bg-blue-950 hover:text-white px-4 py-2 rounded"
               >
                 Back
               </button>
-              <button 
+              <button
                 type="submit"
                 className="font-geoformHeavy bg-blue-950 text-white border hover:border-blue-950 font-bold hover:bg-white hover:text-blue-950  px-4 py-2 rounded"
               >
@@ -208,13 +210,13 @@ const EmployeeListPage = (props: EmployeeListPageProps) => {
           <h2 className="font-geoformHeavy text-xl text-blue-950 font-bold mb-4">Delete project 1 name's information?</h2>
           <p className="font-geoformItalic mb-4 text-blue-950">This action cannot be undone.</p>
           <div className="flex justify-end space-x-2">
-            <button 
+            <button
               onClick={() => setIsDeleteModalOpen(false)}
               className="font-geoformHeavy bg-white text-blue-950 border border-blue-950 hover:bg-blue-950 hover:text-white px-4 py-2 rounded"
             >
               Back
             </button>
-            <button 
+            <button
               onClick={handleConfirmDelete}
               className="font-geoformHeavy bg-blue-950 text-white font-bold border hover:bg-white hover:text-blue-950 hover:border-blue-950 px-4 py-2 rounded"
             >
@@ -230,16 +232,16 @@ const EmployeeListPage = (props: EmployeeListPageProps) => {
     <div>
       {!isAddEmployeePage2Open && (
         <div className="container mx-auto p-4">
-          <h1 className="font-geoformHeavy text-3xl font-geoformHeavy font-bold mb-4 text-blue-950">Employee Overview</h1>
+          <h1 className="font-geoformHeavy text-3xl font-bold mb-4 text-blue-950">Employee Overview</h1>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {employees.map((employee) => (
-              <EmployeeCard key={employee.id} employee={employee} />
+              <EmployeeCard key={employee.employeeId} employee={employee} />
             ))}
           </div>
           <div className="mt-4">
-            <button 
+            <button
               onClick={handleAddEmployeeClick}
-              className="font-geoformHeavy bg-blue-950 font-geoformHeavy font-bold text-white px-4 py-2 rounded"
+              className="font-geoformHeavy bg-blue-950 font-bold text-white px-4 py-2 rounded"
             >
               ADD EMPLOYEE
             </button>
@@ -251,7 +253,7 @@ const EmployeeListPage = (props: EmployeeListPageProps) => {
       )}
 
       {isAddEmployeePage2Open && (
-        <AddEmployeePage2 
+        <AddEmployeePage2
           onBack={() => setIsAddEmployeePage2Open(false)}
           onAddEmployee={(newEmployee) => {
             setEmployees([...employees, newEmployee]);
