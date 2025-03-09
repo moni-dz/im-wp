@@ -1,10 +1,11 @@
 // this is for PROJECT DETAILS - PROJECT/EMPLOYEE LIST - ADD EMPLOYEE
 
 import React from 'react';
+import { EmployeeData } from './types';
 
 interface AddEmployeeProps {
   onBack: () => void;
-  onAddEmployee: (employeeData: any) => void;
+  onAddEmployee: (employeeData: EmployeeData) => void;
 }
 
 const AddEmployeePage: React.FC<AddEmployeeProps> = ({ onBack, onAddEmployee }) => {

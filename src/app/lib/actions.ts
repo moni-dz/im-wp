@@ -16,3 +16,10 @@ export async function addClient(formData: FormData) {
         body: formData
     });
 }
+
+export async function addEmployee(formData: FormData) {
+    await fetch('http://localhost:3000/api/v1/employees', {
+        method: 'POST',
+        body: formData
+    });
+}
