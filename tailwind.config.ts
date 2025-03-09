@@ -12,6 +12,10 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        geoformHeavy: "var(--font-geoform-heavy)",
+        geoformItalic: "var(--font-geoform-italic)",
+      },
     },
   },
   plugins: [],
