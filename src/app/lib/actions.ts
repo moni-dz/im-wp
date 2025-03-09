@@ -9,3 +9,10 @@ export async function login(formData: FormData) {
 export async function deleteContract(id: number) {
     await fetch(`http://localhost:3000/api/v1/contracts?id=${id}`, { method: 'DELETE' });
 }
+
+export async function addClient(formData: FormData) {
+    await fetch('http://localhost:3000/api/v1/clients', {
+        method: 'POST',
+        body: formData
+    });
+}
