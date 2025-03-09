@@ -1,0 +1,1166 @@
+{
+  "id": "00000000-0000-0000-0000-000000000000",
+  "prevId": "",
+  "version": "5",
+  "dialect": "mysql",
+  "tables": {
+    "Client": {
+      "name": "Client",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "person_id": {
+          "autoincrement": false,
+          "name": "person_id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {
+        "index_1": {
+          "name": "index_1",
+          "columns": [
+            "id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "Client_person_id_fk": {
+          "name": "Client_person_id_fk",
+          "tableFrom": "Client",
+          "tableTo": "Person",
+          "columnsFrom": [
+            "person_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "restrict"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "Contract": {
+      "name": "Contract",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "project_id": {
+          "autoincrement": false,
+          "name": "project_id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "client_id": {
+          "autoincrement": false,
+          "name": "client_id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "location_id": {
+          "autoincrement": false,
+          "name": "location_id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "engineer_id": {
+          "autoincrement": false,
+          "name": "engineer_id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "contract_amount": {
+          "autoincrement": false,
+          "name": "contract_amount",
+          "type": "decimal",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "date": {
+          "autoincrement": false,
+          "name": "date",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "date_start": {
+          "autoincrement": false,
+          "name": "date_start",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "date_end": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "date_end",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "remarks": {
+          "autoincrement": false,
+          "name": "remarks",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "status": {
+          "autoincrement": false,
+          "name": "status",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {
+        "Contract_client_id_fk": {
+          "name": "Contract_client_id_fk",
+          "tableFrom": "Contract",
+          "tableTo": "Client",
+          "columnsFrom": [
+            "client_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "restrict"
+        },
+        "Contract_engineer_id_fk": {
+          "name": "Contract_engineer_id_fk",
+          "tableFrom": "Contract",
+          "tableTo": "Engineer",
+          "columnsFrom": [
+            "engineer_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "restrict"
+        },
+        "Contract_location_id_fk": {
+          "name": "Contract_location_id_fk",
+          "tableFrom": "Contract",
+          "tableTo": "Location",
+          "columnsFrom": [
+            "location_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "restrict"
+        },
+        "Contract_project_id_fk": {
+          "name": "Contract_project_id_fk",
+          "tableFrom": "Contract",
+          "tableTo": "Project",
+          "columnsFrom": [
+            "project_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "restrict"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "Document": {
+      "name": "Document",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "title": {
+          "autoincrement": false,
+          "name": "title",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "description": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "completed": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "completed",
+          "type": "tinyint(1)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "file": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "file",
+          "type": "longblob",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {
+        "index_1": {
+          "name": "index_1",
+          "columns": [
+            "id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "Employee": {
+      "name": "Employee",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "person_id": {
+          "autoincrement": false,
+          "name": "person_id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "status": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "status",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "skills": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "skills",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "date_contracted": {
+          "autoincrement": false,
+          "name": "date_contracted",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {
+        "index_1": {
+          "name": "index_1",
+          "columns": [
+            "id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "Employee_person_id_fk": {
+          "name": "Employee_person_id_fk",
+          "tableFrom": "Employee",
+          "tableTo": "Person",
+          "columnsFrom": [
+            "person_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "restrict"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "EmployeeDesignation": {
+      "name": "EmployeeDesignation",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "contract_id": {
+          "autoincrement": false,
+          "name": "contract_id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "employee_id": {
+          "autoincrement": false,
+          "name": "employee_id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "role_id": {
+          "autoincrement": false,
+          "name": "role_id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "remarks": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "remarks",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {
+        "EmployeeDesignation_contract_id_fk": {
+          "name": "EmployeeDesignation_contract_id_fk",
+          "tableFrom": "EmployeeDesignation",
+          "tableTo": "Contract",
+          "columnsFrom": [
+            "contract_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "restrict"
+        },
+        "EmployeeDesignation_employee_id_fk": {
+          "name": "EmployeeDesignation_employee_id_fk",
+          "tableFrom": "EmployeeDesignation",
+          "tableTo": "Employee",
+          "columnsFrom": [
+            "employee_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "restrict"
+        },
+        "EmployeeDesignation_role_id_fk": {
+          "name": "EmployeeDesignation_role_id_fk",
+          "tableFrom": "EmployeeDesignation",
+          "tableTo": "Role",
+          "columnsFrom": [
+            "role_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "restrict"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "Engineer": {
+      "name": "Engineer",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "person_id": {
+          "autoincrement": false,
+          "name": "person_id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "username": {
+          "autoincrement": false,
+          "name": "username",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "password": {
+          "autoincrement": false,
+          "name": "password",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {
+        "index_1": {
+          "name": "index_1",
+          "columns": [
+            "id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "Engineer_person_id_fk": {
+          "name": "Engineer_person_id_fk",
+          "tableFrom": "Engineer",
+          "tableTo": "Person",
+          "columnsFrom": [
+            "person_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "restrict"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "Location": {
+      "name": "Location",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "street": {
+          "autoincrement": false,
+          "name": "street",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "barangay": {
+          "autoincrement": false,
+          "name": "barangay",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "city": {
+          "autoincrement": false,
+          "name": "city",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "province": {
+          "autoincrement": false,
+          "name": "province",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "Person": {
+      "name": "Person",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "location_id": {
+          "autoincrement": false,
+          "name": "location_id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "gender": {
+          "autoincrement": false,
+          "name": "gender",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "email": {
+          "autoincrement": false,
+          "name": "email",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "contact_number": {
+          "autoincrement": false,
+          "name": "contact_number",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {
+        "Person_location_id_fk": {
+          "name": "Person_location_id_fk",
+          "tableFrom": "Person",
+          "tableTo": "Location",
+          "columnsFrom": [
+            "location_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "restrict"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "Project": {
+      "name": "Project",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "description": {
+          "autoincrement": false,
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "date_added": {
+          "autoincrement": false,
+          "name": "date_added",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {
+        "index_1": {
+          "name": "index_1",
+          "columns": [
+            "id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "Requirements": {
+      "name": "Requirements",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "contract_id": {
+          "autoincrement": false,
+          "name": "contract_id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "document_id": {
+          "autoincrement": false,
+          "name": "document_id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "permit_number": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "permit_number",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {
+        "Requirements_contract_id_fk": {
+          "name": "Requirements_contract_id_fk",
+          "tableFrom": "Requirements",
+          "tableTo": "Contract",
+          "columnsFrom": [
+            "contract_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "restrict"
+        },
+        "Requirements_document_id_fk": {
+          "name": "Requirements_document_id_fk",
+          "tableFrom": "Requirements",
+          "tableTo": "Document",
+          "columnsFrom": [
+            "document_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "restrict"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "Role": {
+      "name": "Role",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {
+        "name": {
+          "name": "name",
+          "columns": [
+            "name"
+          ]
+        }
+      },
+      "checkConstraint": {}
+    }
+  },
+  "views": {
+    "clientdata": {
+      "columns": {
+        "client_id": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "client_id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "person_name": {
+          "autoincrement": false,
+          "name": "person_name",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "person_gender": {
+          "autoincrement": false,
+          "name": "person_gender",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "person_email": {
+          "autoincrement": false,
+          "name": "person_email",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "person_contact_number": {
+          "autoincrement": false,
+          "name": "person_contact_number",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "person_location_id": {
+          "autoincrement": false,
+          "name": "person_location_id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "project_ids": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "project_ids",
+          "type": "mediumtext",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "isExisting": false,
+      "name": "clientdata",
+      "algorithm": "undefined",
+      "definition": "select `c`.`id` AS `client_id`,`p`.`name` AS `person_name`,`p`.`gender` AS `person_gender`,`p`.`email` AS `person_email`,`p`.`contact_number` AS `person_contact_number`,`p`.`location_id` AS `person_location_id`,json_arrayagg(`proj`.`id`) AS `project_ids` from (((`db_imwp`.`client` `c` join `db_imwp`.`person` `p` on(`c`.`person_id` = `p`.`id`)) join `db_imwp`.`contract` `con` on(`con`.`client_id` = `c`.`id`)) join `db_imwp`.`project` `proj` on(`con`.`project_id` = `proj`.`id`)) group by `c`.`id`,`p`.`name`,`p`.`gender`,`p`.`email`,`p`.`contact_number`,`p`.`location_id`",
+      "sqlSecurity": "definer"
+    },
+    "contractfullview": {
+      "columns": {
+        "contract_id": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "contract_id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "contract_project_id": {
+          "autoincrement": false,
+          "name": "contract_project_id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "contract_client_id": {
+          "autoincrement": false,
+          "name": "contract_client_id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "contract_location_id": {
+          "autoincrement": false,
+          "name": "contract_location_id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "contract_engineer_id": {
+          "autoincrement": false,
+          "name": "contract_engineer_id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "contract_amount": {
+          "autoincrement": false,
+          "name": "contract_amount",
+          "type": "decimal",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "date": {
+          "autoincrement": false,
+          "name": "date",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "date_start": {
+          "autoincrement": false,
+          "name": "date_start",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "date_end": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "date_end",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "remarks": {
+          "autoincrement": false,
+          "name": "remarks",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "status": {
+          "autoincrement": false,
+          "name": "status",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "project_id": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "project_id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "project_name": {
+          "autoincrement": false,
+          "name": "project_name",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "project_description": {
+          "autoincrement": false,
+          "name": "project_description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "project_date_added": {
+          "autoincrement": false,
+          "name": "project_date_added",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "location_id": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "location_id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "location_street": {
+          "autoincrement": false,
+          "name": "location_street",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "location_barangay": {
+          "autoincrement": false,
+          "name": "location_barangay",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "location_city": {
+          "autoincrement": false,
+          "name": "location_city",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "location_province": {
+          "autoincrement": false,
+          "name": "location_province",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "client_table_id": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "client_table_id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "client_person_id": {
+          "autoincrement": false,
+          "name": "client_person_id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "client_person_db_id": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "client_person_db_id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "client_person_location_id": {
+          "autoincrement": false,
+          "name": "client_person_location_id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "client_name": {
+          "autoincrement": false,
+          "name": "client_name",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "client_gender": {
+          "autoincrement": false,
+          "name": "client_gender",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "client_email": {
+          "autoincrement": false,
+          "name": "client_email",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "client_contact_number": {
+          "autoincrement": false,
+          "name": "client_contact_number",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "engineer_table_id": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "engineer_table_id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "engineer_person_id": {
+          "autoincrement": false,
+          "name": "engineer_person_id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "engineer_person_db_id": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "engineer_person_db_id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "engineer_person_location_id": {
+          "autoincrement": false,
+          "name": "engineer_person_location_id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "engineer_name": {
+          "autoincrement": false,
+          "name": "engineer_name",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "engineer_gender": {
+          "autoincrement": false,
+          "name": "engineer_gender",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "engineer_email": {
+          "autoincrement": false,
+          "name": "engineer_email",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "engineer_contact_number": {
+          "autoincrement": false,
+          "name": "engineer_contact_number",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "isExisting": false,
+      "name": "contractfullview",
+      "algorithm": "undefined",
+      "definition": "select `c`.`id` AS `contract_id`,`c`.`project_id` AS `contract_project_id`,`c`.`client_id` AS `contract_client_id`,`c`.`location_id` AS `contract_location_id`,`c`.`engineer_id` AS `contract_engineer_id`,`c`.`contract_amount` AS `contract_amount`,`c`.`date` AS `date`,`c`.`date_start` AS `date_start`,`c`.`date_end` AS `date_end`,`c`.`remarks` AS `remarks`,`c`.`status` AS `status`,`p`.`id` AS `project_id`,`p`.`name` AS `project_name`,`p`.`description` AS `project_description`,`p`.`date_added` AS `project_date_added`,`loc`.`id` AS `location_id`,`loc`.`street` AS `location_street`,`loc`.`barangay` AS `location_barangay`,`loc`.`city` AS `location_city`,`loc`.`province` AS `location_province`,`cl`.`id` AS `client_table_id`,`cl`.`person_id` AS `client_person_id`,`cp`.`id` AS `client_person_db_id`,`cp`.`location_id` AS `client_person_location_id`,`cp`.`name` AS `client_name`,`cp`.`gender` AS `client_gender`,`cp`.`email` AS `client_email`,`cp`.`contact_number` AS `client_contact_number`,`e`.`id` AS `engineer_table_id`,`e`.`person_id` AS `engineer_person_id`,`ep`.`id` AS `engineer_person_db_id`,`ep`.`location_id` AS `engineer_person_location_id`,`ep`.`name` AS `engineer_name`,`ep`.`gender` AS `engineer_gender`,`ep`.`email` AS `engineer_email`,`ep`.`contact_number` AS `engineer_contact_number` from ((((((`db_imwp`.`contract` `c` join `db_imwp`.`project` `p` on(`c`.`project_id` = `p`.`id`)) join `db_imwp`.`location` `loc` on(`c`.`location_id` = `loc`.`id`)) join `db_imwp`.`client` `cl` on(`c`.`client_id` = `cl`.`id`)) join `db_imwp`.`person` `cp` on(`cl`.`person_id` = `cp`.`id`)) join `db_imwp`.`engineer` `e` on(`c`.`engineer_id` = `e`.`id`)) join `db_imwp`.`person` `ep` on(`e`.`person_id` = `ep`.`id`))",
+      "sqlSecurity": "definer"
+    },
+    "contractemployeedata": {
+      "columns": {
+        "contract_id": {
+          "autoincrement": false,
+          "name": "contract_id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "employee_id": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "employee_id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "employee_person_id": {
+          "autoincrement": false,
+          "name": "employee_person_id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "employee_status": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "employee_status",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "employee_skills": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "employee_skills",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "employee_date_contracted": {
+          "autoincrement": false,
+          "name": "employee_date_contracted",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "person_name": {
+          "autoincrement": false,
+          "name": "person_name",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "person_email": {
+          "autoincrement": false,
+          "name": "person_email",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "person_contact_number": {
+          "autoincrement": false,
+          "name": "person_contact_number",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "role_id": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "role_id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "role_name": {
+          "autoincrement": false,
+          "name": "role_name",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "employee_designation_id": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "employee_designation_id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "designation_remarks": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "designation_remarks",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "isExisting": false,
+      "name": "contractemployeedata",
+      "algorithm": "undefined",
+      "definition": "select `ed`.`contract_id` AS `contract_id`,`e`.`id` AS `employee_id`,`e`.`person_id` AS `employee_person_id`,`e`.`status` AS `employee_status`,`e`.`skills` AS `employee_skills`,`e`.`date_contracted` AS `employee_date_contracted`,`p`.`name` AS `person_name`,`p`.`email` AS `person_email`,`p`.`contact_number` AS `person_contact_number`,`r`.`id` AS `role_id`,`r`.`name` AS `role_name`,`ed`.`id` AS `employee_designation_id`,`ed`.`remarks` AS `designation_remarks` from (((`db_imwp`.`employeedesignation` `ed` join `db_imwp`.`employee` `e` on(`ed`.`employee_id` = `e`.`id`)) join `db_imwp`.`role` `r` on(`ed`.`role_id` = `r`.`id`)) left join `db_imwp`.`person` `p` on(`e`.`person_id` = `p`.`id`))",
+      "sqlSecurity": "definer"
+    }
+  },
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  },
+  "internal": {
+    "tables": {},
+    "indexes": {}
+  }
+}

@@ -1,6 +1,11 @@
 import { db } from "@/db";
-import { client, location, person } from "@/db/schema";
+import { client, clientdata, location, person } from "@/db/schema";
 import { NextRequest } from "next/server";
+
+export async function GET() {
+    const clients = await db.select().from(clientdata);
+    return Response.json(clients);
+}
 
 export async function POST(req: NextRequest) {
     const formData = await req.formData();

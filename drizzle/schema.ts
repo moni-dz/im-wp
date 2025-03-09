@@ -1,8 +1,8 @@
-import { mysqlTable, mysqlSchema, AnyMySqlColumn, index, foreignKey, int, decimal, date, varchar, text, unique, mysqlView, boolean, mediumtext } from "drizzle-orm/mysql-core"
+import { mysqlTable, mysqlSchema, AnyMySqlColumn, index, foreignKey, int, decimal, date, varchar, text, unique, mysqlView, mediumtext, boolean } from "drizzle-orm/mysql-core"
 import { sql } from "drizzle-orm"
 
 export const client = mysqlTable("Client", {
-	id: int().autoincrement().primaryKey(),
+	id: int().autoincrement().notNull(),
 	personId: int("person_id").notNull().references(() => person.id, { onDelete: "restrict", onUpdate: "restrict" } ),
 },
 (table) => [
@@ -10,7 +10,7 @@ export const client = mysqlTable("Client", {
 ]);
 
 export const contract = mysqlTable("Contract", {
-	id: int().autoincrement().primaryKey(),
+	id: int().autoincrement().notNull(),
 	projectId: int("project_id").notNull().references(() => project.id, { onDelete: "cascade", onUpdate: "restrict" } ),
 	clientId: int("client_id").notNull().references(() => client.id, { onDelete: "restrict", onUpdate: "restrict" } ),
 	locationId: int("location_id").notNull().references(() => location.id, { onDelete: "restrict", onUpdate: "restrict" } ),
@@ -27,7 +27,7 @@ export const contract = mysqlTable("Contract", {
 });
 
 export const document = mysqlTable("Document", {
-	id: int().autoincrement().primaryKey(),
+	id: int().autoincrement().notNull(),
 	title: varchar({ length: 500 }).notNull(),
 	description: text().default('NULL'),
 	completed: boolean().default(false).notNull(),
@@ -39,7 +39,7 @@ export const document = mysqlTable("Document", {
 ]);
 
 export const employee = mysqlTable("Employee", {
-	id: int().autoincrement().primaryKey(),
+	id: int().autoincrement().notNull(),
 	personId: int("person_id").notNull().references(() => person.id, { onDelete: "restrict", onUpdate: "restrict" } ),
 	status: text().default('NULL'),
 	skills: text().default('NULL'),
@@ -51,7 +51,7 @@ export const employee = mysqlTable("Employee", {
 ]);
 
 export const employeeDesignation = mysqlTable("EmployeeDesignation", {
-	id: int().autoincrement().primaryKey(),
+	id: int().autoincrement().notNull(),
 	contractId: int("contract_id").notNull().references(() => contract.id, { onDelete: "restrict", onUpdate: "restrict" } ),
 	employeeId: int("employee_id").notNull().references(() => employee.id, { onDelete: "restrict", onUpdate: "restrict" } ),
 	roleId: int("role_id").notNull().references(() => role.id, { onDelete: "restrict", onUpdate: "restrict" } ),
@@ -59,7 +59,7 @@ export const employeeDesignation = mysqlTable("EmployeeDesignation", {
 });
 
 export const engineer = mysqlTable("Engineer", {
-	id: int().autoincrement().primaryKey(),
+	id: int().autoincrement().notNull(),
 	personId: int("person_id").notNull().references(() => person.id, { onDelete: "restrict", onUpdate: "restrict" } ),
 	username: varchar({ length: 500 }).notNull(),
 	password: varchar({ length: 500 }).notNull(),
@@ -69,7 +69,7 @@ export const engineer = mysqlTable("Engineer", {
 ]);
 
 export const location = mysqlTable("Location", {
-	id: int().autoincrement().primaryKey(),
+	id: int().autoincrement().notNull(),
 	street: varchar({ length: 500 }).notNull(),
 	barangay: varchar({ length: 500 }).notNull(),
 	city: varchar({ length: 500 }).notNull(),
@@ -77,7 +77,7 @@ export const location = mysqlTable("Location", {
 });
 
 export const person = mysqlTable("Person", {
-	id: int().autoincrement().primaryKey(),
+	id: int().autoincrement().notNull(),
 	locationId: int("location_id").notNull().references(() => location.id, { onDelete: "restrict", onUpdate: "restrict" } ),
 	name: varchar({ length: 500 }).notNull(),
 	gender: varchar({ length: 500 }).notNull(),
@@ -86,7 +86,7 @@ export const person = mysqlTable("Person", {
 });
 
 export const project = mysqlTable("Project", {
-	id: int().autoincrement().primaryKey(),
+	id: int().autoincrement().notNull(),
 	name: varchar({ length: 500 }).notNull(),
 	description: text().notNull(),
 	// you can use { mode: 'date' }, if you want to have Date as type for this column
@@ -97,14 +97,14 @@ export const project = mysqlTable("Project", {
 ]);
 
 export const requirements = mysqlTable("Requirements", {
-	id: int().autoincrement().primaryKey(),
+	id: int().autoincrement().notNull(),
 	contractId: int("contract_id").notNull().references(() => contract.id, { onDelete: "restrict", onUpdate: "restrict" } ),
 	documentId: int("document_id").notNull().references(() => document.id, { onDelete: "restrict", onUpdate: "restrict" } ),
 	permitNumber: text("permit_number").default('NULL'),
 });
 
 export const role = mysqlTable("Role", {
-	id: int().autoincrement().primaryKey(),
+	id: int().autoincrement().notNull(),
 	name: varchar({ length: 500 }).notNull(),
 },
 (table) => [
