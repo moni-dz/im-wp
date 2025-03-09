@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { ContractDetails, Project } from './types';
+import React, { useEffect, useState } from 'react';
+import { ContractDetails, Document, Project } from './types';
 import { 
   PencilIcon, 
   TrashIcon, 
@@ -23,28 +23,23 @@ interface DocumentItem {
 const Documents = ({ project, onBack }: DocumentsProps) => {
   const [showUploadPage, setShowUploadPage] = useState(false);
   const [showEditPage, setShowEditPage] = useState(false);
-  const [currentDocument, setCurrentDocument] = useState<DocumentItem | null>(null);
+  const [currentDocument, setCurrentDocument] = useState<Document | null>(null);
   
   // mock
-  const [documents, setDocuments] = useState<DocumentItem[]>([
-    {
-      id: '1',
-      name: 'building permit',
-      completionDate: '2024-03-15',
-      description: 'government approval',
-      status: 'completed'
-    },
-    {
-      id: '2',
-      name: 'dhsahajfahfh',
-      completionDate: '2024-04-20',
-      description: 'contract',
-      status: 'pending'
-    }
-  ]);
+  const [documents, setDocuments] = useState<Document[]>([]);
+
+  useEffect(() => {
+    // Fetch documents
+    fetch(`/api/v1/documents`)
+      .then(response => response.json())
+      .then((data: Document[]) => {
+        setDocuments(data);
+      });
+  }
+  , []);
   
-  const completedDocs = documents.filter(doc => doc.status === 'completed');
-  const pendingDocs = documents.filter(doc => doc.status === 'pending');
+  const completedDocs = documents.filter(doc => doc.completed);
+  const pendingDocs = documents.filter(doc => !doc.completed);
   
   const handleUploadClick = () => {
     setShowUploadPage(true);
@@ -56,7 +51,7 @@ const Documents = ({ project, onBack }: DocumentsProps) => {
     setShowEditPage(false);
   };
   
-  const handleEditClick = (doc: DocumentItem) => {
+  const handleEditClick = (doc: Document) => {
     setCurrentDocument(doc);
     setShowEditPage(true);
     setShowUploadPage(false);
@@ -139,9 +134,9 @@ const Documents = ({ project, onBack }: DocumentsProps) => {
   );
 
   const EditDocumentPage = () => {
-    const [editedDocument, setEditedDocument] = useState<DocumentItem>(currentDocument!);
+    const [editedDocument, setEditedDocument] = useState<Document>(currentDocument!);
     
-    const handleInputChange = (field: keyof DocumentItem, value: string) => {
+    const handleInputChange = (field: keyof Document, value: string) => {
       setEditedDocument(prev => ({
         ...prev,
         [field]: value
@@ -170,7 +165,7 @@ const Documents = ({ project, onBack }: DocumentsProps) => {
                 </label>
                 <input
                   type="text"
-                  value={editedDocument.name}
+                  value={editedDocument.title}
                   onChange={(e) => handleInputChange('name', e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-950"
                   placeholder="Enter document name"
@@ -285,7 +280,7 @@ const Documents = ({ project, onBack }: DocumentsProps) => {
                 <div key={doc.id} className="bg-white rounded-lg p-4 shadow">
                   <div className="flex justify-between items-start">
                     <div>
-                      <h4 className="font-bold text-blue-950">{doc.name}</h4>
+                      <h4 className="font-bold text-blue-950">{doc.title}</h4>
                       <p className="text-xs text-blue-950">completion date: {doc.completionDate}</p>
                       <p className="text-xs text-blue-950">description: {doc.description}</p>
                     </div>
@@ -314,7 +309,7 @@ const Documents = ({ project, onBack }: DocumentsProps) => {
                 <div key={doc.id} className="bg-white rounded-lg p-4 shadow">
                   <div className="flex justify-between items-start">
                     <div>
-                      <h4 className="font-bold text-blue-950">{doc.name}</h4>
+                      <h4 className="font-bold text-blue-950">{doc.title}</h4>
                       <p className="text-xs text-blue-950">completion date: {doc.completionDate}</p>
                       <p className="text-xs text-blue-950">description: {doc.description}</p>
                     </div>

@@ -37,8 +37,9 @@ export interface TeamMember { // project-specific, info can be taken from employ
   id: number;
 }
 
-import { InferSelectViewModel } from 'drizzle-orm'
-import { contractfullview, contractemployeedata } from '@/db/schema';
+import { InferInsertModel, InferSelectViewModel } from 'drizzle-orm'
+import { contractfullview, contractemployeedata, document } from '@/db/schema';
 
 export type ContractDetails = InferSelectViewModel<typeof contractfullview>;
 export type EmployeeData = InferSelectViewModel<typeof contractemployeedata>;
+export type Document = InferInsertModel<typeof document>;

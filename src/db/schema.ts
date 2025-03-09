@@ -1,4 +1,4 @@
-import { mysqlTable, mysqlSchema, AnyMySqlColumn, index, foreignKey, int, decimal, date, varchar, text, unique, mysqlView } from "drizzle-orm/mysql-core"
+import { mysqlTable, mysqlSchema, AnyMySqlColumn, index, foreignKey, int, decimal, date, varchar, text, unique, mysqlView, boolean } from "drizzle-orm/mysql-core"
 import { sql } from "drizzle-orm"
 
 export const client = mysqlTable("Client", {
@@ -30,6 +30,7 @@ export const document = mysqlTable("Document", {
 	id: int().autoincrement().notNull(),
 	title: varchar({ length: 500 }).notNull(),
 	description: text().default('NULL'),
+	completed: boolean().default(false).notNull(),
 	// Warning: Can't parse longblob from database
 	// longblobType: longblob("file"),
 },
