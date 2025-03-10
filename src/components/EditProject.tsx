@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { ContractDetails, Project } from './types';
+import React, { useEffect, useState } from 'react';
+import { ClientData, ContractDetails, Project } from './types';
 import { ArrowLeftIcon } from '@heroicons/react/solid';
+import { editProject } from '@/app/lib/actions';
 
 interface EditProjectProps {
   project: ContractDetails;
@@ -9,36 +10,16 @@ interface EditProjectProps {
 }
 
 const EditProject = ({ project, onBack, onSave }: EditProjectProps) => {
-  const [formData, setFormData] = useState({
-    name: project.projectName || '',
-    description: project.projectDescription || '',
-    location: "Location", // mock data
-    amount: "50,000",
-    clientName: "Client Name",
-    startDate: project.dateStart || '',
-    estimatedCompletion: "2024-05-30"
-  });
+  const [clients, setClients] = useState<ClientData[]>([]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    const updatedProject: Project = {
-      ...project,
-      name: formData.name,
-      description: formData.description,
-      startDate: formData.startDate,
-    };
-    
-    onSave(updatedProject);
-  };
+  useEffect(() => {
+    // Fetch clients
+    fetch(`/api/v1/clients`)
+      .then(response => response.json())
+      .then((data: ClientData[]) => {
+        setClients(data);
+      });
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -47,7 +28,7 @@ const EditProject = ({ project, onBack, onSave }: EditProjectProps) => {
         {/* Main content area */}
           
           <div className="bg-white rounded-lg p-6">
-            <form onSubmit={handleSubmit}>
+            <form action={editProject}>
               <div className="bg-blue-950 rounded-lg p-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {/* Left column */}
@@ -56,9 +37,7 @@ const EditProject = ({ project, onBack, onSave }: EditProjectProps) => {
                       <label className="block font-geoformHeavy text-white mb-1 font-medium">project name</label>
                       <input
                         type="text"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
+                        name="projectName"
                         className="w-full p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
                     </div>
@@ -68,8 +47,6 @@ const EditProject = ({ project, onBack, onSave }: EditProjectProps) => {
                       <input
                         type="text"
                         name="location"
-                        value={formData.location}
-                        onChange={handleChange}
                         className="w-full p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
                     </div>
@@ -78,9 +55,7 @@ const EditProject = ({ project, onBack, onSave }: EditProjectProps) => {
                       <label className="block font-geoformHeavy text-white mb-1 font-medium">amount</label>
                       <input
                         type="text"
-                        name="amount"
-                        value={formData.amount}
-                        onChange={handleChange}
+                        name="contractAmount"
                         className="w-full p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
                     </div>
@@ -89,9 +64,7 @@ const EditProject = ({ project, onBack, onSave }: EditProjectProps) => {
                       <label className="block font-geoformHeavy text-white mb-1 font-medium">start date</label>
                       <input
                         type="text"
-                        name="startDate"
-                        value={formData.startDate}
-                        onChange={handleChange}
+                        name="dateStart"
                         className="w-full p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
                     </div>
@@ -100,9 +73,7 @@ const EditProject = ({ project, onBack, onSave }: EditProjectProps) => {
                       <label className="block font-geoformHeavy text-white mb-1 font-medium">estimated completion date</label>
                       <input
                         type="text"
-                        name="estimatedCompletion"
-                        value={formData.estimatedCompletion}
-                        onChange={handleChange}
+                        name="dateEnd"
                         className="w-full p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
                     </div>
@@ -113,9 +84,7 @@ const EditProject = ({ project, onBack, onSave }: EditProjectProps) => {
                     <div>
                       <label className="block font-geoformHeavy text-white mb-1 font-medium">description</label>
                       <textarea
-                        name="description"
-                        value={formData.description}
-                        onChange={handleChange}
+                        name="projectDescription"
                         className="w-full p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 h-40"
                       />
                     </div>
@@ -125,8 +94,6 @@ const EditProject = ({ project, onBack, onSave }: EditProjectProps) => {
                       <input
                         type="text"
                         name="clientName"
-                        value={formData.clientName}
-                        onChange={handleChange}
                         className="w-full p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
                     </div>

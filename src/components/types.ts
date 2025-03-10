@@ -44,3 +44,6 @@ export type ContractDetails = InferSelectViewModel<typeof contractfullview>;
 export type EmployeeData = InferSelectViewModel<typeof contractemployeedata>;
 export type Document = InferInsertModel<typeof document>;
 export type ClientData = InferSelectViewModel<typeof clientdata>;
+export type EditContract = {
+  
+};

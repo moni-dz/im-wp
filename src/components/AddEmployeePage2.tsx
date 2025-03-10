@@ -9,23 +9,6 @@ interface AddEmployeePage2Props {
 }
 
 const AddEmployeePage2: React.FC<AddEmployeePage2Props> = ({ onBack, onAddEmployee }) => {
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    status: '',
-    skills: '',
-    dateContracted: '',
-    role: ''
-  });
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
   return (
     <div className="flex-grow p-8 bg-gray-100 rounded-sm">
       <h1 className="text-3xl font-bold mb-8 font-geoformHeavy text-blue-950">Add Employee</h1>

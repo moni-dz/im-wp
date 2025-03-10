@@ -33,17 +33,6 @@ const ProjectsPage = () => {
     setSelectedProject(null);
   };
 
-  const handleAddProject = (projectData: Omit<Project, 'id' | 'progress'>) => {
-    const newProject = {
-      ...projectData,
-      id: projects.length + 1,
-      progress: 0
-    };
-    
-    setProjects([...projects, newProject]);
-    setIsAddingProject(false);
-  };
-
   if (selectedProject) {
     return <ProjectDetail project={selectedProject} onBack={handleBackToProjects} />;
   }
@@ -54,7 +43,7 @@ const ProjectsPage = () => {
         <h2 className="font-geoformHeavy text-3xl font-bold text-blue-950">Projects</h2>
         <button 
           onClick={() => setIsAddingProject(true)}
-          className="bg-blue-950 font-geoformHeavy font-bold rounded-lg text-white px-4 py-2 border rounded hover:border-blue-950 hover:bg-white hover:text-blue-950 "
+          className="bg-blue-950 font-geoformHeavy font-bold text-white px-4 py-2 border rounded hover:border-blue-950 hover:bg-white hover:text-blue-950 "
         >
           ADD PROJECT
         </button>
@@ -63,10 +52,7 @@ const ProjectsPage = () => {
       {/* Add Project Modal */}
       {isAddingProject && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <AddProjectForm
-            onSubmit={handleAddProject}
-            onCancel={() => setIsAddingProject(false)}
-          />
+          <AddProjectForm onCancel={() => setIsAddingProject(false)} />
         </div>
       )}
 
@@ -76,6 +62,7 @@ const ProjectsPage = () => {
           <ProjectList 
             projects={projects.filter(p => p.status.toLowerCase() === 'active')}
             onSelectProject={handleSelectProject}
+            onDeleteProject={onDeleteProject}
           />
         </div>
 
@@ -84,6 +71,7 @@ const ProjectsPage = () => {
           <ProjectList 
             projects={projects.filter(p => p.status === 'completed')}
             onSelectProject={handleSelectProject}
+            onDeleteProject={onDeleteProject}
           />
         </div>
       </div>
