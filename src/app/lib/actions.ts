@@ -24,6 +24,13 @@ export async function addEmployee(formData: FormData) {
     });
 }
 
+export async function updateEmployee(formData: FormData) {
+    await fetch('http://localhost:3000/api/v1/employees', {
+        method: 'PUT',
+        body: formData
+    });
+}
+
 export async function editProject(formData: FormData) {
     await fetch('http://localhost:3000/api/v1/contracts', {
         method: 'PUT',
@@ -41,7 +48,7 @@ export async function addProject(formData: FormData) {
         method: 'POST',
         body: formData
     });
-    
+
     await fetch('http://localhost:3000/api/v1/projects', {
         method: 'POST',
         body: formData

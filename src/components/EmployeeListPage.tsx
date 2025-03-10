@@ -2,18 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { PencilIcon, TrashIcon } from '@heroicons/react/solid';
 import AddEmployeePage2 from './AddEmployeePage2';
 import { EmployeeData } from './types';
-
-interface Employee {
-  id: string;
-  name: string;
-  status: string;
-  skills: string;
-  dateContracted: string;
-  role: string;
-}
+import { updateEmployee } from '@/app/lib/actions';
 
 interface EmployeeListPageProps {
-  projectName: string;
+  contractId: number;
 }
 
 const EmployeeListPage = (props: EmployeeListPageProps) => {
@@ -23,7 +15,7 @@ const EmployeeListPage = (props: EmployeeListPageProps) => {
     fetch(`/api/v1/employees`)
       .then(response => response.json())
       .then((data: EmployeeData[]) => {
-        setEmployees(data);
+        setEmployees(data.filter(emp => emp.contractId === props.contractId));
       });
   }, []);
 
@@ -42,16 +34,17 @@ const EmployeeListPage = (props: EmployeeListPageProps) => {
     setIsDeleteModalOpen(true);
   };
 
-  const handleConfirmDelete = () => {
+  const handleConfirmDelete = async () => {
     if (selectedEmployee) {
-      setEmployees(employees.filter(emp => emp.id !== selectedEmployee.id));
+      setEmployees(employees.filter(emp => emp.employeeId !== selectedEmployee.employeeId));
+      await fetch(`/api/v1/employees?id=${selectedEmployee.employeeId}`, { method: 'DELETE' });
       setIsDeleteModalOpen(false);
     }
   };
 
   const handleUpdateEmployee = (updatedEmployee: EmployeeData) => {
     setEmployees(employees.map(emp =>
-      emp.id === updatedEmployee.id ? updatedEmployee : emp
+      emp.employeeId === updatedEmployee.employeeId ? updatedEmployee : emp
     ));
     setIsEditModalOpen(false);
   };
@@ -96,105 +89,100 @@ const EmployeeListPage = (props: EmployeeListPageProps) => {
     );
   };
 
-  const EditEmployeeModal = () => {
-    const [formData, setFormData] = useState<EmployeeData>(selectedEmployee || {
-      id: '',
-      name: '',
-      status: '',
-      skills: '',
-      dateContracted: '',
-      role: ''
-    });
-
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const { name, value } = e.target;
-      setFormData(prev => ({
-        ...prev,
-        [name]: value
-      }));
-    };
-
+  const EditEmployeeModal = ({ employee }: { employee: EmployeeData }) => {
     return (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
         <div className="bg-white rounded-lg p-6 w-96">
           <h2 className="font-geoformHeavy text-xl text-blue-950 font-bold mb-4">Edit Employee</h2>
-          <form onSubmit={(e) => {
-            e.preventDefault();
-            handleUpdateEmployee(formData);
-          }}>
-            <div className="mb-4">
-              <label className="font-geoformHeavy text-blue-950 font-md block mb-2">First Name</label>
-              <input
-                type="text"
-                name="firstName"
-                value={formData.name.split(' ')[0]}
-                onChange={handleInputChange}
-                className="w-full border rounded p-2"
-              />
+          <form action={updateEmployee}>
+            {/* hidden, don't touch */}
+            <input type="hidden" name="employeeId" value={employee.employeeId} />
+            <input type="hidden" name="personId" value={employee.employeePersonId} />
+            <input type="hidden" name="roleId" value={employee.roleId} />
+
+            <div className="grid grid-cols-2 gap-6">
+              {/* Person Name */}
+              <div className="col-span-2">
+                <h2 className="text-lg font-bold text-blue-950 mb-4">Person</h2>
+              </div>
+              <div>
+                <label className="block text-blue-950 font-geoformHeavy mb-2">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  name="personName"
+                  defaultValue={employee.personName!}
+                  className="w-full bg-gray-100 rounded p-2"
+                  required
+                />
+              </div>
+
+              {/* Employee Fields */}
+              <div className="col-span-2">
+                <h2 className="text-lg font-bold text-blue-950 mb-4">Employee</h2>
+              </div>
+              <div>
+                <label className="block text-blue-950 font-geoformHeavy mb-2">
+                  Status
+                </label>
+                <input
+                  type="text"
+                  name="status"
+                  defaultValue={employee.employeeStatus!}
+                  className="w-full bg-gray-100 rounded p-2"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-blue-950 font-geoformHeavy mb-2">
+                  Skills
+                </label>
+                <input
+                  type="text"
+                  name="skills"
+                  defaultValue={employee.employeeSkills!}
+                  className="w-full bg-gray-100 rounded p-2"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-blue-950 font-geoformHeavy mb-2">
+                  Date Contracted
+                </label>
+                <input
+                  type="date"
+                  name="dateContracted"
+                  defaultValue={employee.employeeDateContracted!}
+                  className="w-full bg-gray-100 rounded p-2"
+                  required
+                />
+              </div>
+
+              {/* Role Fields */}
+              <div className="col-span-2">
+                <h2 className="text-lg font-bold text-blue-950 mb-4">Role</h2>
+              </div>
+              <div>
+                <label className="block text-blue-950 font-geoformHeavy mb-2">
+                  Role Name
+                </label>
+                <input
+                  type="text"
+                  name="roleName"
+                  defaultValue={employee.roleName!}
+                  className="w-full bg-gray-100 rounded p-2"
+                  required
+                />
+              </div>
             </div>
-            <div className="mb-4">
-              <label className="font-geoformHeavy text-blue-950 block mb-2">Last Name</label>
-              <input
-                type="text"
-                name="lastName"
-                value={formData.name.split(' ')[1]}
-                onChange={handleInputChange}
-                className="w-full border rounded p-2"
-              />
-            </div>
-            <div className="mb-4">
-              <label className="font-geoformHeavy text-blue-950 block font-md  mb-2">Status</label>
-              <input
-                type="text"
-                name="status"
-                value={formData.status}
-                onChange={handleInputChange}
-                className="w-full border rounded p-2"
-              />
-            </div>
-            <div className="mb-4">
-              <label className="font-geoformHeavy block text-blue-950 font-md mb-2">Skills</label>
-              <input
-                type="text"
-                name="skills"
-                value={formData.skills}
-                onChange={handleInputChange}
-                className="w-full border rounded p-2"
-              />
-            </div>
-            <div className="mb-4">
-              <label className="font-geoformHeavy block text-blue-950 font-md mb-2">Date Contracted</label>
-              <input
-                type="text"
-                name="dateContracted"
-                value={formData.dateContracted}
-                onChange={handleInputChange}
-                className="w-full border rounded p-2"
-              />
-            </div>
-            <div className="mb-4">
-              <label className="font-geoformHeavy text-blue-950 block font-md text-blue-950 mb-2">Role</label>
-              <input
-                type="text"
-                name="role"
-                value={formData.role}
-                onChange={handleInputChange}
-                className="w-full border rounded p-2"
-              />
-            </div>
-            <div className="flex justify-end space-x-2">
-              <button
-                type="button"
-                onClick={() => setIsEditModalOpen(false)}
-                className="font-geoformHeavy bg-white border border-blue-950 font-bold text-blue-950 hover:bg-blue-950 hover:text-white px-4 py-2 rounded"
-              >
-                Back
-              </button>
+
+            <div className="mt-6">
               <button
                 type="submit"
-                className="font-geoformHeavy bg-blue-950 text-white border hover:border-blue-950 font-bold hover:bg-white hover:text-blue-950  px-4 py-2 rounded"
+                className="bg-blue-950 text-white font-geoformHeavy px-4 py-2 rounded"
               >
-                Edit Employee
+                Update
               </button>
             </div>
           </form>
@@ -216,12 +204,14 @@ const EmployeeListPage = (props: EmployeeListPageProps) => {
             >
               Back
             </button>
-            <button
-              onClick={handleConfirmDelete}
-              className="font-geoformHeavy bg-blue-950 text-white font-bold border hover:bg-white hover:text-blue-950 hover:border-blue-950 px-4 py-2 rounded"
-            >
-              Delete
-            </button>
+            <form action={handleConfirmDelete}>
+              <button
+                type="submit"
+                className="font-geoformHeavy bg-blue-950 text-white font-bold border hover:bg-white hover:text-blue-950 hover:border-blue-950 px-4 py-2 rounded"
+              >
+                Delete
+              </button>
+            </form>
           </div>
         </div>
       </div>
@@ -247,7 +237,7 @@ const EmployeeListPage = (props: EmployeeListPageProps) => {
             </button>
           </div>
 
-          {isEditModalOpen && <EditEmployeeModal />}
+          {isEditModalOpen && <EditEmployeeModal employee={selectedEmployee!} />}
           {isDeleteModalOpen && <DeleteConfirmationModal />}
         </div>
       )}
