@@ -13,7 +13,7 @@ const AddProjectForm = ({ onCancel }: AddProjectFormProps) => {
       <div className="p-6 border-b">
         <h2 className="text-xl font-geoformHeavy text-blue-950 font-semibold">Add New Project</h2>
       </div>
-      
+
       <div className="overflow-y-auto p-6 flex-grow">
         <form action={addProject}>
           <div className="grid grid-cols-2 gap-6">
@@ -223,23 +223,21 @@ const AddProjectForm = ({ onCancel }: AddProjectFormProps) => {
               />
             </div>
           </div>
+          <div className="p-4 border-t flex justify-end gap-4 mt-auto">
+            <button
+              onClick={onCancel}
+              className="px-4 py-2 rounded border border-gray-300"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="bg-blue-950 text-white font-geoformHeavy px-4 py-2 rounded"
+            >
+              Submit
+            </button>
+          </div>
         </form>
-      </div>
-      
-      <div className="p-4 border-t flex justify-end gap-4 mt-auto">
-        <button
-          onClick={onCancel}
-          className="px-4 py-2 rounded border border-gray-300"
-        >
-          Cancel
-        </button>
-        <button
-          type="submit"
-          form="projectForm"
-          className="bg-blue-950 text-white font-geoformHeavy px-4 py-2 rounded"
-        >
-          Submit
-        </button>
       </div>
     </div>
   );
