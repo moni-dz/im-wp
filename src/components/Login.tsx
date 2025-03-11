@@ -33,7 +33,7 @@ const Login = () => {
         
         <form action={login} className="space-y-6">
           <div className="space-y-2">
-            <label htmlFor="username" className="text-sm text-gray-600">username</label>
+            <label htmlFor="username" className="text-sm font-geoformHeavy text-gray-600">Email</label>
             <input
               type="text"
               name="username"
@@ -43,7 +43,7 @@ const Login = () => {
           </div>
           
           <div className="space-y-2">
-            <label htmlFor="password" className="text-sm text-gray-600">password</label>
+            <label htmlFor="password" className="text-sm font-geoformHeavy text-gray-600">Password</label>
             <input
               type="password"
               name="password"
@@ -54,9 +54,9 @@ const Login = () => {
           
           <button
             type="submit"
-            className="w-full bg-blue-950 text-white py-2 rounded-lg hover:bg-blue-950 transition-colors"
+            className="w-full bg-blue-950 font-geoformHeavy text-white py-2 rounded-lg hover:bg-blue-950 transition-colors"
           >
-            sign in
+            SIGN IN
           </button>
         </form>
       </div>
