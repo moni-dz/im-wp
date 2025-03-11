@@ -104,8 +104,7 @@ const AddClientPage = ({ onBackClick }: AddClientPageProps) => {
             
             <button
               type="submit"
-              className="px-6 py-2 bg-blue-950 font-geoformHeavy text-white rounded-md text-md font-medium hover:text-blue-950 hover:border hover:border-blue-950 hover:bg-white"
-            >
+              className="px-6 py-2 bg-white font-geoformHeavy rounded-md shadow-sm text-md font-medium border text-gray-700 hover:bg-blue-950 hover:text-white border-blue-950"            >
               ADD CLIENT
             </button>
           </div>

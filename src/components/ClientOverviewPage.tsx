@@ -59,8 +59,7 @@ const ClientOverviewPage = ({ onAddClientClick }: ClientOverviewPageProps) => {
         <h1 className="text-3xl text-blue-950 font-geoformHeavy font-bold">Client Overview</h1>
         <button
           onClick={onAddClientClick}
-          className="bg-blue-950 font-geoformHeavy font-bold rounded-lg text-white hover:text-blue-950 hover:bg-white py-2 px-4 rounded"
-        >
+          className="bg-blue-950 font-geoformHeavy font-bold rounded-lg text-white border hover:border-blue-950 hover:text-blue-950 hover:bg-white py-2 px-4 rounded"        >
           ADD CLIENT
         </button>
       </div>

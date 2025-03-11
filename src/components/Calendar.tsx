@@ -84,7 +84,7 @@ const Calendar: React.FC = () => {
   };
 
   return (
-    <div className="flex max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+    <div className="flex border border:blue-950 max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
       <div className="w-2/3">
         {/* Month Navigation */}
         <div className="flex items-center justify-between p-4 bg-gray-100">
@@ -147,7 +147,7 @@ const Calendar: React.FC = () => {
             />
             <button 
               onClick={handleSaveNote}
-              className="mt-2 px-4 font-geoformHeavy py-2 bg-blue-950 text-white rounded hover:bg-blue-950"
+              className="mt-2 px-4 font-geoformHeavy py-2 bg-blue-950 text-white rounded hover:bg-white border hover:border-blue-950 hover:text-blue-950"
             >
               Save Note
             </button>

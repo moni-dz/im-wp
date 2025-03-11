@@ -246,8 +246,7 @@ const EmployeeListPage = () => {
             <h1 className="font-geoformHeavy text-3xl font-bold text-blue-950">Employee Overview</h1>
             <button
               onClick={handleAddEmployeeClick}
-              className="font-geoformHeavy bg-blue-950 font-bold text-white px-4 py-2 rounded"
-            >
+              className="font-geoformHeavy bg-blue-950 rounded-lg hover:bg-white hover:text-blue-950 border hover:border-blue-950 font-bold text-white px-4 py-2 rounded"            >
               ADD EMPLOYEE
             </button>
           </div>
