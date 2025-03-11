@@ -7,7 +7,8 @@ import ClientOverviewPage from './ClientOverviewPage';
 import AddClientPage from './AddClientPage';
 import CalendarPage from './Calendar';
 import Image from 'next/image';
-import logo from '../logo.png'; 
+import logo from '../logo.png';
+import WelcomeModal from './WelcomeModal';
 
 interface DashboardProps {
   onLogout: () => void;
@@ -17,6 +18,7 @@ type ActiveTab = 'projects' | 'employees' | 'clients' | 'calendar' | 'add-client
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState<ActiveTab>('projects');
+  const [showWelcomeModal, setShowWelcomeModal] = useState(true);
   
   const renderSidebarButton = (tab: ActiveTab, label: string) => (
     <button
@@ -30,11 +32,11 @@ const Dashboard = () => {
       {label}
     </button>
   );
-  
+
   const handleAddClient = () => {
     setActiveTab('add-client');
   };
-  
+
   const renderActiveContent = () => {
     switch (activeTab) {
       case 'projects':
@@ -57,9 +59,14 @@ const Dashboard = () => {
         );
     }
   };
-  
+
   return (
     <div className="flex h-screen bg-blue-950">
+      {/* Welcome Modal */}
+      {showWelcomeModal && (
+        <WelcomeModal onClose={() => setShowWelcomeModal(false)} />
+      )}
+      
       {/* Sidebar */}
       <div className="w-64 p-4 flex flex-col">
         <div className="mb-8 px-6 py-4">
