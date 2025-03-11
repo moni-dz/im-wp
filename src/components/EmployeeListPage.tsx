@@ -42,13 +42,6 @@ const EmployeeListPage = (props: EmployeeListPageProps) => {
     }
   };
 
-  const handleUpdateEmployee = (updatedEmployee: EmployeeData) => {
-    setEmployees(employees.map(emp =>
-      emp.employeeId === updatedEmployee.employeeId ? updatedEmployee : emp
-    ));
-    setIsEditModalOpen(false);
-  };
-
   const handleAddEmployeeClick = () => {
     setIsAddEmployeePage2Open(true);
   };
@@ -94,7 +87,15 @@ const EmployeeListPage = (props: EmployeeListPageProps) => {
       <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
         <div className="bg-white rounded-lg p-6 w-96">
           <h2 className="font-geoformHeavy text-xl text-blue-950 font-bold mb-4">Edit Employee</h2>
-          <form action={updateEmployee}>
+          <form action={async (formData) => {
+            await updateEmployee(formData);
+
+            const res = await fetch(`/api/v1/employees`);
+            const data: EmployeeData[] = await res.json();
+            setEmployees(data.filter(emp => emp.contractId === props.contractId));
+
+            setIsEditModalOpen(false);
+          }}>
             {/* hidden, don't touch */}
             <input type="hidden" name="employeeId" value={employee.employeeId} />
             <input type="hidden" name="personId" value={employee.employeePersonId} />
