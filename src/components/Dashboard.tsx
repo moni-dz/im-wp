@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import ProjectsPage from './ProjectsPage';
 import EmployeeListPage from './EmployeeListPage';
 import ClientOverviewPage from './ClientOverviewPage';
@@ -9,16 +10,19 @@ import CalendarPage from './Calendar';
 import Image from 'next/image';
 import logo from '../logo.png';
 import WelcomeModal from './WelcomeModal';
+import LogoutModal from './LogoutModal';
 
 interface DashboardProps {
-  onLogout: () => void;
+  onLogout?: () => void; 
 }
 
 type ActiveTab = 'projects' | 'employees' | 'clients' | 'calendar' | 'add-client';
 
-const Dashboard = () => {
+const Dashboard = ({ onLogout }: DashboardProps = {}) => {
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState<ActiveTab>('projects');
   const [showWelcomeModal, setShowWelcomeModal] = useState(true);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
   
   const renderSidebarButton = (tab: ActiveTab, label: string) => (
     <button
@@ -35,6 +39,20 @@ const Dashboard = () => {
 
   const handleAddClient = () => {
     setActiveTab('add-client');
+  };
+  
+  const handleLogoutClick = (e: React.FormEvent) => {
+    e.preventDefault(); 
+    setShowLogoutModal(true);
+  };
+  
+  const handleLogoutConfirm = () => {
+    if (onLogout) {
+      onLogout();
+    } else {
+      router.push('/');
+      
+    }
   };
 
   const renderActiveContent = () => {
@@ -67,6 +85,14 @@ const Dashboard = () => {
         <WelcomeModal onClose={() => setShowWelcomeModal(false)} />
       )}
       
+      {/* Logout Confirmation Modal */}
+      {showLogoutModal && (
+        <LogoutModal 
+          onConfirm={handleLogoutConfirm}
+          onCancel={() => setShowLogoutModal(false)} 
+        />
+      )}
+      
       {/* Sidebar */}
       <div className="w-64 p-4 flex flex-col">
         <div className="mb-8 px-6 py-4">
@@ -87,12 +113,13 @@ const Dashboard = () => {
           {renderSidebarButton('clients', 'Clients')}
           {renderSidebarButton('calendar', 'Calendar')}
         </div>
-        <form>
-        <button
-          className="w-full px-6 py-3 mt-auto text-center text-white border border-white hover:bg-white hover:text-blue-950 rounded-lg transition-colors font-geoformHeavy"
-        >
-          Log out
-        </button>
+        <form onSubmit={handleLogoutClick}>
+          <button
+            type="submit"
+            className="w-full px-6 py-3 mt-auto text-center text-white border border-white hover:bg-white hover:text-blue-950 rounded-lg transition-colors font-geoformHeavy"
+          >
+            Log out
+          </button>
         </form>
       </div>
       
