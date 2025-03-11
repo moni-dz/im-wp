@@ -54,3 +54,10 @@ export async function addProject(formData: FormData) {
         body: formData
     });
 }
+
+export async function updateDocument(formData: FormData) {
+    await fetch('http://localhost:3000/api/v1/documents', {
+        method: 'PUT',
+        body: formData
+    });
+}

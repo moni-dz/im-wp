@@ -4,18 +4,14 @@ import AddEmployeePage2 from './AddEmployeePage2';
 import { EmployeeData } from './types';
 import { updateEmployee } from '@/app/lib/actions';
 
-interface EmployeeListPageProps {
-  contractId: number;
-}
-
-const EmployeeListPage = (props: EmployeeListPageProps) => {
+const EmployeeListPage = () => {
   const [employees, setEmployees] = useState<EmployeeData[]>([]);
 
   useEffect(() => {
     fetch(`/api/v1/employees`)
       .then(response => response.json())
       .then((data: EmployeeData[]) => {
-        setEmployees(data.filter(emp => emp.contractId === props.contractId));
+        setEmployees(data);
       });
   }, []);
 
@@ -92,7 +88,7 @@ const EmployeeListPage = (props: EmployeeListPageProps) => {
 
             const res = await fetch(`/api/v1/employees`);
             const data: EmployeeData[] = await res.json();
-            setEmployees(data.filter(emp => emp.contractId === props.contractId));
+            setEmployees(data);
 
             setIsEditModalOpen(false);
           }}>

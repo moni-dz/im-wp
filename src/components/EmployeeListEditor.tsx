@@ -4,7 +4,7 @@ import { ArrowLeftIcon, TrashIcon } from '@heroicons/react/solid';
 import AddEmployeePage from './AddEmployeePage'; 
 
 interface DeleteConfirmationProps {
-  member: TeamMember;
+  member: EmployeeData;
   onConfirm: () => void;
   onCancel: () => void;
 }
@@ -13,7 +13,7 @@ const DeleteConfirmation: React.FC<DeleteConfirmationProps> = ({ member, onConfi
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white rounded-lg p-6 max-w-md w-full">
-        <h3 className="font-geoformItalic text-lg font-medium mb-4 text-blue-950">Delete {member.name}'s information?</h3>
+        <h3 className="font-geoformItalic text-lg font-medium mb-4 text-blue-950">Delete {member.personName}'s information?</h3>
         <p className="font-geoformHeavy mb-6 text-blue-950">This action cannot be undone.</p>
         <div className="flex justify-end space-x-3">
           <button onClick={onCancel} className="px-4 py-2 font-geoformHeavy border bg-blue-950 text-white rounded-md hover:bg-white hover:text-blue-950 hover:border-blue-950">
@@ -43,17 +43,21 @@ const EmployeeListEditor: React.FC<EmployeeListEditorProps> = ({
   onDeleteMember,
   onAddMember
 }) => {
-  const [memberToDelete, setMemberToDelete] = useState<TeamMember | null>(null);
+  const [memberToDelete, setMemberToDelete] = useState<EmployeeData | null>(null);
   const [showAddEmployeePage, setShowAddEmployeePage] = useState(false);
 
-  const handleDeleteClick = (member: TeamMember) => {
+  const handleDeleteClick = (member: EmployeeData) => {
     setMemberToDelete(member);
   };
 
-  const handleConfirmDelete = () => {
+  const handleConfirmDelete = async () => {
     if (memberToDelete && onDeleteMember) {
       onDeleteMember(memberToDelete);
+
     }
+
+    fetch
+
     setMemberToDelete(null);
   };
 

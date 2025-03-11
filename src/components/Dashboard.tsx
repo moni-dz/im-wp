@@ -40,7 +40,7 @@ const Dashboard = () => {
       case 'projects':
         return <ProjectsPage />;
       case 'employees':
-        return <EmployeeListPage projectName="project name" />;
+        return <EmployeeListPage />;
       case 'clients':
         return <ClientOverviewPage onAddClientClick={handleAddClient} />;
       case 'calendar':

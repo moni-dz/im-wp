@@ -56,8 +56,10 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
     setShowEditProject(false);
   };
 
-  const handleDeleteMember = (memberToDelete: EmployeeData) => {
+  const handleDeleteMember = async (memberToDelete: EmployeeData) => {
     setTeamMembers(teamMembers.filter(member => member.employeeId !== memberToDelete.employeeId));
+    await fetch(`/api/v1/employees?id=${memberToDelete.employeeId}`, { method: 'DELETE' });
+
   };
 
   if (showDocuments) {
