@@ -76,7 +76,6 @@ const AddProjectForm = ({ onCancel }: AddProjectFormProps) => {
               >
                 <option value="">Select</option>
                 <option value="Active">Active</option>
-                <option value="Pending">Pending</option>
                 <option value="Closed">Closed</option>
               </select>
             </div>
