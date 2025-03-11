@@ -15,7 +15,7 @@ const AddProjectForm = ({ onCancel }: AddProjectFormProps) => {
       </div>
       
       <div className="overflow-y-auto p-6 flex-grow">
-        <form action={addProject} method="post">
+        <form action={addProject}>
           <div className="grid grid-cols-2 gap-6">
             {/* Contract Information */}
             <div className="col-span-2">
@@ -126,22 +126,11 @@ const AddProjectForm = ({ onCancel }: AddProjectFormProps) => {
             </div>
             <div>
               <label className="block text-blue-950 font-geoformHeavy mb-2">
-                Client First Name
+                Client Name
               </label>
               <input
                 type="text"
-                name="clientFirstName"
-                className="w-full bg-gray-100 rounded p-2"
-                required
-              />
-            </div>
-            <div>
-              <label className="block text-blue-950 font-geoformHeavy mb-2">
-                Client Last Name
-              </label>
-              <input
-                type="text"
-                name="clientLastName"
+                name="clientName"
                 className="w-full bg-gray-100 rounded p-2"
                 required
               />
@@ -167,6 +156,21 @@ const AddProjectForm = ({ onCancel }: AddProjectFormProps) => {
                 className="w-full bg-gray-100 rounded p-2"
                 required
               />
+            </div>
+            <div>
+              <label className="block text-blue-950 font-geoformHeavy mb-2">
+                Client Gender
+              </label>
+              <select
+                name="clientGender"
+                className="w-full bg-gray-100 rounded p-2"
+                required
+              >
+                <option value="">Select</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
             </div>
 
             {/* Location Information */}
@@ -215,24 +219,6 @@ const AddProjectForm = ({ onCancel }: AddProjectFormProps) => {
               <input
                 type="text"
                 name="province"
-                className="w-full bg-gray-100 rounded p-2"
-                required
-              />
-            </div>
-
-            {/* Engineer Information */}
-            <div className="col-span-2">
-              <h2 className="text-lg font-geoformHeavy font-bold text-blue-950 mb-4">
-                Engineer Information
-              </h2>
-            </div>
-            <div className="col-span-2">
-              <label className="block text-blue-950 font-geoformHeavy mb-2">
-                Assigned Engineer Email
-              </label>
-              <input
-                type="email"
-                name="engineerEmail"
                 className="w-full bg-gray-100 rounded p-2"
                 required
               />

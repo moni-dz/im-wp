@@ -37,3 +37,29 @@ export async function PUT(req: NextRequest) {
     await db.execute(sql`CALL UPDATE_CONTRACT(${projectName},${street},${barangay},${city},${province},${contractAmount},${dateStart},${dateEnd},${projectDescription},${clientId})`);
     return Response.json({}, { status: 200 });
 }
+
+export async function POST(req: NextRequest) {
+    const formData = await req.formData();
+
+    const {
+        contractAmount,
+        contractDate,
+        startDate,
+        endDate,
+        status,
+        remarks,
+        projectName,
+        projectDescription,
+        clientName,
+        clientEmail,
+        clientContactNumber,
+        clientGender,
+        street,
+        barangay,
+        city,
+        province
+    } = Object.fromEntries(formData.entries());
+
+    await db.execute(sql`CALL ADD_CONTRACT(${contractAmount},${contractDate},${startDate},${endDate},${status},${remarks},${projectName},${projectDescription},${clientName},${clientEmail},${clientContactNumber},${clientGender},${street},${barangay},${city},${province})`);
+    return Response.json({}, { status: 200 });
+}

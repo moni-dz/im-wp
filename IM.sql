@@ -191,7 +191,7 @@ DROP TABLE IF EXISTS `Person`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Person` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `location_id` int(11) NOT NULL,
+  `location_id` int(11) DEFAULT NULL,
   `name` varchar(500) NOT NULL,
   `gender` varchar(500) NOT NULL,
   `email` varchar(500) NOT NULL,
@@ -521,4 +521,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*M!100616 SET NOTE_VERBOSITY=@OLD_NOTE_VERBOSITY */;
 
--- Dump completed on 2025-03-12  1:34:37
+-- Dump completed on 2025-03-12  1:54:38

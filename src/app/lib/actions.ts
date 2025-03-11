@@ -48,11 +48,6 @@ export async function addProject(formData: FormData) {
         method: 'POST',
         body: formData
     });
-
-    await fetch('http://localhost:3000/api/v1/projects', {
-        method: 'POST',
-        body: formData
-    });
 }
 
 export async function updateDocument(formData: FormData) {

@@ -1,5 +1,5 @@
 import { relations } from "drizzle-orm/relations";
-import { person, client, contract, engineer, location, project, employee, employeeDesignation, role, requirements, document } from "./schema";
+import { person, client, contract, engineer, location, project, employee, employeedesignation, role, requirements, document } from "./schema";
 
 export const clientRelations = relations(client, ({one, many}) => ({
 	person: one(person, {
@@ -36,7 +36,7 @@ export const contractRelations = relations(contract, ({one, many}) => ({
 		fields: [contract.projectId],
 		references: [project.id]
 	}),
-	employeeDesignations: many(employeeDesignation),
+	employeedesignations: many(employeedesignation),
 	requirements: many(requirements),
 }));
 
@@ -62,26 +62,26 @@ export const employeeRelations = relations(employee, ({one, many}) => ({
 		fields: [employee.personId],
 		references: [person.id]
 	}),
-	employeeDesignations: many(employeeDesignation),
+	employeedesignations: many(employeedesignation),
 }));
 
-export const employeeDesignationRelations = relations(employeeDesignation, ({one}) => ({
+export const employeedesignationRelations = relations(employeedesignation, ({one}) => ({
 	contract: one(contract, {
-		fields: [employeeDesignation.contractId],
+		fields: [employeedesignation.contractId],
 		references: [contract.id]
 	}),
 	employee: one(employee, {
-		fields: [employeeDesignation.employeeId],
+		fields: [employeedesignation.employeeId],
 		references: [employee.id]
 	}),
 	role: one(role, {
-		fields: [employeeDesignation.roleId],
+		fields: [employeedesignation.roleId],
 		references: [role.id]
 	}),
 }));
 
 export const roleRelations = relations(role, ({many}) => ({
-	employeeDesignations: many(employeeDesignation),
+	employeedesignations: many(employeedesignation),
 }));
 
 export const requirementsRelations = relations(requirements, ({one}) => ({
