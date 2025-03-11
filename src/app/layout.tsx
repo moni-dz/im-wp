@@ -26,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${geoformHeavy.variable} ${geoformItalic.variable}`}>
+    <html lang="en" className={`${geoformHeavy.variable} ${geoformItalic.variable}`} suppressHydrationWarning={true}>
       <body className="antialiased">{children}</body>
     </html>
   );

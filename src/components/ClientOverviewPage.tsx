@@ -46,8 +46,10 @@ const ClientOverviewPage = ({ onAddClientClick }: ClientOverviewPageProps) => {
   };
 
   //  to confirm delete
-  const handleConfirmDelete = () => {
+  const handleConfirmDelete = async () => {
     console.log(`Deleting project ${projectToDelete?.projectName}`);
+    setClients(clients.filter(client => client.clientId !== projectToDelete?.clientId));
+    await fetch(`/api/v1/clients?id=${projectToDelete?.clientId}`, { method: 'DELETE' });
     handleCloseModal();
   };
 

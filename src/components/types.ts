@@ -37,13 +37,11 @@ export interface TeamMember { // project-specific, info can be taken from employ
   id: number;
 }
 
-import { InferInsertModel, InferSelectViewModel } from 'drizzle-orm'
-import { contractfullview, contractemployeedata, document, clientdata } from '@/db/schema';
+import { InferInsertModel, InferSelectModel, InferSelectViewModel } from 'drizzle-orm'
+import { contractfullview, contractemployeedata, document, clientdata, location } from '@/db/schema';
 
 export type ContractDetails = InferSelectViewModel<typeof contractfullview>;
 export type EmployeeData = InferSelectViewModel<typeof contractemployeedata>;
 export type Document = InferInsertModel<typeof document>;
 export type ClientData = InferSelectViewModel<typeof clientdata>;
-export type EditContract = {
-  
-};
+export type Location = InferSelectModel<typeof location>;

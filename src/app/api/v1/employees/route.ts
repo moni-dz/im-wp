@@ -42,10 +42,11 @@ export async function PUT(req: NextRequest) {
         status,
         skills,
         dateContracted,
-        roleName
+        roleName,
+        contractId
     } = Object.fromEntries(formData.entries());
 
-    await db.execute(sql`CALL UPDATE_EMPLOYEE(${employeeId},${personId},${roleId},${personName},${status},${skills},${dateContracted},${roleName})`);
+    await db.execute(sql`CALL UPDATE_EMPLOYEE(${employeeId},${personId},${roleId},${personName},${status},${skills},${dateContracted},${roleName},${contractId})`);
     return Response.json({}, { status: 200 });
 }
 

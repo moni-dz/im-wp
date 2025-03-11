@@ -1,5 +1,6 @@
 import { db } from "@/db";
 import { client, clientdata, location, person } from "@/db/schema";
+import { eq } from "drizzle-orm";
 import { NextRequest } from "next/server";
 
 export async function GET() {
@@ -41,5 +42,19 @@ export async function POST(req: NextRequest) {
     const personId = await db.insert(person).values(newPerson).$returningId();
 
     await db.insert(client).values({ personId: personId[0].id });
+    return Response.json({}, { status: 200 });
+}
+
+export async function DELETE(req: NextRequest) {
+    const searchParams = req.nextUrl.searchParams;
+    const id = searchParams.get('id');
+
+    const client = await db.query.client.findFirst({ with: { id: Number(id) } });
+
+    if (!client) {
+        return Response.json({ message: 'Client not found' }, { status: 404 });
+    }
+
+    await db.delete(person).where(eq(person.id, client.personId));
     return Response.json({}, { status: 200 });
 }

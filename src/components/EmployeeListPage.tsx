@@ -1,17 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { PencilIcon, TrashIcon } from '@heroicons/react/solid';
 import AddEmployeePage2 from './AddEmployeePage2';
-import { EmployeeData } from './types';
+import { ContractDetails, EmployeeData } from './types';
 import { updateEmployee } from '@/app/lib/actions';
 
 const EmployeeListPage = () => {
   const [employees, setEmployees] = useState<EmployeeData[]>([]);
+  const [projects, setProjects] = useState<ContractDetails[]>([]);
 
   useEffect(() => {
     fetch(`/api/v1/employees`)
       .then(response => response.json())
       .then((data: EmployeeData[]) => {
         setEmployees(data);
+      });
+
+    fetch(`/api/v1/contracts`)
+      .then(response => response.json())
+      .then((data: ContractDetails[]) => {
+        setProjects(data);
       });
   }, []);
 
@@ -172,6 +179,22 @@ const EmployeeListPage = () => {
                   required
                 />
               </div>
+            </div>
+
+            {/* Assigned Project */}
+            <div className="my-6">
+              <h2 className="text-lg font-bold text-blue-950 mb-4">Assigned Project</h2>
+              <select
+                name="contractId"
+                className="w-full bg-gray-100 rounded p-2"
+                required
+              >
+                {projects.map((project) => (
+                  <option key={project.contractId} value={project.contractId}>
+                    {project.projectName}
+                  </option>
+                ))}
+              </select>
             </div>
 
             <div className="mt-6">
