@@ -53,7 +53,15 @@ const ClientOverviewPage = ({ onAddClientClick }: ClientOverviewPageProps) => {
 
   return (
     <div className="p-6">
-      <h1 className="text-3xl text-blue-950 font-geoformHeavy font-bold mb-6">Client Overview</h1>
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-3xl text-blue-950 font-geoformHeavy font-bold">Client Overview</h1>
+        <button
+          onClick={onAddClientClick}
+          className="bg-blue-950 font-geoformHeavy font-bold rounded-lg text-white hover:text-blue-950 hover:bg-white py-2 px-4 rounded"
+        >
+          ADD CLIENT
+        </button>
+      </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {clients.map((client) => {
@@ -79,15 +87,6 @@ const ClientOverviewPage = ({ onAddClientClick }: ClientOverviewPageProps) => {
             </div>
           )
         })}
-      </div>
-
-      <div className="mt-6">
-        <button
-          onClick={onAddClientClick}
-          className="bg-blue-950 font-geoformHeavy font-bold rounded-lg text-white hover:text-blue-950 hover:bg-white font-medium py-2 px-4 rounded"
-        >
-          ADD CLIENT
-        </button>
       </div>
 
       {/* Delete Confirmation Modal */}
