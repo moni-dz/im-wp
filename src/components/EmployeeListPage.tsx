@@ -51,7 +51,7 @@ const EmployeeListPage = () => {
 
   const EmployeeCard = ({ employee }: { employee: EmployeeData }) => {
     return (
-      <div className="bg-white shadow-md rounded-lg p-4 relative">
+      <div className="bg-white shadow-md rounded-lg  p-4 relative">
         <div className="absolute top-0 right-0 p-2 flex space-x-2">
           <button
             onClick={() => handleEditClick(employee)}
@@ -88,7 +88,7 @@ const EmployeeListPage = () => {
   const EditEmployeeModal = ({ employee }: { employee: EmployeeData }) => {
     return (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-        <div className="bg-white rounded-lg p-6 w-96">
+        <div className="bg-white rounded-lg  p-6 w-96">
           <h2 className="font-geoformHeavy text-xl text-blue-950 font-bold mb-4">Edit Employee</h2>
           <form action={async (formData) => {
             await updateEmployee(formData);
@@ -117,7 +117,7 @@ const EmployeeListPage = () => {
                   type="text"
                   name="personName"
                   defaultValue={employee.personName!}
-                  className="w-full bg-gray-100 rounded p-2"
+                  className="w-full bg-gray-100 rounded-lg p-2"
                   required
                 />
               </div>
@@ -134,7 +134,7 @@ const EmployeeListPage = () => {
                   type="text"
                   name="status"
                   defaultValue={employee.employeeStatus!}
-                  className="w-full bg-gray-100 rounded p-2"
+                  className="w-full bg-gray-100 rounded-lg p-2"
                   required
                 />
               </div>
@@ -146,7 +146,7 @@ const EmployeeListPage = () => {
                   type="text"
                   name="skills"
                   defaultValue={employee.employeeSkills!}
-                  className="w-full bg-gray-100 rounded p-2"
+                  className="w-full bg-gray-100 rounded-lg p-2"
                   required
                 />
               </div>
@@ -158,7 +158,7 @@ const EmployeeListPage = () => {
                   type="date"
                   name="dateContracted"
                   defaultValue={employee.employeeDateContracted!}
-                  className="w-full bg-gray-100 rounded p-2"
+                  className="w-full bg-gray-100 rounded-lg p-2"
                   required
                 />
               </div>
@@ -175,7 +175,7 @@ const EmployeeListPage = () => {
                   type="text"
                   name="roleName"
                   defaultValue={employee.roleName!}
-                  className="w-full bg-gray-100 rounded p-2"
+                  className="w-full bg-gray-100 rounded-lg p-2"
                   required
                 />
               </div>
@@ -186,7 +186,7 @@ const EmployeeListPage = () => {
               <h2 className="text-lg font-bold text-blue-950 mb-4">Assigned Project</h2>
               <select
                 name="contractId"
-                className="w-full bg-gray-100 rounded p-2"
+                className="w-full bg-gray-100 rounded-lg p-2"
                 required
               >
                 {projects.map((project) => (
@@ -214,7 +214,7 @@ const EmployeeListPage = () => {
   const DeleteConfirmationModal = () => {
     return (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-        <div className="bg-white rounded-lg p-6 w-96">
+        <div className="bg-white rounded-lg  p-6 w-96">
           <h2 className="font-geoformHeavy text-xl text-blue-950 font-bold mb-4">Delete project 1 name's information?</h2>
           <p className="font-geoformItalic mb-4 text-blue-950">This action cannot be undone.</p>
           <div className="flex justify-end space-x-2">
@@ -246,7 +246,7 @@ const EmployeeListPage = () => {
             <h1 className="font-geoformHeavy text-3xl font-bold text-blue-950">Employee Overview</h1>
             <button
               onClick={handleAddEmployeeClick}
-              className="font-geoformHeavy bg-blue-950 rounded-lg hover:bg-white hover:text-blue-950 border hover:border-blue-950 font-bold text-white px-4 py-2 rounded"            >
+              className="font-geoformHeavy bg-blue-950 rounded-lg  hover:bg-white hover:text-blue-950 border hover:border-blue-950 font-bold text-white px-4 py-2 rounded"            >
               ADD EMPLOYEE
             </button>
           </div>

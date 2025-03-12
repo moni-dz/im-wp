@@ -84,7 +84,7 @@ const Calendar: React.FC = () => {
   };
 
   return (
-    <div className="flex border border:blue-950 max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+    <div className="flex border border:blue-950 max-w-4xl mx-auto bg-white shadow-lg rounded-lg  overflow-hidden">
       <div className="w-2/3">
         {/* Month Navigation */}
         <div className="flex items-center justify-between p-4 bg-gray-100">
@@ -115,7 +115,7 @@ const Calendar: React.FC = () => {
               key={index}
               onClick={() => handleDaySelect(day)}
               className={`
-                p-2 rounded 
+                p-2 rounded-lg 
                 ${day ? 'hover:bg-gray-100' : ''}
                 ${day && isToday(day) ? 'bg-white border border-blue-950 text-blue-950' : ''}
                 ${selectedDay && day && 
@@ -139,7 +139,7 @@ const Calendar: React.FC = () => {
               Notes for {formatDate(selectedDay)}
             </h3>
             <textarea
-              className="w-full p-2 border rounded-md"
+              className="w-full p-2 border rounded-lg "
               rows={4}
               value={noteInput}
               onChange={(e) => setNoteInput(e.target.value)}
@@ -147,7 +147,7 @@ const Calendar: React.FC = () => {
             />
             <button 
               onClick={handleSaveNote}
-              className="mt-2 px-4 font-geoformHeavy py-2 bg-blue-950 text-white rounded hover:bg-white border hover:border-blue-950 hover:text-blue-950"
+              className="mt-2 px-4 font-geoformHeavy py-2 bg-blue-950 text-white rounded-lg hover:bg-white border hover:border-blue-950 hover:text-blue-950"
             >
               Save Note
             </button>
@@ -161,7 +161,7 @@ const Calendar: React.FC = () => {
         <div className="space-y-3 max-h-[600px] overflow-y-auto">
           {Object.entries(notes).length > 0 ? (
             Object.entries(notes).map(([dateKey, noteContent]) => (
-              <div key={dateKey} className="bg-white p-3 rounded-lg shadow-sm">
+              <div key={dateKey} className="bg-white p-3 rounded-lg  shadow-sm">
                 <div className="font-semibold text-blue-950 mb-2">{dateKey}</div>
                 <p className="text-gray-700">{noteContent}</p>
               </div>

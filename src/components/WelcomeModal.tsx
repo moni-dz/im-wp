@@ -74,7 +74,7 @@ const WelcomeModal = ({ onClose }: WelcomeModalProps) => {
               >
                 Welcome!
               </motion.h2>
-              <p className="text-blue-950/80 mb-6">
+              <p className="font-geoformItalic first-letter:text-blue-950/80 mb-6">
                 Click anywhere to start
               </p>
               <motion.button

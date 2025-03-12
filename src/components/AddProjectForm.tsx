@@ -9,7 +9,7 @@ interface AddProjectFormProps {
 
 const AddProjectForm = ({ onCancel }: AddProjectFormProps) => {
   return (
-    <div className="bg-white rounded-lg shadow-lg max-w-md w-full max-h-[90vh] flex flex-col">
+    <div className="bg-white rounded-lg  shadow-lg max-w-md w-full max-h-[90vh] flex flex-col">
       <div className="p-6 border-b">
         <h2 className="text-xl font-geoformHeavy text-blue-950 font-semibold">Add New Project</h2>
       </div>
@@ -19,7 +19,7 @@ const AddProjectForm = ({ onCancel }: AddProjectFormProps) => {
           <div className="grid grid-cols-2 gap-6">
             {/* Contract Information */}
             <div className="col-span-2">
-              <h2 className="text-lg font-geoformHeavy font-bold text-blue-950 mb-4">Contract Information</h2>
+              <h2 className="text-lg font-geoformItalic text-center font-bold text-blue-950 mb-4">Contract Information</h2>
             </div>
             <div>
               <label className="block text-blue-950 font-geoformHeavy mb-2">
@@ -28,7 +28,7 @@ const AddProjectForm = ({ onCancel }: AddProjectFormProps) => {
               <input
                 type="number"
                 name="contractAmount"
-                className="w-full bg-gray-100 rounded p-2"
+                className="w-full bg-gray-100 rounded-lg p-2"
                 required
               />
             </div>
@@ -39,7 +39,7 @@ const AddProjectForm = ({ onCancel }: AddProjectFormProps) => {
               <input
                 type="date"
                 name="contractDate"
-                className="w-full bg-gray-100 rounded p-2"
+                className="w-full bg-gray-100 rounded-lg p-2"
                 required
               />
             </div>
@@ -50,7 +50,7 @@ const AddProjectForm = ({ onCancel }: AddProjectFormProps) => {
               <input
                 type="date"
                 name="startDate"
-                className="w-full bg-gray-100 rounded p-2"
+                className="w-full bg-gray-100 rounded-lg p-2"
                 required
               />
             </div>
@@ -61,17 +61,17 @@ const AddProjectForm = ({ onCancel }: AddProjectFormProps) => {
               <input
                 type="date"
                 name="endDate"
-                className="w-full bg-gray-100 rounded p-2"
+                className="w-full bg-gray-100 rounded-lg p-2"
                 required
               />
             </div>
-            <div>
+            <div className = "col-span-2">
               <label className="block text-blue-950 font-geoformHeavy mb-2">
                 Status
               </label>
               <select
                 name="status"
-                className="w-full bg-gray-100 rounded p-2"
+                className="w-full bg-gray-100 rounded-lg p-2"
                 required
               >
                 <option value="">Select</option>
@@ -85,24 +85,24 @@ const AddProjectForm = ({ onCancel }: AddProjectFormProps) => {
               </label>
               <textarea
                 name="remarks"
-                className="w-full bg-gray-100 rounded p-2"
+                className="w-full bg-gray-100 rounded-lg p-2"
               ></textarea>
             </div>
 
             {/* Project Information */}
             <div className="col-span-2">
-              <h2 className="text-lg font-geoformHeavy font-bold text-blue-950 mb-4">
+              <h2 className="text-lg font-geoformItalic text-center font-bold text-blue-950 mb-4">
                 Project Information
               </h2>
             </div>
-            <div>
+            <div className="col-span-1">
               <label className="block text-blue-950 font-geoformHeavy mb-2">
                 Project Name
               </label>
               <input
                 type="text"
                 name="projectName"
-                className="w-full bg-gray-100 rounded p-2"
+                className="w-full bg-gray-100 rounded-lg p-2"
                 required
               />
             </div>
@@ -112,57 +112,57 @@ const AddProjectForm = ({ onCancel }: AddProjectFormProps) => {
               </label>
               <textarea
                 name="projectDescription"
-                className="w-full bg-gray-100 rounded p-2"
+                className="w-full bg-gray-100 rounded-lg p-2"
                 required
               ></textarea>
             </div>
 
             {/* Client Information */}
             <div className="col-span-2">
-              <h2 className="text-lg font-geoformHeavy font-bold text-blue-950 mb-4">
+              <h2 className="text-lg font-geoformItalic text-center font-bold text-blue-950 mb-4">
                 Client Information
               </h2>
             </div>
             <div>
               <label className="block text-blue-950 font-geoformHeavy mb-2">
-                Client Name
+              Name
               </label>
               <input
                 type="text"
                 name="clientName"
-                className="w-full bg-gray-100 rounded p-2"
+                className="w-full bg-gray-100 rounded-lg p-2"
                 required
               />
             </div>
             <div>
               <label className="block text-blue-950 font-geoformHeavy mb-2">
-                Client Email
+                Email
               </label>
               <input
                 type="email"
                 name="clientEmail"
-                className="w-full bg-gray-100 rounded p-2"
+                className="w-full bg-gray-100 rounded-lg p-2"
                 required
               />
             </div>
             <div>
               <label className="block text-blue-950 font-geoformHeavy mb-2">
-                Client Contact Number
+                Contact Number
               </label>
               <input
                 type="text"
                 name="clientContactNumber"
-                className="w-full bg-gray-100 rounded p-2"
+                className="w-full bg-gray-100 rounded-lg p-2"
                 required
               />
             </div>
             <div>
               <label className="block text-blue-950 font-geoformHeavy mb-2">
-                Client Gender
+                Gender
               </label>
               <select
                 name="clientGender"
-                className="w-full bg-gray-100 rounded p-2"
+                className="w-full bg-gray-100 rounded-lg p-2"
                 required
               >
                 <option value="">Select</option>
@@ -174,7 +174,7 @@ const AddProjectForm = ({ onCancel }: AddProjectFormProps) => {
 
             {/* Location Information */}
             <div className="col-span-2">
-              <h2 className="text-lg font-geoformHeavy font-bold text-blue-950 mb-4">
+              <h2 className="text-lg text-center font-geoformItalic font-bold text-blue-950 mb-4">
                 Location Information
               </h2>
             </div>
@@ -185,7 +185,7 @@ const AddProjectForm = ({ onCancel }: AddProjectFormProps) => {
               <input
                 type="text"
                 name="street"
-                className="w-full bg-gray-100 rounded p-2"
+                className="w-full bg-gray-100 rounded-lg p-2"
                 required
               />
             </div>
@@ -196,7 +196,7 @@ const AddProjectForm = ({ onCancel }: AddProjectFormProps) => {
               <input
                 type="text"
                 name="barangay"
-                className="w-full bg-gray-100 rounded p-2"
+                className="w-full bg-gray-100 rounded-lg p-2"
                 required
               />
             </div>
@@ -207,7 +207,7 @@ const AddProjectForm = ({ onCancel }: AddProjectFormProps) => {
               <input
                 type="text"
                 name="city"
-                className="w-full bg-gray-100 rounded p-2"
+                className="w-full bg-gray-100 rounded-lg p-2"
                 required
               />
             </div>
@@ -218,7 +218,7 @@ const AddProjectForm = ({ onCancel }: AddProjectFormProps) => {
               <input
                 type="text"
                 name="province"
-                className="w-full bg-gray-100 rounded p-2"
+                className="w-full bg-gray-100 rounded-lg p-2"
                 required
               />
             </div>
@@ -226,13 +226,13 @@ const AddProjectForm = ({ onCancel }: AddProjectFormProps) => {
           <div className="p-4 border-t flex justify-end gap-4 mt-auto">
             <button
               onClick={onCancel}
-              className="px-4 py-2 rounded border border-gray-300"
+              className="px-4 py-2 rounded-lg font-geoformHeavy bg-white text-blue-950 hover:bg-blue-950 hover:text-white border border-blue-950"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="bg-blue-950 text-white font-geoformHeavy px-4 py-2 rounded"
+              className="bg-blue-950 text-white hover:bg-white hover:text-blue-950 border hover:border-blue-950 font-geoformHeavy px-4 py-2 rounded-lg"
             >
               Submit
             </button>

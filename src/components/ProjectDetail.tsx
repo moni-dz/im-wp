@@ -103,10 +103,10 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
         </div>
       </div>
 
-      <div className="bg-gray-100 rounded-lg p-6">
+      <div className="bg-gray-100 rounded-lg  p-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Client Information */}
-          <div className="bg-white rounded-lg p-4 shadow">
+          <div className="bg-white rounded-lg  p-4 shadow">
             <h3 className="font-geoformHeavy font-medium mb-2 text-blue-950">{currentProject.clientName}</h3>
             <div className="font-geoformItalic text-sm space-y-1 text-blue-950">
               <p>start date: {currentProject.dateStart}</p>
@@ -117,7 +117,7 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
           </div>
 
           {/* Description */}
-          <div className="bg-white rounded-lg p-4 shadow">
+          <div className="bg-white rounded-lg  p-4 shadow">
             <h3 className="font-geoformHeavy font-medium mb-2 text-blue-950">Description</h3>
             <p className="font-geoformItalic text-sm text-blue-950">{currentProject.projectDescription}</p>
           </div>
@@ -125,7 +125,7 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
           {/* Team and Documents */}
           <div className="space-y-4">
             {/* Employee List */}
-            <div className="bg-white rounded-lg p-4 shadow">
+            <div className="bg-white rounded-lg  p-4 shadow">
               <div className="flex justify-between items-center mb-2">
                 <h3 className="font-geoformHeavy font-bold text-blue-950">Employee list</h3>
                 <button 
@@ -149,9 +149,9 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
             {/* Documents*/}
             <button 
               onClick={handleDocumentsClick}
-              className="bg-blue-950 text-white rounded-lg p-4 shadow w-full text-left hover:bg-gray-100 hover:text-blue-950"
+              className="bg-blue-950 text-white rounded-lg  p-4 shadow w-full text-left hover:bg-gray-100 hover:text-blue-950"
             >
-              <h3 className="font-geoformItalic font-medium text-white hover:text-blue-950">Documents</h3>
+              <h3 className="font-geoformHeavy font-medium" >Documents</h3>
             </button>
 
           </div>
@@ -160,7 +160,7 @@ const ProjectDetail = ({ project, onBack }: ProjectDetailProps) => {
 
       <button 
         onClick={onBack}
-        className="font-geoformItalic text-blue-950 mt-4 px-4 py-2 bg-white border border-blue-950 hover:text-white hover:blie-950 rounded flex items-center space-x-1"
+        className="font-geoformHeavy text-blue-950 mt-4 px-4 py-2 bg-white border border-blue-950 hover:text-white hover:bg-blue-950 rounded-lg flex items-center space-x-1"
       >
         <ArrowLeftIcon className="h-5 w-5" />
         <span>Back to Projects</span>

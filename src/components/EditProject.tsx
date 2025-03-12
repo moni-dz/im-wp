@@ -35,18 +35,18 @@ const EditProject = ({ project, onBack, onSave }: EditProjectProps) => {
 
         {/* Main content area */}
 
-        <div className="bg-white rounded-lg p-6">
+        <div className="bg-white rounded-lg  p-6">
           <form action={editProject}>
-            <div className="bg-blue-950 rounded-lg p-6">
+            <div className="bg-white rounded-lg  p-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {/* Left column */}
                 <div className="space-y-4">
                   <div>
-                    <label className="block font-geoformHeavy text-white mb-1 font-medium">project name</label>
+                    <label className="block font-geoformHeavy text-blue-950 mb-1 font-medium">project name</label>
                     <input
                       type="text"
                       name="projectName"
-                      className="w-full p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full p-2 rounded-lg  border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
 
@@ -56,7 +56,7 @@ const EditProject = ({ project, onBack, onSave }: EditProjectProps) => {
                     <input
                       type="text"
                       name="street"
-                      className="w-full bg-gray-100 rounded p-2"
+                      className="w-full bg-gray-100 rounded-lg p-2"
                       required
                     />
                   </div>
@@ -66,7 +66,7 @@ const EditProject = ({ project, onBack, onSave }: EditProjectProps) => {
                     <input
                       type="text"
                       name="barangay"
-                      className="w-full bg-gray-100 rounded p-2"
+                      className="w-full bg-gray-100 rounded-lg p-2"
                       required
                     />
                   </div>
@@ -76,7 +76,7 @@ const EditProject = ({ project, onBack, onSave }: EditProjectProps) => {
                     <input
                       type="text"
                       name="city"
-                      className="w-full bg-gray-100 rounded p-2"
+                      className="w-full bg-gray-100 rounded-lg p-2"
                       required
                     />
                   </div>
@@ -86,35 +86,35 @@ const EditProject = ({ project, onBack, onSave }: EditProjectProps) => {
                     <input
                       type="text"
                       name="province"
-                      className="w-full bg-gray-100 rounded p-2"
+                      className="w-full bg-gray-100 rounded-lg p-2"
                       required
                     />
                   </div>
 
                   <div>
-                    <label className="block font-geoformHeavy text-white mb-1 font-medium">amount</label>
+                    <label className="block font-geoformHeavy text-blue-950 mb-1 font-medium">amount</label>
                     <input
                       type="text"
                       name="contractAmount"
-                      className="w-full p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full p-2 rounded-lg  border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
 
                   <div>
-                    <label className="block font-geoformHeavy text-white mb-1 font-medium">start date</label>
+                    <label className="block font-geoformHeavy text-blue-950 mb-1 font-medium">start date</label>
                     <input
                       type="text"
                       name="dateStart"
-                      className="w-full p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full p-2 rounded-lg  border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
 
                   <div>
-                    <label className="block font-geoformHeavy text-white mb-1 font-medium">estimated completion date</label>
+                    <label className="block font-geoformHeavy text-blue-950 mb-1 font-medium">estimated completion date</label>
                     <input
                       type="text"
                       name="dateEnd"
-                      className="w-full p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full p-2 rounded-lg  border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
                 </div>
@@ -122,18 +122,18 @@ const EditProject = ({ project, onBack, onSave }: EditProjectProps) => {
                 {/* Right column */}
                 <div className="space-y-4">
                   <div>
-                    <label className="block font-geoformHeavy text-white mb-1 font-medium">description</label>
+                    <label className="block font-geoformHeavy text-blue-950 mb-1 font-medium">description</label>
                     <textarea
                       name="projectDescription"
-                      className="w-full p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 h-40"
+                      className="w-full p-2 rounded-lg  border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 h-40"
                     />
                   </div>
 
                   <div>
-                    <label className="block font-geoformHeavy text-white mb-1 font-medium">client name</label>
+                    <label className="block font-geoformHeavy text-blue-950 mb-1 font-medium">client name</label>
                     <select
                       name="clientId"
-                      className="w-full p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full p-2 rounded-lg  border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
                       {clients.map((client, index) => (
                         <option key={index} value={client.clientId}>{client.personName}</option>
@@ -148,14 +148,14 @@ const EditProject = ({ project, onBack, onSave }: EditProjectProps) => {
               <button
                 type="button"
                 onClick={onBack}
-                className="px-8 py-2 font-geoformHeavy text-white bg-blue-950 font-medium rounded hover:bg-gray-100 hover:text-blue-950"
+                className="px-8 py-2 font-geoformHeavy text-white bg-blue-950 font-medium rounded-lg hover:bg-white border hover:border-blue-950 hover:text-blue-950"
               >
                 BACK
               </button>
 
               <button
                 type="submit"
-                className="px-8 py-2 font-geoformHeavy text-white bg-blue-950 font-medium rounded hover:bg-gray-100 hover:text-blue-950"
+                className="px-8 py-2 font-geoformHeavy text-white bg-blue-950 font-medium rounded-lg hover:bg-white border hover:border-blue-950 hover:text-blue-950"
               >
                 EDIT PROJECT
               </button>

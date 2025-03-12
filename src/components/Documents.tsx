@@ -62,18 +62,18 @@ const Documents = ({ project, onBack }: DocumentsProps) => {
 
   const UploadDocumentPage = () => (
     <div className="flex flex-col h-full">
-      <h2 className="text-2xl font-geoformHeavy font-bold mb-6">UPLOAD DOCUMENT</h2>
+      <h2 className="text-2x font-geoformHeavy font-bold mb-6">UPLOAD DOCUMENT</h2>
 
-      <div className="bg-white rounded-lg p-6 flex-1">
+      <div className="bg-white rounded-lg  p-6 flex-1 ">
         <div className="max-w-3xl mx-auto">
-          <div className="bg-gray-100 rounded-lg p-8">
+          <div className="bg-gray-100 rounded-lg  p-8">
             <div className="mb-4">
               <label className="block font-geoformHeavy text-blue-950 text-sm font-medium mb-2">
                 document name
               </label>
               <input
                 type="text"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-950"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg  focus:outline-none focus:ring-2 focus:ring-blue-950"
                 placeholder="Enter document name"
               />
             </div>
@@ -83,21 +83,21 @@ const Documents = ({ project, onBack }: DocumentsProps) => {
                 description
               </label>
               <textarea
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-950 h-32"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg  focus:outline-none focus:ring-2 focus:ring-blue-950 h-32"
                 placeholder="Enter document description"
               />
             </div>
 
             <div className="flex flex-col">
               <div className="w-full mb-4">
-                <div className="border border-gray-300 rounded-md h-32 bg-white p-4 flex items-center justify-center">
+                <div className="border border-gray-300 rounded-lg  h-32 bg-white p-4 flex items-center justify-center">
                   <p className="text-blue-950 font-geoformHeavy text-sm">file overview here.</p>
                 </div>
               </div>
 
               <div className="w-full">
                 <button
-                  className="w-full py-2 font-geoformHeavy bg-blue-950 text-white hover:bg-white hover:text-blue-950 border border-blue-950 rounded-md  flex items-center justify-center space-x-2"
+                  className="w-full py-2 font-geoformHeavy bg-blue-950 text-white hover:bg-white hover:text-blue-950 border border-blue-950 rounded-lg   flex items-center justify-center space-x-2"
                 >
                   <ArrowUpIcon className="h-5 w-5" />
                   <span>ATTACH FILE</span>
@@ -110,7 +110,7 @@ const Documents = ({ project, onBack }: DocumentsProps) => {
 
       <div className="mt-6 flex justify-center">
         <button
-          className="px-6 py-2 bg-white font-geoformHeavy text-blue-950 rounded-md font-medium shadow"
+          className="px-6 py-2 font-geoformHeavy bg-blue-950 text-white hover:bg-white hover:text-blue-950 border hover:border-blue-950 rounded-lg  font-medium shadow"
         >
           UPLOAD DOCUMENT
         </button>
@@ -118,7 +118,7 @@ const Documents = ({ project, onBack }: DocumentsProps) => {
 
       <button
         onClick={handleBackToDocuments}
-        className="mt-4 px-4 py-2 bg-gray-100 font-geoformHeavy rounded flex items-center space-x-1"
+        className="mt-4 px-4 py-2 bg-gray-100 font-geoformHeavy rounded-lg flex items-center space-x-1"
       >
         <ArrowLeftIcon className="h-5 w-5" />
         <span>Back to Documents</span>
@@ -141,9 +141,9 @@ const Documents = ({ project, onBack }: DocumentsProps) => {
       <div className="flex flex-col h-full">
         <h2 className="text-2xl font-geoformHeavy font-bold mb-6">EDIT DOCUMENT</h2>
 
-        <div className="bg-white rounded-lg p-6 flex-1">
+        <div className="bg-white rounded-lg  p-6 flex-1">
           <div className="max-w-3xl mx-auto">
-            <div className="bg-gray-100 rounded-lg p-8">
+            <div className="bg-gray-100 rounded-lg  p-8">
               <form action={updateDocument}>
                 <div className="mb-4">
                   <label className="block text-blue-950 font-geoformHeavy text-sm font-medium mb-2">
@@ -153,7 +153,7 @@ const Documents = ({ project, onBack }: DocumentsProps) => {
                     type="text"
                     name="title"
                     value={editedDocument.title}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-950"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg  focus:outline-none focus:ring-2 focus:ring-blue-950"
                     placeholder="Enter document name"
                   />
                 </div>
@@ -166,7 +166,7 @@ const Documents = ({ project, onBack }: DocumentsProps) => {
                     type="checkbox"
                     name="completed"
                     value={editedDocument.completed ? "on" : "off"}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-950"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg  focus:outline-none focus:ring-2 focus:ring-blue-950"
                   />
                 </div>
 
@@ -176,7 +176,7 @@ const Documents = ({ project, onBack }: DocumentsProps) => {
                   </label>
                   <textarea
                     value={editedDocument.description!}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-950 h-32"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg  focus:outline-none focus:ring-2 focus:ring-blue-950 h-32"
                     placeholder="Enter document description"
                   />
                 </div>
@@ -188,7 +188,7 @@ const Documents = ({ project, onBack }: DocumentsProps) => {
                   <div className="flex space-x-4">
                     <button
                       onClick={() => handleStatusChange('completed')}
-                      className={`px-4 py-2 rounded-md ${editedDocument.completed
+                      className={`px-4 py-2 rounded-lg  ${editedDocument.completed
                           ? 'bg-blue-950 text-white'
                           : 'bg-white text-blue-950 font-geoformHeavy border border-blue-950'
                         }`}
@@ -197,7 +197,7 @@ const Documents = ({ project, onBack }: DocumentsProps) => {
                     </button>
                     <button
                       onClick={() => handleStatusChange('pending')}
-                      className={`px-4 py-2 rounded-md ${!editedDocument.completed
+                      className={`px-4 py-2 rounded-lg  ${!editedDocument.completed
                           ? 'bg-blue-950 text-white'
                           : 'bg-white text-blue-950 font-geoformHeavy border border-blue-950'
                         }`}
@@ -209,14 +209,14 @@ const Documents = ({ project, onBack }: DocumentsProps) => {
 
                 <div className="flex flex-col">
                   <div className="w-full mb-4">
-                    <div className="border border-gray-300 rounded-md h-32 bg-white p-4 flex items-center justify-center">
+                    <div className="border border-gray-300 rounded-lg  h-32 bg-white p-4 flex items-center justify-center">
                       <p className="text-blue-950 font-geoformHeavy text-sm">file overview here.</p>
                     </div>
                   </div>
 
                   <div className="w-full">
                     <button
-                      className="w-full py-2 bg-white border border-gray-300 rounded-md text-blue-950 flex items-center justify-center space-x-2"
+                      className="w-full py-2 bg-white border border-gray-300 rounded-lg  text-blue-950 flex items-center justify-center space-x-2"
                     >
                       <ArrowUpIcon className="h-5 w-5" />
                       <span>ATTACH FILE</span>
@@ -231,7 +231,7 @@ const Documents = ({ project, onBack }: DocumentsProps) => {
         <div className="mt-6 flex justify-center">
           <button
             onClick={handleDocumentUpdate}
-            className="px-6 py-2 bg-white text-blue-950 rounded-md font-geoformHeavy font-medium shadow"
+            className="px-6 py-2  bg-blue-950 text-white hover:bg-white hover:text-blue-950 border hover:border-blue-950 rounded-lg  font-geoformHeavy font-medium shadow"
           >
             UPDATE DOCUMENT
           </button>
@@ -239,7 +239,7 @@ const Documents = ({ project, onBack }: DocumentsProps) => {
 
         <button
           onClick={handleBackToDocuments}
-          className="mt-4 px-4 py-2 bg-gray-100 font-geoformHeavy rounded flex items-center space-x-1"
+          className="mt-4 px-4 py-2 bg-gray-100 font-geoformHeavy rounded-lg flex items-center space-x-1"
         >
           <ArrowLeftIcon className="h-5 w-5" />
           <span>Back to Documents</span>
@@ -254,14 +254,14 @@ const Documents = ({ project, onBack }: DocumentsProps) => {
         <h2 className="text-2xl font-geoformHeavy text-blue-950 font-bold">{project.projectName}</h2>
       </div>
 
-      <div className="bg-white rounded-lg p-6 flex-1">
+      <div className="bg-white rounded-lg  p-6 flex-1">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Completed Documents */}
-          <div className="bg-gray-100 rounded-lg p-4">
+          <div className="bg-gray-100 rounded-lg  p-4">
             <h3 className=" font-bold mb-4 font-geoformHeavy text-center text-blue-950">completed</h3>
             <div className="space-y-4">
               {completedDocs.map(doc => (
-                <div key={doc.id} className="bg-white rounded-lg p-4 shadow">
+                <div key={doc.id} className="bg-white rounded-lg  p-4 shadow">
                   <div className="flex justify-between items-start">
                     <div>
                       <h4 className="font-bold text-blue-950">{doc.title}</h4>
@@ -286,11 +286,11 @@ const Documents = ({ project, onBack }: DocumentsProps) => {
           </div>
 
           {/* Pending Documents */}
-          <div className="bg-gray-100 rounded-lg p-4">
+          <div className="bg-gray-100 rounded-lg  p-4">
             <h3 className="font-bold mb-4 font-geoformHeavy text-blue-950 text-center">pending</h3>
             <div className="space-y-4">
               {pendingDocs.map(doc => (
-                <div key={doc.id} className="bg-white rounded-lg p-4 shadow">
+                <div key={doc.id} className="bg-white rounded-lg  p-4 shadow">
                   <div className="flex justify-between items-start">
                     <div>
                       <h4 className="font-bold font-geoformItalic text-blue-950">{doc.title}</h4>
@@ -319,7 +319,7 @@ const Documents = ({ project, onBack }: DocumentsProps) => {
       <div className="mt-6 flex justify-center">
         <button
           onClick={handleUploadClick}
-          className="px-6 py-2 bg-white font-geoformHeavy text-blue-950 rounded-md font-medium shadow"
+          className="px-6 py-2 bg-white font-geoformHeavy text-blue-950 rounded-lg  font-medium shadow"
         >
           UPLOAD DOCUMENT
         </button>
@@ -327,7 +327,7 @@ const Documents = ({ project, onBack }: DocumentsProps) => {
 
       <button
         onClick={onBack}
-        className="mt-4 px-4 py-2 bg-gray-100 rounded flex items-center space-x-1"
+        className="mt-4 px-4 py-2 bg-gray-100 rounded-lg flex items-center space-x-1"
       >
         <ArrowLeftIcon className="h-5 w-5 text-blue-950" />
         <span className="text-blue-950 font-geoformHeavy">Back to Project</span>

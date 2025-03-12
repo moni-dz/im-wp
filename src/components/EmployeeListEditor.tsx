@@ -13,14 +13,14 @@ interface DeleteConfirmationProps {
 const DeleteConfirmation: React.FC<DeleteConfirmationProps> = ({ member, onConfirm, onCancel }) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg p-6 max-w-md w-full">
+      <div className="bg-white rounded-lg  p-6 max-w-md w-full">
         <h3 className="font-geoformItalic text-lg font-medium mb-4 text-blue-950">Delete {member.personName}'s information?</h3>
         <p className="font-geoformHeavy mb-6 text-blue-950">This action cannot be undone.</p>
         <div className="flex justify-end space-x-3">
-          <button onClick={onCancel} className="px-4 py-2 font-geoformHeavy border bg-blue-950 text-white rounded-md hover:bg-white hover:text-blue-950 hover:border-blue-950">
+          <button onClick={onCancel} className="px-4 py-2 font-geoformHeavy border bg-blue-950 text-white rounded-lg  hover:bg-white hover:text-blue-950 hover:border-blue-950">
             Back
           </button>
-          <button onClick={onConfirm} className="px-4 py-2 font-geoformHeavy border bg-blue-950 text-white rounded-md hover:bg-white hover:text-blue-950 hover:border-blue-950">
+          <button onClick={onConfirm} className="px-4 py-2 font-geoformHeavy border bg-blue-950 text-white rounded-lg  hover:bg-white hover:text-blue-950 hover:border-blue-950">
             Delete
           </button>
         </div>
@@ -84,7 +84,7 @@ const EmployeeListEditor: React.FC<EmployeeListEditorProps> = ({
 
   const EmployeeCard = ({ employee }: { employee: EmployeeData }) => {
     return (
-      <div className="bg-gray-100 rounded-lg p-4 relative">
+      <div className="bg-gray-100 rounded-lg  p-4 relative">
         <div className="absolute top-0 right-0 p-2 flex space-x-2">
           <button
             onClick={() => handleEditClick(employee)}
@@ -121,8 +121,8 @@ const EmployeeListEditor: React.FC<EmployeeListEditorProps> = ({
   const EditEmployeeModal = ({ employee }: { employee: EmployeeData }) => {
     return (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-        <div className="bg-white rounded-lg p-6 w-96">
-          <h2 className="font-geoformHeavy text-xl text-blue-950 font-bold mb-4">Edit Employee</h2>
+        <div className="bg-white rounded-lg  p-6 w-96">
+          <h2 className="font-geoformHeavy text-2xl text-blue-950 font-bold mb-4">Edit Employee</h2>
           <form action={async (formData) => {
             await updateEmployee(formData);
 
@@ -140,75 +140,75 @@ const EmployeeListEditor: React.FC<EmployeeListEditorProps> = ({
             <div className="grid grid-cols-2 gap-6">
               {/* Person Name */}
               <div className="col-span-2">
-                <h2 className="text-lg font-bold text-blue-950 mb-4">Person</h2>
+                <h2 className="text-lg font-geoformHeavy text-center font-bold text-blue-950 mb-4">Person</h2>
               </div>
-              <div>
-                <label className="block text-blue-950 font-geoformHeavy mb-2">
+              <div className='col-span-2'>
+                <label className="block text-blue-950 font-geoformItalic mb-2">
                   Name
                 </label>
                 <input
                   type="text"
                   name="personName"
                   defaultValue={employee.personName!}
-                  className="w-full bg-gray-100 rounded p-2"
+                  className="w-full bg-gray-100 rounded-lg p-2"
                   required
                 />
               </div>
 
               {/* Employee Fields */}
               <div className="col-span-2">
-                <h2 className="text-lg font-bold text-blue-950 mb-4">Employee</h2>
+                <h2 className="text-lg font-geoformHeavy text-center font-bold text-blue-950 mb-4">Employee</h2>
               </div>
               <div>
-                <label className="block text-blue-950 font-geoformHeavy mb-2">
+                <label className="block text-blue-950 font-geoformItalic mb-2">
                   Status
                 </label>
                 <input
                   type="text"
                   name="status"
                   defaultValue={employee.employeeStatus!}
-                  className="w-full bg-gray-100 rounded p-2"
+                  className="w-full bg-gray-100 rounded-lg p-2"
                   required
                 />
               </div>
               <div>
-                <label className="block text-blue-950 font-geoformHeavy mb-2">
+                <label className="block text-blue-950 font-geoformItalic mb-2">
                   Skills
                 </label>
                 <input
                   type="text"
                   name="skills"
                   defaultValue={employee.employeeSkills!}
-                  className="w-full bg-gray-100 rounded p-2"
+                  className="w-full bg-gray-100 rounded-lg p-2"
                   required
                 />
               </div>
-              <div>
-                <label className="block text-blue-950 font-geoformHeavy mb-2">
+              <div className='col-span-2'>
+                <label className="block text-blue-950 font-geoformItalic mb-2">
                   Date Contracted
                 </label>
                 <input
                   type="date"
                   name="dateContracted"
                   defaultValue={employee.employeeDateContracted!}
-                  className="w-full bg-gray-100 rounded p-2"
+                  className="w-full bg-gray-100 rounded-lg p-2"
                   required
                 />
               </div>
 
               {/* Role Fields */}
               <div className="col-span-2">
-                <h2 className="text-lg font-bold text-blue-950 mb-4">Role</h2>
+                <h2 className="text-lg font-geoformHeavy text-center font-bold text-blue-950 mb-4">Role</h2>
               </div>
-              <div>
-                <label className="block text-blue-950 font-geoformHeavy mb-2">
+              <div className='col-span-2'>
+                <label className="block text-blue-950 font-geoformItalic mb-2">
                   Role Name
                 </label>
                 <input
                   type="text"
                   name="roleName"
                   defaultValue={employee.roleName!}
-                  className="w-full bg-gray-100 rounded p-2"
+                  className="w-full bg-gray-100 rounded-lg p-2"
                   required
                 />
               </div>
@@ -217,7 +217,7 @@ const EmployeeListEditor: React.FC<EmployeeListEditorProps> = ({
             <div className="mt-6">
               <button
                 type="submit"
-                className="bg-blue-950 text-white font-geoformHeavy px-4 py-2 rounded"
+                className="bg-blue-950 border hover:border-blue-950 hover:bg-white hover:text-blue-950 text-white font-geoformHeavy px-4 py-2 rounded-lg "
               >
                 Update
               </button>
@@ -250,7 +250,7 @@ const EmployeeListEditor: React.FC<EmployeeListEditorProps> = ({
       <div className="container mx-auto px-4 py-6">
         <h1 className="text-3xl text-blue-950 font-geoformHeavy font-bold mb-6">Employee List: {project.projectName}</h1>
 
-        <div className="bg-white rounded-lg p-6 mb-6">
+        <div className="bg-white rounded-lg  p-6 mb-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {employees.map((employee, index) => (
               <EmployeeCard key={index} employee={employee} />
@@ -261,7 +261,7 @@ const EmployeeListEditor: React.FC<EmployeeListEditorProps> = ({
         <div className="flex justify-center mb-6">
           <button 
             onClick={handleAddEmployeeClick}
-            className="hover:bg-white hover:text-blue-950 hover:border-blue-950 font-geoformHeavy bg-blue-950 font-bold text-white rounded-md px-8 py-3 font-medium"
+            className="hover:bg-white hover:text-blue-950 hover:border-blue-950 border border-blue-950 font-geoformHeavy bg-blue-950 text-white rounded-lg  px-8 py-3 font-medium"
           >
             ADD EMPLOYEE
           </button>
@@ -269,9 +269,9 @@ const EmployeeListEditor: React.FC<EmployeeListEditorProps> = ({
 
         <button 
           onClick={onBack} 
-          className="hover:bg-white hover:text-blue-950 hover:border-blue-950 font-geoformHeavy mt-4 px-4 py-2 bg-blue-950 font-bold text-white rounded flex items-center space-x-1"
+          className="hover:bg-white border hover:text-blue-950 hover:border-blue-950 font-geoformHeavy mt-4 px-4 py-2 bg-blue-950 font-bold text-white rounded-lg flex items-center space-x-1"
         >
-          <ArrowLeftIcon className="h-5 w-5" />
+          <ArrowLeftIcon className="h-5 w-5 rounded-lg " />
           <span>Back to Project Details</span>
         </button>
 

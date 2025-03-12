@@ -43,7 +43,7 @@ const ProjectsPage = () => {
         <h2 className="font-geoformHeavy text-3xl font-bold text-blue-950">Projects</h2>
         <button 
           onClick={() => setIsAddingProject(true)}
-          className="bg-blue-950 font-geoformHeavy rounded-lg font-bold text-white px-4 py-2 border rounded hover:border-blue-950 hover:bg-white hover:text-blue-950 "
+          className="bg-blue-950 font-geoformHeavy rounded-lg  font-bold text-white px-4 py-2 border hover:border-blue-950 hover:bg-white hover:text-blue-950 "
         >
           ADD PROJECT
         </button>
