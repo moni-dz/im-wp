@@ -14,7 +14,7 @@
     "drizzle-orm": "^0.39.3",
     "framer-motion": "^12.5.0",
     "mysql2": "^3.12.0",
-    "next": "latest",
+    "next": "^15.2.2",
     "react": "latest",
     "react-dom": "latest"
   },
