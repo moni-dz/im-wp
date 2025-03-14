@@ -8,8 +8,7 @@ const Login = () => {
 
     const response = await fetch('http://localhost:3000/api/v1/login', {
       method: 'POST',
-      body: JSON.stringify({ username: formData.get('username'), password: formData.get('password') }),
-      headers: { 'Content-Type': 'application/json' }
+      body: formData,
     });
     
     if (response.ok) {

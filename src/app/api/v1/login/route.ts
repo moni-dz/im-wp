@@ -3,7 +3,10 @@ import { eq } from "drizzle-orm";
 import { engineer } from "@/db/schema";
 
 export async function POST(req: Request) {
-    const { username, password }: { username: string, password: string } = await req.json();
+    const formData = await req.formData();
+    const username = formData.get('username')?.toString()!;
+    const password = formData.get('password')?.toString()!;
+
     const user = await db.query.engineer.findFirst({ where: eq(engineer.username, username) });
 
     if (!user) {
