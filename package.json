@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@heroicons/react": "1",
+    "@types/bun": "^1.2.5",
     "dotenv": "^16.4.7",
     "drizzle-orm": "^0.39.3",
     "framer-motion": "^12.5.0",
