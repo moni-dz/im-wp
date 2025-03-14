@@ -3,6 +3,27 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 ## Getting Started
 
 [Install Bun. (a nodejs compatible runtime)](https://bun.sh/)
+[Install MariaDB](https://mariadb.com/kb/en/getting-installing-and-upgrading-mariadb/)
+
+Initialize the database.
+
+```bash
+# command prompt / shell
+mariadb -u mysql # depends on your MariaDB setup
+```
+```sql
+-- inside the MariaDB query console
+MariaDB [(none)]> create database db_imwp;
+```
+```bash
+# back in the command prompt / shell
+mariadb -u mysql db_imwp < src/db/schema.sql
+```
+```sql
+-- check inside the MariaDB query console for correctness
+MariaDB [(none)]> use db_imwp;
+MariaDB [(db_imwp)]> show tables;
+```
 
 Then, run the development server:
 
