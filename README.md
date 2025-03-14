@@ -2,13 +2,13 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-[Install Bun.](https://bun.sh/)
+[Install Bun. (a nodejs compatible runtime)](https://bun.sh/)
 
 Then, run the development server:
 
 ```bash
 bun i
-bun dev
+bun --bun run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
